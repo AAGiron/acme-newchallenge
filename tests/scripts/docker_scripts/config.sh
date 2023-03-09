@@ -1,0 +1,8 @@
+LEGO_DIR=/go-lego
+WRAPPED_CERT_TESTS_DIR=/tests
+GO_STD_DIR=/go
+DOCKER_VOLUME=${WRAPPED_CERT_TESTS_DIR}/docker_volume
+
+SERVER_NAME=tls-server
+CLIENT_IP=tls-client
+PEBBLE_IP=pebble

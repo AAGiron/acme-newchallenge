@@ -1,0 +1,1 @@
+This directory stores general resources used by the tests
