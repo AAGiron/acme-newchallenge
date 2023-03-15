@@ -1,0 +1,12 @@
+[submodule "go-std"]
+	path = go-std
+	url = https://github.com/AAGiron/go-std
+[submodule "go-pebble"]
+	path = go-pebble
+	url = https://github.com/AAGiron/go-pebble
+[submodule "go-jose"]
+	path = go-jose
+	url = https://github.com/AAGiron/go-jose
+[submodule "go-lego"]
+	path = go-lego
+	url = https://github.com/AAGiron/go-lego
