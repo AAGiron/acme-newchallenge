@@ -1,12 +1,12 @@
 [submodule "go-std"]
 	path = go-std
-	url = https://github.com/AAGiron/go-std
+	url = https://anonymous.4open.science/r/go-std-C24A
 [submodule "go-pebble"]
 	path = go-pebble
-	url = https://github.com/AAGiron/go-pebble
+	url = https://anonymous.4open.science/r/go-pebble-78DE/
 [submodule "go-jose"]
 	path = go-jose
-	url = https://github.com/AAGiron/go-jose
+	url = https://anonymous.4open.science/r/go-jose-5555
 [submodule "go-lego"]
 	path = go-lego
-	url = https://github.com/AAGiron/go-lego
+	url = https://anonymous.4open.science/r/go-lego-2E5F
