@@ -4,11 +4,11 @@ source ../../config.sh
 
 echo -e "\nDeleting server certificates...\n"
 
-sudo rm -rf ${LEGO_DIR}/.lego
+sudo rm -rf ${LEGO_DIR}/.lego/*
 
 cd ${LEGO_DIR}
 
-echo -e "Ordering LEGO to issue a classic certificate"
+echo -e "Ordering LEGO to issue the first certificate"
 
 go run cmd/lego/main.go \
 -s https://${PEBBLE_IP}:14000/dir \
@@ -19,12 +19,12 @@ go run cmd/lego/main.go \
 -a \
 --pqtls \
 --kex Kyber512 \
--k ec256 \
---certalgo P256 \
+-k ECDSA-P256 \
+--certalgo ECDSA-P256 \
 --timingcsv ${PQCACME_TESTS_DIR}/measurements/lego_issuance_time.csv \
 run
 
-echo -e "\nOrdering LEGO to issue a post-quantum certificate"
+echo -e "\nOrdering LEGO to issue the second post-quantum certificate"
 
 
 cd ${LEGO_DIR}

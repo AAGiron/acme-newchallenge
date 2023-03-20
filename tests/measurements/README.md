@@ -1,1 +1,1 @@
-This directory contains TLS hanshake measurements in CSV files
+This directory contains the results in CSV files
