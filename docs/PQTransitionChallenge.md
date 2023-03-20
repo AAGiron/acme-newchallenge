@@ -2,15 +2,15 @@
 
 We implemented a new ACME challenge (called "PQ-transition challenge"),
 allowing speed-ups near to 4x compared to the HTTP-01 challenge. In
-order to use the new challenge, we specified the following CLI flags:
+order to use the new challenge and test PQC, we added the following CLI flags:
 
 -   Go-LEGO (client):
 
-    -   `genCSRatLoadTest`: this boolean flag enables the generation of
+    -   `genCSRatLoadTest`: this (optional) boolean flag enables the generation of
         a new Certificate-Signing Request (CSR) for each client thread
-        during a load test, if true.
+        during a load test, if true. The load testing we use applies to HTTP-01 only.
 
-    -   `newchallenge`: this required boolean flag tells LEGO to execute
+    -   `newchallenge`: this *required* boolean flag tells LEGO to execute
         the issuance by means of the new challenge, if true.
 
 -   Go-Pebble (server):
@@ -96,8 +96,7 @@ if *newchallenge{
 
 
 In Pebble, `/pq-order` handling function and the main implementation of
-the new challenge is placed in a new package. The variables,
-structs, and functions are:
+the new challenge is placed in a new package. The main functions are:
 
 -   `func storePQOrder()`: store a PQOrder in the DB. Follows `wfe.go`
     and `memory` `store.go` original functions.
@@ -148,7 +147,7 @@ list the relevant code of this function.
 //}
 ```
 
-Lastly, changing the CAImpl struct in the ca.go file was also required.
+Changing the CAImpl struct in the ca.go file was also required.
 The name of certificate chains are ClassicChains, and we added two
 different fields: PQACME and PQChains. PQACME is a boolean flag that
 uses the post-quantum issuance chain when it is set by true; PQChains
@@ -171,7 +170,7 @@ without losing any of them.
        certValidityPeriod uint
     }
 
-Secondly, we created `pq_ca.go` to place every function related to post-quantum scenarios. 
+We created `pq_ca.go` to place every function related to post-quantum scenarios. 
 For instance, a new function `AddPQChain()` adds a post-quantum issuance 
 chain on `PQChains` and it enables generating a new certificate to an 
 authenticated ACME client. The `hybrid` flag tells if a concatenation of public keys is needed.
