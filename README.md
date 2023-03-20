@@ -24,3 +24,9 @@ A documentation in `docs/` provides details on the PQ-Transition Challenge imple
 This is a prototype implementation for benchmarking, demonstration and experimentation purposes. 
 
 Suggestions and contributions are welcome!
+
+# Known issues
+
+Anonymous github does not allow downloading repositories (nor submodules) so if you want to:
+- Look at the source (anonymized): [Go-std](https://anonymous.4open.science/r/go-std-C24A), [go-pebble](https://anonymous.4open.science/r/go-pebble-78DE/), [Go-JOSE](https://anonymous.4open.science/r/go-jose-5555), [Go-LEGO](https://anonymous.4open.science/r/go-lego-2E5F)
+- Download the source: `PQTransitionACMEChallenge-Sourcev1.0.zip`, unzip it, then refer to `tests/scripts/local_scripts/` for installation and execution scripts.
