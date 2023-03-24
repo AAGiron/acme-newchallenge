@@ -77,6 +77,7 @@ echo -e "Adding Pebble root CA's certificates to the system trusted CAs list\n"
 
 cd ${PQCACME_TESTS_DIR}/root_ca/
 sudo cp * /usr/local/share/ca-certificates
+sudo cp ../../../go-pebble/test/certs/pebble.minica.pem /etc/ssl/certs/pebble.minica.crt
 sudo update-ca-certificates
 
 echo -e "Appending '127.0.0.1 ${SERVER_NAME} (for local tests only)' to /etc/hosts\n"
