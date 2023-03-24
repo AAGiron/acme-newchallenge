@@ -8,15 +8,26 @@ cd ../..
 
 PQCACME_TESTS_DIR=$PWD
 
-cd ../
 
-cd go-std
+cd ../go-std
 GO_STD_DIR=$PWD
 
-cd ../liboqs
+echo -e "\nInstalling Liboqs dependencies...\n"
+sudo apt install astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml git pkg-config
+
+
+echo -e "\nDownloading Liboqs\n"
+cd ../
+git clone "https://github.com/open-quantum-safe/liboqs.git"
+
+cd liboqs
 LIBOQS_DIR=$PWD
 
-cd ../liboqs-go
+echo -e "\nDownloading Liboqs-go\n"
+cd ../
+git clone "https://github.com/open-quantum-safe/liboqs-go.git"
+
+cd liboqs-go
 LIBOQS_GO_DIR=$PWD
 
 cd ${PQCACME_TESTS_DIR}
@@ -29,18 +40,16 @@ LEGO_DIR=$PWD
 
 cd ${PQCACME_TESTS_DIR}
 
-echo -e "\nInstalling liboqs dependencies...\n"
-
-sudo apt install astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml git pkg-config
 
 echo -e "\nCompiling Liboqs\n"
 
 cd ${LIBOQS_DIR}
 
-mkdir build && cd build
+mkdir -p build && cd build
 cmake -GNinja -DBUILD_SHARED_LIBS=ON ..
 sudo ninja
 sudo ninja install
+
 
 cd ${PQCACME_TESTS_DIR}
 
@@ -66,11 +75,11 @@ echo "export PATH=${GO_STD_DIR}/bin:\$PATH
 
 echo -e "Adding Pebble root CA's certificates to the system trusted CAs list\n"
 
-cd ${PQCACME_TESTS_DIR}/../pebble_https_root_ca
+cd ${PQCACME_TESTS_DIR}/root_ca/
 sudo cp * /usr/local/share/ca-certificates
 sudo update-ca-certificates
 
-echo -e "Appending '127.0.0.1 ${SERVER_NAME}' to /etc/hosts (for local tests only) \n"
+echo -e "Appending '127.0.0.1 ${SERVER_NAME} (for local tests only)' to /etc/hosts\n"
 sudo echo "127.0.0.1 ${SERVER_NAME}" | sudo tee -a /etc/hosts
 
 echo "PQCACME_TESTS_DIR=${PQCACME_TESTS_DIR}
@@ -83,3 +92,4 @@ PEBBLE_IP=${PEBBLE_IP}
 " >> ${PQCACME_TESTS_DIR}/scripts/config.sh
 
 echo -e "Installation completed. Restart your system for the changes to take effect\n"
+
