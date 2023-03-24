@@ -13,13 +13,19 @@ Repository for the implemenation of the ACME protocol with Post-Quantum Cryptogr
 
 # Execution
 
-Refer to `tests/scripts/local_scripts/` for load-testing and scripts for issuance of certificates. Execute Pebble first, and then the client (LEGO).
+Refer to `tests/scripts/local_scripts/` for load-testing and scripts for issuance of certificates. Open two terminals, execute Pebble first, and then the client (LEGO).
+
+The certificates are normally stored in `go-lego/.lego/certificates/` (check LEGO output logs). Measurements are given as CSV files in `measurements`, but you have to give flags for specific metrics. 
 
 # Documentation
 
 A documentation in `docs/` provides details on the PQ-Transition Challenge implementation. For additional information, overview, design and results please refer to the paper.
 
-Tested on a (fresh) Ubuntu LTS [multipass](https://multipass.run/) instance (with 2GB memory). 
+Tested on a (fresh) Ubuntu LTS [multipass](https://multipass.run/) [modified](https://multipass.run/docs/modify-an-instance) instance, with 2GB memory and 20 GB disk. 
+
+# Further configurations
+
+One can change Pebble's server certificate by a PQC one. See `go-pebble/test/certs/` for examples. They can be configured before launching `./pebble.sh` in `go-pebble/test/config/pebble-config.json`, and then you can change the algorithms in the example scripts (`pebble.sh` and 
 
 # Disclaimer
 
@@ -30,7 +36,7 @@ Suggestions and contributions are welcome!
 # Known issues
 
 Anonymous github does not allow downloading big repositories (nor submodules) so if you want to:
-- Look at the source (anonymized): [Go-std](https://anonymous.4open.science/r/go-std-C24A), [go-pebble](https://anonymous.4open.science/r/go-pebble-78DE/), [Go-JOSE](https://anonymous.4open.science/r/go-jose-5555), [Go-LEGO](https://anonymous.4open.science/r/go-lego-2E5F)
+- Look at the source of the submodules (anonymized): [Go-std](https://anonymous.4open.science/r/go-std-C24A), [go-pebble](https://anonymous.4open.science/r/go-pebble-78DE/), [Go-JOSE](https://anonymous.4open.science/r/go-jose-5555), [Go-LEGO](https://anonymous.4open.science/r/go-lego-2E5F). A look in the `docs/` might give directions.
 - Download the source: [PQTransitionACMEChallenge-Sourcev1.0.zip](https://mega.nz/file/S8khgZ4Z#3b55kBbXonaMPMlz5CKse92FbbsfB4MTeI8CaRilIJE), unzip it, then refer to `tests/scripts/local_scripts/` for installation and execution scripts. The zip file includes everything but the main requirement (a Go installation) still apply.
 
 
