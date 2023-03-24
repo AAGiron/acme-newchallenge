@@ -1,8 +1,8 @@
 #!/bin/bash
 
-read -p "What will be the TLS client's IP? " CLIENT_IP
-read -p "What will be the TLS server's NAME (It cannot be the IP address)? " SERVER_NAME
-read -p "What will be the ACME server's IP? " PEBBLE_IP
+read -p "What will be the TLS client's IP? (e.g., 127.0.0.1) " CLIENT_IP
+read -p "What will be the TLS server's NAME (e.g., teste) (It cannot be the IP address)? " SERVER_NAME
+read -p "What will be the ACME server's IP? (e.g., 127.0.0.1) " PEBBLE_IP
 
 cd ../..
 
@@ -19,15 +19,12 @@ LIBOQS_DIR=$PWD
 cd ../liboqs-go
 LIBOQS_GO_DIR=$PWD
 
-cd ${PQCACME_TESTS_DIR}/../..
+cd ${PQCACME_TESTS_DIR}
 
-cd acme-server/go-pebble
+cd ../go-pebble
 PEBBLE_DIR=$PWD
 
-cd ${PQCACME_TESTS_DIR}/..
-
-cd go-lego
-
+cd ../go-lego
 LEGO_DIR=$PWD
 
 cd ${PQCACME_TESTS_DIR}
@@ -73,7 +70,7 @@ cd ${PQCACME_TESTS_DIR}/../pebble_https_root_ca
 sudo cp * /usr/local/share/ca-certificates
 sudo update-ca-certificates
 
-echo -e "Appending '127.0.0.1 ${SERVER_NAME}' to /etc/hosts\n"
+echo -e "Appending '127.0.0.1 ${SERVER_NAME}' to /etc/hosts (for local tests only) \n"
 sudo echo "127.0.0.1 ${SERVER_NAME}" | sudo tee -a /etc/hosts
 
 echo "PQCACME_TESTS_DIR=${PQCACME_TESTS_DIR}
