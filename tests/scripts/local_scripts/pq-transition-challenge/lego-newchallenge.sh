@@ -19,8 +19,8 @@ go run cmd/lego/main.go \
 -a \
 --pqtls \
 --kex Kyber512 \
--k ECDSA-P256 \
---certalgo ECDSA-P256 \
+-k ec256 \
+--certalgo P256 \
 --timingcsv ${PQCACME_TESTS_DIR}/measurements/lego_issuance_time.csv \
 run
 
