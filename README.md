@@ -13,9 +13,9 @@ Repository for the implemenation of the ACME protocol with Post-Quantum Cryptogr
 
 # Execution
 
-Refer to `tests/scripts/local_scripts/` for load-testing and scripts for issuance of certificates. Open two terminals, execute Pebble first, and then the client (LEGO).
+Refer to `tests/scripts/local_scripts/` for load-testing and scripts for issuance of certificates. Open two terminals, execute Pebble first, and then the client (LEGO). 
 
-The certificates are normally stored in `go-lego/.lego/certificates/` (check LEGO output logs). Measurements are given as CSV files in `measurements`, but you have to give flags for specific metrics. 
+The certificates are normally stored in `go-lego/.lego/certificates/` (check LEGO output logs). Measurements are given as CSV files in `tests/measurements/`, but you have to give flags for specific metrics. 
 
 # Documentation
 
@@ -25,7 +25,7 @@ Tested on a (fresh) Ubuntu LTS [multipass](https://multipass.run/) [modified](ht
 
 # Further configurations
 
-One can change Pebble's server certificate by a PQC one. See `go-pebble/test/certs/` for examples. They can be configured before launching `./pebble.sh` in `go-pebble/test/config/pebble-config.json`, and then you can change the algorithms in the example scripts (`pebble.sh` and 
+One can change Pebble's server certificate by a PQC one. See `go-pebble/test/certs/` for examples. They can be configured before launching `./pebble.sh` in `go-pebble/test/config/pebble-config.json`, and then you can change the algorithms in the example scripts (`pebble.sh` and `lego.sh` or `lego-newchallenge.sh`).
 
 # Disclaimer
 
