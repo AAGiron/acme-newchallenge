@@ -21,7 +21,7 @@ The certificates are normally stored in `go-lego/.lego/certificates/` (check LEG
 
 A documentation in `docs/` provides details on the PQ-Transition Challenge implementation. For additional information, overview, design and results please refer to the paper.
 
-Tested on a (fresh) Ubuntu LTS [multipass](https://multipass.run/) [modified](https://multipass.run/docs/modify-an-instance) instance, with 2GB memory and 20 GB disk. 
+Tested on a (fresh) Ubuntu 22.10 LTS [multipass](https://multipass.run/) [modified](https://multipass.run/docs/modify-an-instance) instance, with 2GB memory and 20 GB disk. 
 
 # Further configurations
 
@@ -37,6 +37,6 @@ Suggestions and contributions are welcome!
 
 Anonymous github does not allow downloading big repositories (nor submodules) so if you want to:
 - Look at the source of the submodules (anonymized): [Go-std](https://anonymous.4open.science/r/go-std-C24A), [go-pebble](https://anonymous.4open.science/r/go-pebble-78DE/), [Go-JOSE](https://anonymous.4open.science/r/go-jose-5555), [Go-LEGO](https://anonymous.4open.science/r/go-lego-2E5F). A look in the `docs/` might give directions.
-- Download the source: [PQTransitionACMEChallenge-Sourcev1.0.zip](https://mega.nz/file/S8khgZ4Z#3b55kBbXonaMPMlz5CKse92FbbsfB4MTeI8CaRilIJE), unzip it, then refer to `tests/scripts/local_scripts/` for installation and execution scripts. The zip file includes everything but the main requirement (a Go installation) still apply.
+- Download the source: [PQTransitionACMEChallenge-Sourcev1.0.zip](https://mega.nz/file/DsE22YDC#-17G4Mv20ptt2rTc4rHk7HPipE7bwJcgkgCUmrAlwSY), unzip it, then refer to `tests/scripts/` for installation and execution scripts. The zip file includes everything but the main requirement (a Go installation) still apply.
 
 If an error like `Temporary naming resolution failure` appears when testing a certificate issuance, please check if your `/etc/hosts` contains the line `${IP_SERVER}   ${SERVER_NAME}`. The installation script adds it but some VM instances can flush out such a configuration.  
