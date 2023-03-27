@@ -1,6 +1,6 @@
 # ACME-newchallenge
 
-Repository for the implemenation of the ACME protocol with Post-Quantum Cryptography (PQC), including the "PQ-Transition Challenge" proposal. The source code based on Go-LEGO, Go-Pebble, Go-JOSE, and Go standard library (i.e., the submodules).
+Repository for the implemenation of the ACME protocol with Post-Quantum Cryptography (PQC), including the "PQ-Transition Challenge" proposal. The source code is based on Go-LEGO, Go-Pebble, Go-JOSE, and Go standard library (i.e., the submodules).
 
 # Requirements and Installation
 
@@ -37,6 +37,8 @@ Suggestions and contributions are welcome!
 
 Anonymous github does not allow downloading big repositories (nor submodules) so if you want to:
 - Look at the source of the submodules (anonymized): [Go-std](https://anonymous.4open.science/r/go-std-C24A), [go-pebble](https://anonymous.4open.science/r/go-pebble-78DE/), [Go-JOSE](https://anonymous.4open.science/r/go-jose-5555), [Go-LEGO](https://anonymous.4open.science/r/go-lego-2E5F). A look in the `docs/` might give directions.
-- Download the source: [newPQTransitionACMEChallenge-Sourcev1.0.zip](https://mega.nz/file/rpcB3Bqa#_qa3ZzfpXKAAQiO3LtUJQIzFGPzY3Asb8wfl28J1fu0p), unzip it, then refer to `tests/scripts/` for installation and execution scripts. The zip file includes everything but the main requirement (a Go installation) still apply.
+- Download the source: [newPQTransitionACMEChallenge-Sourcev1.0.zip](https://mega.nz/file/30tg2TSB#mREZB-1GTH2_y86BPFAOlrIZllilVIpm9ipxxOBoyIE), unzip it, then refer to `tests/scripts/` for installation and execution scripts. The zip file includes everything but the main requirement (a Go installation) still apply.
 
 If an error like `Temporary naming resolution failure` appears when testing a certificate issuance, please check if your `/etc/hosts` contains the line `${IP_SERVER}   ${SERVER_NAME}`. The installation script adds it but some VM instances can flush out such a configuration.  
+
+If an error like `Get "https://127.0.0.1:14000/dir": x509: certificate signed by unknown authority` appears please check if Pebble's TLS certificate is trusted (it should be, after the installation script, nevertheless you can add it yourself in your running instance `sudo cp <go-pebble-dir>/test/certs/pebble.minica.pem /etc/ssl/certs/pebble.minica.crt && sudo update-ca-certificates`).
