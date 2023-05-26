@@ -1,0 +1,5 @@
+Wireshark TLS PORTS (at HTTP protocol):
+
+- Diltihium2: 443,14000,10001,41892,39942
+- Falcon-512 (standard): 443,14000,10001,36996
+- Dilithium2 (standard): 443,14000,10001,54876

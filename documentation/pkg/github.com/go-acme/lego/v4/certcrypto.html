@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Package: github.com/go-acme/lego/v4/certcrypto</title>
+<link href="../../../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="package-details"><code><span style="font-size:xx-large;">package <b>certcrypto</b></span>
+
+<span class="title">Import Path</span>
+	<a href="../../../../../index.html#pkg-github.com/go-acme/lego/v4/certcrypto">github.com/go-acme/lego/v4/certcrypto</a><i> (on <a href="https://pkg.go.dev/github.com/go-acme/lego/v4/certcrypto" target="_blank">go.dev</a>)</i>
+
+<span class="title">Dependency Relation</span>
+	imports <a href="../../../../../dep/github.com/go-acme/lego/v4/certcrypto.html">17 packages</a>, and imported by 0 packages
+
+<div id="files"><span class="title">Involved Source Files</span>
+
+	<span class="nodocs">    <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html">crypto.go</a></span></div>
+<div id="exported-types"><span class="title">Package-Level Type Names<span class="title-stat"><i> (total 2, both are exported)</i></span></span>
+
+<div id="exported-types-buttons" class="js-on">	/* sort exporteds by: <label id="sort-types-by-alphabet" class="button">alphabet</label> | <label id="sort-types-by-popularity" class="button">popularity</label> */</div><div class="anchor type-res" id="name-DERCertificateBytes" data-popularity="0">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..DERCertificateBytes.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-72">DERCertificateBytes</a> <i>([])</i></span></div><div class="anchor type-res" id="name-KeyType" data-popularity="160">	<input type='checkbox' class="fold" id="KeyType-fold-content"><label for="KeyType-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..KeyType.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-70">KeyType</a> <a href="../../../../builtin.html#name-string">string</a> <i>(basic type)</i></label><span id='KeyType-fold-content-docs' class="fold-docs">
+<span class="md-text">		KeyType represents the key algo as well as the key size or curve to use.</span>
+
+		<input type='checkbox' class="fold" id="KeyType-fold-results"><label for="KeyType-fold-results">As Outputs Of (<i>at least one exported</i>)</label><span id='KeyType-fold-results-items' class="fold-items"><span>
+			func <a href="#name-KeyTypeIsLiboqs">KeyTypeIsLiboqs</a>(kt <b>KeyType</b>) <b>KeyType</b></span></span>
+		<input type='checkbox' class="fold" id="KeyType-fold-params"><label for="KeyType-fold-params">As Inputs Of (<i>at least 2, both are exported</i>)</label><span id='KeyType-fold-params-items' class="fold-items"><span>
+			func <a href="#name-GeneratePrivateKey">GeneratePrivateKey</a>(keyType <b>KeyType</b>) (<a href="../../../../crypto.html">crypto</a>.<a href="../../../../crypto.html#name-PrivateKey">PrivateKey</a>, <a href="../../../../builtin.html#name-error">error</a>)</span><span>
+			func <a href="#name-KeyTypeIsLiboqs">KeyTypeIsLiboqs</a>(kt <b>KeyType</b>) <b>KeyType</b></span></span>
+		<input type='checkbox' class="fold" id="KeyType-fold-values"><label for="KeyType-fold-values">As Types Of (<i>total 18, all are exported</i>)</label><span id='KeyType-fold-values-items' class="fold-items"><span>
+			const <a href="#name-Dilithium2">Dilithium2</a></span><span>
+			const <a href="#name-Dilithium3">Dilithium3</a></span><span>
+			const <a href="#name-Dilithium5">Dilithium5</a></span><span>
+			const <a href="#name-EC256">EC256</a></span><span>
+			const <a href="#name-EC384">EC384</a></span><span>
+			const <a href="#name-Falcon1024">Falcon1024</a></span><span>
+			const <a href="#name-Falcon512">Falcon512</a></span><span>
+			const <a href="#name-P256_Dilithium2">P256_Dilithium2</a></span><span>
+			const <a href="#name-P256_Falcon512">P256_Falcon512</a></span><span>
+			const <a href="#name-P384_Dilithium3">P384_Dilithium3</a></span><span>
+			const <a href="#name-P521_Dilithium5">P521_Dilithium5</a></span><span>
+			const <a href="#name-P521_Falcon1024">P521_Falcon1024</a></span><span>
+			const <a href="#name-P521_SphincsShake256sSimple">P521_SphincsShake256sSimple</a></span><span>
+			const <a href="#name-RSA2048">RSA2048</a></span><span>
+			const <a href="#name-RSA4096">RSA4096</a></span><span>
+			const <a href="#name-RSA8192">RSA8192</a></span><span>
+			const <a href="#name-SphincsShake256128sSimple">SphincsShake256128sSimple</a></span><span>
+			const <a href="#name-SphincsShake256256sSimple">SphincsShake256256sSimple</a></span></span>
+
+</span></div></div>
+<div id="exported-functions"><span class="title">Package-Level Functions<span class="title-stat"><i> (total 15, in which 12 are exported)</i></span></span>
+
+<div class="anchor value-res" id="name-ExtractDomains">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..ExtractDomains.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-236">ExtractDomains</a>(cert *<a href="../../../../crypto/x509.html">x509</a>.<a href="../../../../crypto/x509.html#name-Certificate">Certificate</a>) []<a href="../../../../builtin.html#name-string">string</a></span></div><div class="anchor value-res" id="name-ExtractDomainsCSR">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..ExtractDomainsCSR.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-253">ExtractDomainsCSR</a>(csr *<a href="../../../../crypto/x509.html">x509</a>.<a href="../../../../crypto/x509.html#name-CertificateRequest">CertificateRequest</a>) []<a href="../../../../builtin.html#name-string">string</a></span></div><div class="anchor value-res" id="name-GenerateCSR">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..GenerateCSR.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-159">GenerateCSR</a>(privateKey <a href="../../../../crypto.html">crypto</a>.<a href="../../../../crypto.html#name-PrivateKey">PrivateKey</a>, domain <a href="../../../../builtin.html#name-string">string</a>, san []<a href="../../../../builtin.html#name-string">string</a>, mustStaple <a href="../../../../builtin.html#name-bool">bool</a>) ([]<a href="../../../../builtin.html#name-byte">byte</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></div><div class="anchor value-res" id="name-GeneratePemCert">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..GeneratePemCert.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-282">GeneratePemCert</a>(privateKey *<a href="../../../../crypto/rsa.html">rsa</a>.<a href="../../../../crypto/rsa.html#name-PrivateKey">PrivateKey</a>, domain <a href="../../../../builtin.html#name-string">string</a>, extensions []<a href="../../../../crypto/x509/pkix.html">pkix</a>.<a href="../../../../crypto/x509/pkix.html#name-Extension">Extension</a>) ([]<a href="../../../../builtin.html#name-byte">byte</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></div><div class="anchor value-res" id="name-GeneratePrivateKey">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..GeneratePrivateKey.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-136">GeneratePrivateKey</a>(keyType <a href="#name-KeyType">KeyType</a>) (<a href="../../../../crypto.html">crypto</a>.<a href="../../../../crypto.html#name-PrivateKey">PrivateKey</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></div><div class="anchor value-res" id="name-KeyTypeIsLiboqs">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..KeyTypeIsLiboqs.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-319">KeyTypeIsLiboqs</a>(kt <a href="#name-KeyType">KeyType</a>) <a href="#name-KeyType">KeyType</a></span></div><div class="anchor value-res" id="name-ParsePEMBundle">	<input type='checkbox' class="fold" id="ParsePEMBundle-fold-content"><label for="ParsePEMBundle-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..ParsePEMBundle.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-76">ParsePEMBundle</a>(bundle []<a href="../../../../builtin.html#name-byte">byte</a>) ([]*<a href="../../../../crypto/x509.html">x509</a>.<a href="../../../../crypto/x509.html#name-Certificate">Certificate</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='ParsePEMBundle-fold-content-docs' class="fold-docs">
+<span class="md-text">		ParsePEMBundle parses a certificate bundle from top to bottom and returns
+		a slice of x509 certificates. This function will error if no certificates are found.</span>
+
+</span></div><div class="anchor value-res" id="name-ParsePEMCertificate">	<input type='checkbox' class="fold" id="ParsePEMCertificate-fold-content"><label for="ParsePEMCertificate-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..ParsePEMCertificate.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-226">ParsePEMCertificate</a>(cert []<a href="../../../../builtin.html#name-byte">byte</a>) (*<a href="../../../../crypto/x509.html">x509</a>.<a href="../../../../crypto/x509.html#name-Certificate">Certificate</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='ParsePEMCertificate-fold-content-docs' class="fold-docs">
+<span class="md-text">		ParsePEMCertificate returns Certificate from a PEM encoded certificate.
+		The certificate has to be PEM encoded. Any other encodings like DER will fail.</span>
+
+</span></div><div class="anchor value-res" id="name-ParsePEMPrivateKey">	<input type='checkbox' class="fold" id="ParsePEMPrivateKey-fold-content"><label for="ParsePEMPrivateKey-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..ParsePEMPrivateKey.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-106">ParsePEMPrivateKey</a>(key []<a href="../../../../builtin.html#name-byte">byte</a>) (<a href="../../../../crypto.html">crypto</a>.<a href="../../../../crypto.html#name-PrivateKey">PrivateKey</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='ParsePEMPrivateKey-fold-content-docs' class="fold-docs">
+<span class="md-text">		ParsePEMPrivateKey parses a private key from key, which is a PEM block.
+		Borrowed from Go standard library, to handle various private key and PEM block types.
+		https://github.com/golang/go/blob/693748e9fa385f1e2c3b91ca9acbb6c0ad2d133d/src/crypto/tls/tls.go#L291-L308
+		https://github.com/golang/go/blob/693748e9fa385f1e2c3b91ca9acbb6c0ad2d133d/src/crypto/tls/tls.go#L238)</span>
+
+</span></div><div class="anchor value-res" id="name-PEMBlock">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..PEMBlock.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-179">PEMBlock</a>(data interface{}) *<a href="../../../../encoding/pem.html">pem</a>.<a href="../../../../encoding/pem.html#name-Block">Block</a></span></div><div class="anchor value-res" id="name-PemDecodeTox509CSR">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..PemDecodeTox509CSR.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-211">PemDecodeTox509CSR</a>(data []<a href="../../../../builtin.html#name-byte">byte</a>) (*<a href="../../../../crypto/x509.html">x509</a>.<a href="../../../../crypto/x509.html#name-CertificateRequest">CertificateRequest</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></div><div class="anchor value-res" id="name-PEMEncode">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..PEMEncode.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-175">PEMEncode</a>(data interface{}) []<a href="../../../../builtin.html#name-byte">byte</a></span></div>	<input type='checkbox' class="showhide" id="unexported-functions-showhide"><i><label for="unexported-functions-showhide" class="show-inline">/* 3 unexporteds ... */</label><label for="unexported-functions-showhide" class="hide-inline">/* 3 unexporteds: */</label></i><div class="anchor value-res hidden" id="name-containsSAN"><i>	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..containsSAN^45c9f.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-273">containsSAN</a>(domains []<a href="../../../../builtin.html#name-string">string</a>, sanName <a href="../../../../builtin.html#name-string">string</a>) <a href="../../../../builtin.html#name-bool">bool</a></span></i></div><div class="anchor value-res hidden" id="name-generateDerCert"><i>	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..generateDerCert^a21a6.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-291">generateDerCert</a>(privateKey *<a href="../../../../crypto/rsa.html">rsa</a>.<a href="../../../../crypto/rsa.html#name-PrivateKey">PrivateKey</a>, expiration <a href="../../../../time.html">time</a>.<a href="../../../../time.html#name-Time">Time</a>, domain <a href="../../../../builtin.html#name-string">string</a>, extensions []<a href="../../../../crypto/x509/pkix.html">pkix</a>.<a href="../../../../crypto/x509/pkix.html#name-Extension">Extension</a>) ([]<a href="../../../../builtin.html#name-byte">byte</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></i></div><div class="anchor value-res hidden" id="name-pemDecode"><i>	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..pemDecode^19fe5.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-202">pemDecode</a>(data []<a href="../../../../builtin.html#name-byte">byte</a>) (*<a href="../../../../encoding/pem.html">pem</a>.<a href="../../../../encoding/pem.html#name-Block">Block</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></i></div></div>
+<div id="exported-variables"><span class="title">Package-Level Variables<span class="title-stat"><i> (total 3, none are exported)</i></span></span>
+
+	<input type='checkbox' class="showhide" id="unexported-variables-showhide"><i><label for="unexported-variables-showhide" class="show-inline">/* 3 unexporteds ... */</label><label for="unexported-variables-showhide" class="hide-inline">/* 3 unexporteds: */</label></i><div class="anchor value-res hidden" id="name-liboqsKeyTypes"><i>	<span class="nodocs">  <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..liboqsKeyTypes^05db8.html">var</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-47">liboqsKeyTypes</a> []<a href="../../../../builtin.html#name-string">string</a></span></i></div><div class="anchor value-res hidden" id="name-ocspMustStapleFeature"><i>	<input type='checkbox' class="fold" id="ocspMustStapleFeature-fold-content"><label for="ocspMustStapleFeature-fold-content">  <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..ocspMustStapleFeature^081fd.html">var</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-66">ocspMustStapleFeature</a> []<a href="../../../../builtin.html#name-byte">byte</a></label><span id='ocspMustStapleFeature-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for OCSP must staple.</span>
+
+</span></i></div><div class="anchor value-res hidden" id="name-tlsFeatureExtensionOID"><i>	<input type='checkbox' class="fold" id="tlsFeatureExtensionOID-fold-content"><label for="tlsFeatureExtensionOID-fold-content">  <a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..tlsFeatureExtensionOID^5b6a7.html">var</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-65">tlsFeatureExtensionOID</a> <a href="../../../../encoding/asn1.html">asn1</a>.<a href="../../../../encoding/asn1.html#name-ObjectIdentifier">ObjectIdentifier</a></label><span id='tlsFeatureExtensionOID-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for OCSP must staple.</span>
+
+</span></i></div></div>
+<div id="exported-constants"><span class="title">Package-Level Constants<span class="title-stat"><i> (total 23, all are exported)</i></span></span>
+
+<div class="anchor value-res" id="name-Dilithium2">	<input type='checkbox' class="fold" id="Dilithium2-fold-content"><label for="Dilithium2-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..Dilithium2.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-31">Dilithium2</a> <a href="#name-KeyType">KeyType</a> = "Dilithium2"</label><span id='Dilithium2-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-Dilithium3">	<input type='checkbox' class="fold" id="Dilithium3-fold-content"><label for="Dilithium3-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..Dilithium3.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-32">Dilithium3</a> <a href="#name-KeyType">KeyType</a> = "Dilithium3"</label><span id='Dilithium3-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-Dilithium5">	<input type='checkbox' class="fold" id="Dilithium5-fold-content"><label for="Dilithium5-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..Dilithium5.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-33">Dilithium5</a> <a href="#name-KeyType">KeyType</a> = "Dilithium5"</label><span id='Dilithium5-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-EC256">	<input type='checkbox' class="fold" id="EC256-fold-content"><label for="EC256-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..EC256.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-26">EC256</a> <a href="#name-KeyType">KeyType</a> = "P256"</label><span id='EC256-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-EC384">	<input type='checkbox' class="fold" id="EC384-fold-content"><label for="EC384-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..EC384.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-27">EC384</a> <a href="#name-KeyType">KeyType</a> = "P384"</label><span id='EC384-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-Falcon1024">	<input type='checkbox' class="fold" id="Falcon1024-fold-content"><label for="Falcon1024-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..Falcon1024.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-35">Falcon1024</a> <a href="#name-KeyType">KeyType</a> = "Falcon-1024"</label><span id='Falcon1024-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-Falcon512">	<input type='checkbox' class="fold" id="Falcon512-fold-content"><label for="Falcon512-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..Falcon512.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-34">Falcon512</a> <a href="#name-KeyType">KeyType</a> = "Falcon-512"</label><span id='Falcon512-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-OCSPGood">	<input type='checkbox' class="fold" id="OCSPGood-fold-content"><label for="OCSPGood-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..OCSPGood.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-54">OCSPGood</a> = 0</label><span id='OCSPGood-fold-content-docs' class="fold-docs">
+<span class="md-text">		OCSPGood means that the certificate is valid.</span>
+
+</span></div><div class="anchor value-res" id="name-OCSPRevoked">	<input type='checkbox' class="fold" id="OCSPRevoked-fold-content"><label for="OCSPRevoked-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..OCSPRevoked.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-56">OCSPRevoked</a> = 1</label><span id='OCSPRevoked-fold-content-docs' class="fold-docs">
+<span class="md-text">		OCSPRevoked means that the certificate has been deliberately revoked.</span>
+
+</span></div><div class="anchor value-res" id="name-OCSPServerFailed">	<input type='checkbox' class="fold" id="OCSPServerFailed-fold-content"><label for="OCSPServerFailed-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..OCSPServerFailed.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-60">OCSPServerFailed</a> = 3</label><span id='OCSPServerFailed-fold-content-docs' class="fold-docs">
+<span class="md-text">		OCSPServerFailed means that the OCSP responder failed to process the request.</span>
+
+</span></div><div class="anchor value-res" id="name-OCSPUnknown">	<input type='checkbox' class="fold" id="OCSPUnknown-fold-content"><label for="OCSPUnknown-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..OCSPUnknown.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-58">OCSPUnknown</a> = 2</label><span id='OCSPUnknown-fold-content-docs' class="fold-docs">
+<span class="md-text">		OCSPUnknown means that the OCSP responder doesn't know about the certificate.</span>
+
+</span></div><div class="anchor value-res" id="name-P256_Dilithium2">	<input type='checkbox' class="fold" id="P256_Dilithium2-fold-content"><label for="P256_Dilithium2-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..P256_Dilithium2.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-38">P256_Dilithium2</a> <a href="#name-KeyType">KeyType</a> = "P256_Dilithium2"</label><span id='P256_Dilithium2-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-P256_Falcon512">	<input type='checkbox' class="fold" id="P256_Falcon512-fold-content"><label for="P256_Falcon512-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..P256_Falcon512.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-39">P256_Falcon512</a> <a href="#name-KeyType">KeyType</a> = "P256_Falcon512"</label><span id='P256_Falcon512-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-P256_SphincsShake128sSimple">	<input type='checkbox' class="fold" id="P256_SphincsShake128sSimple-fold-content"><label for="P256_SphincsShake128sSimple-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..P256_SphincsShake128sSimple.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-40">P256_SphincsShake128sSimple</a> = "P256_sphincs+-shake256-128s-simple"</label><span id='P256_SphincsShake128sSimple-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-P384_Dilithium3">	<input type='checkbox' class="fold" id="P384_Dilithium3-fold-content"><label for="P384_Dilithium3-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..P384_Dilithium3.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-41">P384_Dilithium3</a> <a href="#name-KeyType">KeyType</a> = "P384_Dilithium3"</label><span id='P384_Dilithium3-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-P521_Dilithium5">	<input type='checkbox' class="fold" id="P521_Dilithium5-fold-content"><label for="P521_Dilithium5-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..P521_Dilithium5.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-42">P521_Dilithium5</a> <a href="#name-KeyType">KeyType</a> = "P521_Dilitihium5"</label><span id='P521_Dilithium5-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-P521_Falcon1024">	<input type='checkbox' class="fold" id="P521_Falcon1024-fold-content"><label for="P521_Falcon1024-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..P521_Falcon1024.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-43">P521_Falcon1024</a> <a href="#name-KeyType">KeyType</a> = "P521_Falcon1024"</label><span id='P521_Falcon1024-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-P521_SphincsShake256sSimple">	<input type='checkbox' class="fold" id="P521_SphincsShake256sSimple-fold-content"><label for="P521_SphincsShake256sSimple-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..P521_SphincsShake256sSimple.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-44">P521_SphincsShake256sSimple</a> <a href="#name-KeyType">KeyType</a> = "P521_sphincs+-SHAKE256-256s-simple"</label><span id='P521_SphincsShake256sSimple-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-RSA2048">	<input type='checkbox' class="fold" id="RSA2048-fold-content"><label for="RSA2048-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..RSA2048.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-28">RSA2048</a> <a href="#name-KeyType">KeyType</a> = "2048"</label><span id='RSA2048-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-RSA4096">	<input type='checkbox' class="fold" id="RSA4096-fold-content"><label for="RSA4096-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..RSA4096.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-29">RSA4096</a> <a href="#name-KeyType">KeyType</a> = "4096"</label><span id='RSA4096-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-RSA8192">	<input type='checkbox' class="fold" id="RSA8192-fold-content"><label for="RSA8192-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..RSA8192.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-30">RSA8192</a> <a href="#name-KeyType">KeyType</a> = "8192"</label><span id='RSA8192-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-SphincsShake256128sSimple">	<input type='checkbox' class="fold" id="SphincsShake256128sSimple-fold-content"><label for="SphincsShake256128sSimple-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..SphincsShake256128sSimple.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-36">SphincsShake256128sSimple</a> <a href="#name-KeyType">KeyType</a> = "sphincs+-shake256-128s-simple"</label><span id='SphincsShake256128sSimple-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div><div class="anchor value-res" id="name-SphincsShake256256sSimple">	<input type='checkbox' class="fold" id="SphincsShake256256sSimple-fold-content"><label for="SphincsShake256256sSimple-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certcrypto..SphincsShake256256sSimple.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certcrypto/crypto.go.html#line-37">SphincsShake256256sSimple</a> <a href="#name-KeyType">KeyType</a> = "sphincs+-SHAKE256-256s-simple"</label><span id='SphincsShake256256sSimple-fold-content-docs' class="fold-docs">
+<span class="md-text">		Constants for all key types we support.</span>
+
+</span></div></div></code></pre><pre id="footer">
+<table><tr><td><img src="../../../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Source: handshake_server_kemtls.go in package crypto/tls</title>
+<link href="../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="header"><code><span class="title">Source File</span>
+	handshake_server_kemtls.go
+
+<span class="title">Belonging Package</span>
+	<a href="../../../pkg/crypto/tls.html">crypto/tls</a>
+</code></pre>
+<style>input[type=radio] {display: none;}
+input[id=r0]:checked ~pre label[for=r0],
+input[id=r1]:checked ~pre label[for=r1],
+input[id=r2]:checked ~pre label[for=r2],
+input[id=r3]:checked ~pre label[for=r3],
+input[id=r4]:checked ~pre label[for=r4],
+input[id=r5]:checked ~pre label[for=r5],
+input[id=r6]:checked ~pre label[for=r6],
+input[id=r7]:checked ~pre label[for=r7],
+input[id=r8]:checked ~pre label[for=r8],
+input[id=r9]:checked ~pre label[for=r9],
+input[id=r10]:checked ~pre label[for=r10],
+input[id=r11]:checked ~pre label[for=r11],
+input[id=r12]:checked ~pre label[for=r12],
+input[id=r13]:checked ~pre label[for=r13],
+input[id=r14]:checked ~pre label[for=r14],
+input[id=r15]:checked ~pre label[for=r15],
+input[id=r16]:checked ~pre label[for=r16],
+input[id=r17]:checked ~pre label[for=r17],
+input[id=r18]:checked ~pre label[for=r18],
+input[id=r19]:checked ~pre label[for=r19],
+input[id=r20]:checked ~pre label[for=r20],
+input[id=r21]:checked ~pre label[for=r21],
+input[id=r22]:checked ~pre label[for=r22],
+input[id=r23]:checked ~pre label[for=r23],
+input[id=r24]:checked ~pre label[for=r24],
+input[id=r25]:checked ~pre label[for=r25],
+input[id=r26]:checked ~pre label[for=r26],
+input[id=r27]:checked ~pre label[for=r27],
+input[id=r28]:checked ~pre label[for=r28],
+input[id=r29]:checked ~pre label[for=r29],
+input[id=r30]:checked ~pre label[for=r30],
+input[id=r31]:checked ~pre label[for=r31],
+input[id=r32]:checked ~pre label[for=r32],
+input[id=r33]:checked ~pre label[for=r33],
+input[id=r34]:checked ~pre label[for=r34],
+input[id=r35]:checked ~pre label[for=r35],
+input[id=r36]:checked ~pre label[for=r36],
+input[id=r37]:checked ~pre label[for=r37],
+input[id=r38]:checked ~pre label[for=r38],
+input[id=r39]:checked ~pre label[for=r39],
+input[id=r40]:checked ~pre label[for=r40],
+input[id=r41]:checked ~pre label[for=r41],
+input[id=r42]:checked ~pre label[for=r42],
+input[id=r43]:checked ~pre label[for=r43],
+input[id=r44]:checked ~pre label[for=r44],
+input[id=r45]:checked ~pre label[for=r45],
+input[id=r46]:checked ~pre label[for=r46],
+input[id=r47]:checked ~pre label[for=r47],
+input[id=r48]:checked ~pre label[for=r48],
+input[id=r49]:checked ~pre label[for=r49],
+input[id=r50]:checked ~pre label[for=r50],
+input[id=r51]:checked ~pre label[for=r51],
+input[id=r52]:checked ~pre label[for=r52],
+input[id=r53]:checked ~pre label[for=r53],
+input[id=r54]:checked ~pre label[for=r54],
+input[id=r55]:checked ~pre label[for=r55],
+input[id=r56]:checked ~pre label[for=r56],
+input[id=r57]:checked ~pre label[for=r57],
+input[id=r58]:checked ~pre label[for=r58],
+input[id=r59]:checked ~pre label[for=r59],
+input[id=r60]:checked ~pre label[for=r60],
+input[id=r61]:checked ~pre label[for=r61],
+input[id=r62]:checked ~pre label[for=r62],
+input[id=r63]:checked ~pre label[for=r63],
+input[id=r64]:checked ~pre label[for=r64],
+input[id=r65]:checked ~pre label[for=r65],
+input[id=r66]:checked ~pre label[for=r66],
+input[id=r67]:checked ~pre label[for=r67],
+input[id=r68]:checked ~pre label[for=r68],
+input[id=r69]:checked ~pre label[for=r69],
+input[id=r70]:checked ~pre label[for=r70],
+input[id=r71]:checked ~pre label[for=r71],
+input[id=r72]:checked ~pre label[for=r72],
+input[id=r73]:checked ~pre label[for=r73],
+input[id=r74]:checked ~pre label[for=r74],
+input[id=r75]:checked ~pre label[for=r75]
+{background: #226; color: #ff8;}
+input[id=i0]:checked ~pre .i0,
+input[id=i1]:checked ~pre .i1,
+input[id=i2]:checked ~pre .i2,
+input[id=i3]:checked ~pre .i3
+{background: brown; color: #eed;}
+</style><input id="r0" type="radio" name="g"/>
+<input id="r1" type="radio" name="g"/>
+<input id="r2" type="radio" name="g"/>
+<input id="r3" type="radio" name="g"/>
+<input id="r4" type="radio" name="g"/>
+<input id="r5" type="radio" name="g"/>
+<input id="r6" type="radio" name="g"/>
+<input id="r7" type="radio" name="g"/>
+<input id="r8" type="radio" name="g"/>
+<input id="r9" type="radio" name="g"/>
+<input id="r10" type="radio" name="g"/>
+<input id="r11" type="radio" name="g"/>
+<input id="r12" type="radio" name="g"/>
+<input id="r13" type="radio" name="g"/>
+<input id="r14" type="radio" name="g"/>
+<input id="r15" type="radio" name="g"/>
+<input id="r16" type="radio" name="g"/>
+<input id="r17" type="radio" name="g"/>
+<input id="r18" type="radio" name="g"/>
+<input id="r19" type="radio" name="g"/>
+<input id="r20" type="radio" name="g"/>
+<input id="r21" type="radio" name="g"/>
+<input id="r22" type="radio" name="g"/>
+<input id="r23" type="radio" name="g"/>
+<input id="r24" type="radio" name="g"/>
+<input id="r25" type="radio" name="g"/>
+<input id="r26" type="radio" name="g"/>
+<input id="r27" type="radio" name="g"/>
+<input id="r28" type="radio" name="g"/>
+<input id="r29" type="radio" name="g"/>
+<input id="r30" type="radio" name="g"/>
+<input id="r31" type="radio" name="g"/>
+<input id="r32" type="radio" name="g"/>
+<input id="r33" type="radio" name="g"/>
+<input id="r34" type="radio" name="g"/>
+<input id="r35" type="radio" name="g"/>
+<input id="r36" type="radio" name="g"/>
+<input id="r37" type="radio" name="g"/>
+<input id="r38" type="radio" name="g"/>
+<input id="r39" type="radio" name="g"/>
+<input id="r40" type="radio" name="g"/>
+<input id="r41" type="radio" name="g"/>
+<input id="r42" type="radio" name="g"/>
+<input id="r43" type="radio" name="g"/>
+<input id="r44" type="radio" name="g"/>
+<input id="r45" type="radio" name="g"/>
+<input id="r46" type="radio" name="g"/>
+<input id="r47" type="radio" name="g"/>
+<input id="r48" type="radio" name="g"/>
+<input id="r49" type="radio" name="g"/>
+<input id="r50" type="radio" name="g"/>
+<input id="r51" type="radio" name="g"/>
+<input id="r52" type="radio" name="g"/>
+<input id="r53" type="radio" name="g"/>
+<input id="r54" type="radio" name="g"/>
+<input id="r55" type="radio" name="g"/>
+<input id="r56" type="radio" name="g"/>
+<input id="r57" type="radio" name="g"/>
+<input id="r58" type="radio" name="g"/>
+<input id="r59" type="radio" name="g"/>
+<input id="r60" type="radio" name="g"/>
+<input id="r61" type="radio" name="g"/>
+<input id="r62" type="radio" name="g"/>
+<input id="r63" type="radio" name="g"/>
+<input id="r64" type="radio" name="g"/>
+<input id="r65" type="radio" name="g"/>
+<input id="r66" type="radio" name="g"/>
+<input id="r67" type="radio" name="g"/>
+<input id="r68" type="radio" name="g"/>
+<input id="r69" type="radio" name="g"/>
+<input id="r70" type="radio" name="g"/>
+<input id="r71" type="radio" name="g"/>
+<input id="r72" type="radio" name="g"/>
+<input id="r73" type="radio" name="g"/>
+<input id="r74" type="radio" name="g"/>
+<input id="r75" type="radio" name="g"/>
+<input id="i0" type="radio" name="i"/>
+<input id="i1" type="radio" name="i"/>
+<input id="i2" type="radio" name="i"/>
+<input id="i3" type="radio" name="i"/>
+
+<pre class="line-numbers">
+<span class="codeline" id="line-1"><code><span class="keyword">package</span> tls</code></span>
+<span class="codeline" id="line-2"><code></code></span>
+<span class="codeline" id="line-3"><code><span class="keyword">import</span> (</code></span>
+<span class="codeline" id="line-4"><code>	<label for="i0"><span class="lit-string i0">"crypto/hmac"</span></label></code></span>
+<span class="codeline" id="line-5"><code>	<label for="i1"><span class="lit-string i1">"crypto/kem"</span></label></code></span>
+<span class="codeline" id="line-6"><code>	<label for="i2"><span class="lit-string i2">"errors"</span></label></code></span>
+<span class="codeline" id="line-7"><code>	<label for="i3"><span class="lit-string i3">"sync/atomic"</span></label></code></span>
+<span class="codeline" id="line-8"><code>	<span class="comment">// Secret Print</span></code></span>
+<span class="codeline" id="line-9"><code><span class="comment">	// "fmt"</span></code></span>
+<span class="codeline" id="line-10"><code>)</code></span>
+<span class="codeline" id="line-11"><code></code></span>
+<span class="codeline" id="line-12"><code><span class="keyword">func</span> (<label for="r0" class="ident">hs</label> *<a href="handshake_server_tls13.go.html#line-26" class="ident">serverHandshakeStateTLS13</a>) <label for="r1" class="ident"><a href="../../../use/crypto/tls..serverHandshakeStateTLS13^8fe02.handshakeKEMTLS^06eb6.html" class="ident">handshakeKEMTLS</a></label>() <a href="../../../pkg/builtin.html#name-error" class="ident">error</a> {</code></span>
+<span class="codeline" id="line-13"><code>	<label for="r2" class="ident">c</label> := <label for="r0" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-27" class="ident">c</a></code></span>
+<span class="codeline" id="line-14"><code></code></span>
+<span class="codeline" id="line-15"><code>	<span class="keyword">if</span> <label for="r0" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-38" class="ident">pdkKEMTLS</a> {</code></span>
+<span class="codeline" id="line-16"><code>		<span class="keyword">if</span> <label for="r3" class="ident">err</label> := <label for="r0" class="ident">hs</label>.<a href="#line-317" class="ident">writeKEMTLSServerFinished</a>(); <label for="r3" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-17"><code>			<span class="keyword">return</span> <label for="r3" class="ident">err</label></code></span>
+<span class="codeline" id="line-18"><code>		}</code></span>
+<span class="codeline" id="line-19"><code>		<span class="keyword">if</span> <label for="r4" class="ident">_</label>, <label for="r5" class="ident">err</label> := <label for="r2" class="ident">c</label>.<a href="conn.go.html#line-967" class="ident">flush</a>(); <label for="r5" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-20"><code>			<span class="keyword">return</span> <label for="r5" class="ident">err</label></code></span>
+<span class="codeline" id="line-21"><code>		}</code></span>
+<span class="codeline" id="line-22"><code>		<label for="r0" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-226" class="ident">reset</a>()</code></span>
+<span class="codeline" id="line-23"><code>		<span class="keyword">if</span> <label for="r6" class="ident">err</label> := <label for="r0" class="ident">hs</label>.<a href="#line-271" class="ident">readKEMTLSClientFinished</a>(); <label for="r6" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-24"><code>			<span class="keyword">return</span> <label for="r6" class="ident">err</label></code></span>
+<span class="codeline" id="line-25"><code>		}</code></span>
+<span class="codeline" id="line-26"><code>	} <span class="keyword">else</span> {</code></span>
+<span class="codeline" id="line-27"><code>		<span class="keyword">if</span> <label for="r7" class="ident">err</label> := <label for="r0" class="ident">hs</label>.<a href="#line-60" class="ident">readClientKEMCiphertext</a>(); <label for="r7" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-28"><code>			<span class="keyword">return</span> <label for="r7" class="ident">err</label></code></span>
+<span class="codeline" id="line-29"><code>		}</code></span>
+<span class="codeline" id="line-30"><code>		<span class="keyword">if</span> <label for="r8" class="ident">err</label> := <label for="r0" class="ident">hs</label>.<a href="#line-137" class="ident">readClientKEMCertificate</a>(); <label for="r8" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-31"><code>			<span class="keyword">return</span> <label for="r8" class="ident">err</label></code></span>
+<span class="codeline" id="line-32"><code>		}</code></span>
+<span class="codeline" id="line-33"><code>		<span class="keyword">if</span> <label for="r9" class="ident">err</label> := <label for="r0" class="ident">hs</label>.<a href="#line-202" class="ident">sendServerKEMCiphertext</a>(); <label for="r9" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-34"><code>			<span class="keyword">return</span> <label for="r9" class="ident">err</label></code></span>
+<span class="codeline" id="line-35"><code>		}</code></span>
+<span class="codeline" id="line-36"><code>		<span class="keyword">if</span> <label for="r0" class="ident">hs</label>.<a href="#line-133" class="ident">requestClientKEMCert</a>() {</code></span>
+<span class="codeline" id="line-37"><code>			<span class="keyword">if</span> <label for="r10" class="ident">_</label>, <label for="r11" class="ident">err</label> := <label for="r2" class="ident">c</label>.<a href="conn.go.html#line-967" class="ident">flush</a>(); <label for="r11" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-38"><code>				<span class="keyword">return</span> <label for="r11" class="ident">err</label></code></span>
+<span class="codeline" id="line-39"><code>			}</code></span>
+<span class="codeline" id="line-40"><code>			<span class="comment">// thrid round of sending for mKEMTLS</span></code></span>
+<span class="codeline" id="line-41"><code>			<label for="r0" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-226" class="ident">reset</a>()</code></span>
+<span class="codeline" id="line-42"><code>		}</code></span>
+<span class="codeline" id="line-43"><code>		<span class="keyword">if</span> <label for="r12" class="ident">err</label> := <label for="r0" class="ident">hs</label>.<a href="#line-271" class="ident">readKEMTLSClientFinished</a>(); <label for="r12" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-44"><code>			<span class="keyword">return</span> <label for="r12" class="ident">err</label></code></span>
+<span class="codeline" id="line-45"><code>		}</code></span>
+<span class="codeline" id="line-46"><code></code></span>
+<span class="codeline" id="line-47"><code>		<span class="keyword">if</span> <label for="r13" class="ident">err</label> := <label for="r0" class="ident">hs</label>.<a href="#line-317" class="ident">writeKEMTLSServerFinished</a>(); <label for="r13" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-48"><code>			<span class="keyword">return</span> <label for="r13" class="ident">err</label></code></span>
+<span class="codeline" id="line-49"><code>		}</code></span>
+<span class="codeline" id="line-50"><code>	}</code></span>
+<span class="codeline" id="line-51"><code></code></span>
+<span class="codeline" id="line-52"><code>	<span class="comment">// hs.handshakeTimings.ExperimentName = experimentName(c)</span></code></span>
+<span class="codeline" id="line-53"><code>	<label for="r0" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-230" class="ident">finish</a>()</code></span>
+<span class="codeline" id="line-54"><code>	<label for="r2" class="ident">c</label>.<a href="conn.go.html#line-1563" class="ident">handleCFEvent</a>(<label for="r0" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>)</code></span>
+<span class="codeline" id="line-55"><code>	<a href="../../../pkg/sync/atomic.html" class="ident i3">atomic</a>.<a href="../../sync/atomic/doc.go.html#line-135" class="ident">StoreUint32</a>(&amp;<label for="r2" class="ident">c</label>.<a href="conn.go.html#line-36" class="ident">handshakeStatus</a>, <span class="lit-number">1</span>)</code></span>
+<span class="codeline" id="line-56"><code></code></span>
+<span class="codeline" id="line-57"><code>	<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-58"><code>}</code></span>
+<span class="codeline" id="line-59"><code></code></span>
+<span class="codeline" id="line-60"><code><span class="keyword">func</span> (<label for="r14" class="ident">hs</label> *<a href="handshake_server_tls13.go.html#line-26" class="ident">serverHandshakeStateTLS13</a>) <label for="r15" class="ident"><a href="../../../use/crypto/tls..serverHandshakeStateTLS13^8fe02.readClientKEMCiphertext^0b597.html" class="ident">readClientKEMCiphertext</a></label>() <a href="../../../pkg/builtin.html#name-error" class="ident">error</a> {</code></span>
+<span class="codeline" id="line-61"><code>	<label for="r16" class="ident">c</label> := <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-27" class="ident">c</a></code></span>
+<span class="codeline" id="line-62"><code></code></span>
+<span class="codeline" id="line-63"><code>	<span class="keyword">var</span> <label for="r17" class="ident">ahs</label> []<a href="../../../pkg/builtin.html#name-byte" class="ident">byte</a></code></span>
+<span class="codeline" id="line-64"><code></code></span>
+<span class="codeline" id="line-65"><code>	<span class="keyword">if</span> !(<label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-38" class="ident">pdkKEMTLS</a> &amp;&amp; <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-36" class="ident">keyKEMShare</a>) {</code></span>
+<span class="codeline" id="line-66"><code>		<span class="keyword">var</span> <label for="r18" class="ident">sk</label> *<a href="../../../pkg/crypto/kem.html" class="ident i1">kem</a>.<a href="../kem/kem.go.html#line-66" class="ident">PrivateKey</a></code></span>
+<span class="codeline" id="line-67"><code>		<span class="keyword">var</span> <label for="r19" class="ident">ok</label>, <label for="r20" class="ident">ok1</label> <a href="../../../pkg/builtin.html#name-bool" class="ident">bool</a></code></span>
+<span class="codeline" id="line-68"><code>		<label for="r18" class="ident">sk</label>, <label for="r19" class="ident">ok</label> = <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-43" class="ident">cert</a>.<a href="common.go.html#line-1802" class="ident">PrivateKey</a>.(*<a href="../../../pkg/crypto/kem.html" class="ident i1">kem</a>.<a href="../kem/kem.go.html#line-66" class="ident">PrivateKey</a>)</code></span>
+<span class="codeline" id="line-69"><code>		<span class="keyword">if</span> !<label for="r19" class="ident">ok</label> {</code></span>
+<span class="codeline" id="line-70"><code>			<label for="r18" class="ident">sk</label>, <label for="r20" class="ident">ok1</label> = <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-43" class="ident">cert</a>.<a href="common.go.html#line-1826" class="ident">DelegatedCredentialPrivateKey</a>.(*<a href="../../../pkg/crypto/kem.html" class="ident i1">kem</a>.<a href="../kem/kem.go.html#line-66" class="ident">PrivateKey</a>)</code></span>
+<span class="codeline" id="line-71"><code>			<span class="keyword">if</span> !<label for="r20" class="ident">ok1</label> {</code></span>
+<span class="codeline" id="line-72"><code>				<label for="r16" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-38" class="ident">alertInternalError</a>)</code></span>
+<span class="codeline" id="line-73"><code>				<span class="keyword">return</span> <a href="../../../pkg/errors.html" class="ident i2">errors</a>.<a href="../../errors/errors.go.html#line-58" class="ident">New</a>(<span class="lit-string">"crypto/tls: private key unexpectedly of wrong type"</span>)</code></span>
+<span class="codeline" id="line-74"><code>			}</code></span>
+<span class="codeline" id="line-75"><code>		}</code></span>
+<span class="codeline" id="line-76"><code></code></span>
+<span class="codeline" id="line-77"><code>		<label for="r21" class="ident">msg</label>, <label for="r22" class="ident">err</label> := <label for="r16" class="ident">c</label>.<a href="conn.go.html#line-1057" class="ident">readHandshake</a>()</code></span>
+<span class="codeline" id="line-78"><code>		<span class="keyword">if</span> <label for="r22" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-79"><code>			<span class="keyword">return</span> <label for="r22" class="ident">err</label></code></span>
+<span class="codeline" id="line-80"><code>		}</code></span>
+<span class="codeline" id="line-81"><code></code></span>
+<span class="codeline" id="line-82"><code>		<label for="r23" class="ident">kexMsg</label>, <label for="r19" class="ident">ok</label> := <label for="r21" class="ident">msg</label>.(*<a href="handshake_messages.go.html#line-1760" class="ident">clientKeyExchangeMsg</a>)</code></span>
+<span class="codeline" id="line-83"><code>		<span class="keyword">if</span> !<label for="r19" class="ident">ok</label> {</code></span>
+<span class="codeline" id="line-84"><code>			<label for="r16" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-19" class="ident">alertUnexpectedMessage</a>)</code></span>
+<span class="codeline" id="line-85"><code>			<span class="keyword">return</span> <a href="common.go.html#line-2011" class="ident">unexpectedMessageError</a>(<label for="r23" class="ident">kexMsg</label>, <label for="r21" class="ident">msg</label>)</code></span>
+<span class="codeline" id="line-86"><code>		}</code></span>
+<span class="codeline" id="line-87"><code></code></span>
+<span class="codeline" id="line-88"><code>		<label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>.<a href="../../io/io.go.html#line-97" class="ident">Write</a>(<label for="r23" class="ident">kexMsg</label>.<a href="handshake_messages.go.html#line-1765" class="ident">marshal</a>())</code></span>
+<span class="codeline" id="line-89"><code>		<label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-192" class="ident">ReadKEMCiphertext</a> = <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-219" class="ident">elapsedTime</a>()</code></span>
+<span class="codeline" id="line-90"><code></code></span>
+<span class="codeline" id="line-91"><code>		<label for="r24" class="ident">ss</label>, <label for="r22" class="ident">err</label> := <a href="../../../pkg/crypto/kem.html" class="ident i1">kem</a>.<a href="../kem/kem.go.html#line-253" class="ident">Decapsulate</a>(<label for="r18" class="ident">sk</label>, <label for="r23" class="ident">kexMsg</label>.<a href="handshake_messages.go.html#line-1762" class="ident">ciphertext</a>)</code></span>
+<span class="codeline" id="line-92"><code>		<span class="keyword">if</span> <label for="r22" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-93"><code>			<span class="keyword">return</span> <label for="r22" class="ident">err</label></code></span>
+<span class="codeline" id="line-94"><code>		}</code></span>
+<span class="codeline" id="line-95"><code></code></span>
+<span class="codeline" id="line-96"><code>		<span class="comment">// Secret Print</span></code></span>
+<span class="codeline" id="line-97"><code><span class="comment">		// fmt.Printf("Server Auth (server side)\nKEMId: %x\nsharedKey:\n  %x\n\n", sk.KEMId, ss)</span></code></span>
+<span class="codeline" id="line-98"><code></code></span>
+<span class="codeline" id="line-99"><code>		<span class="comment">// derive AHS</span></code></span>
+<span class="codeline" id="line-100"><code><span class="comment">		// AHS &lt;- HKDF.Extract(dHS, ss_s)</span></code></span>
+<span class="codeline" id="line-101"><code>		<label for="r17" class="ident">ahs</label> = <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-64" class="ident">extract</a>(<label for="r24" class="ident">ss</label>, <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-56" class="ident">deriveSecret</a>(<label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-47" class="ident">handshakeSecret</a>, <span class="lit-string">"derived"</span>, <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a>))</code></span>
+<span class="codeline" id="line-102"><code>	} <span class="keyword">else</span> {</code></span>
+<span class="codeline" id="line-103"><code>		<label for="r17" class="ident">ahs</label> = <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-64" class="ident">extract</a>(<label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-39" class="ident">ssKEMTLS</a>, <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-56" class="ident">deriveSecret</a>(<label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-47" class="ident">handshakeSecret</a>, <span class="lit-string">"derived"</span>, <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a>))</code></span>
+<span class="codeline" id="line-104"><code>	}</code></span>
+<span class="codeline" id="line-105"><code></code></span>
+<span class="codeline" id="line-106"><code>	<span class="comment">// CAHTS &lt;- HKDF.Expand(AHS, "c ahs traffic", CH..CKC)</span></code></span>
+<span class="codeline" id="line-107"><code>	<label for="r25" class="ident">clientSecret</label> := <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-56" class="ident">deriveSecret</a>(<label for="r17" class="ident">ahs</label>,</code></span>
+<span class="codeline" id="line-108"><code>		<a href="key_schedule.go.html#line-29" class="ident">clientAuthenticatedHandshakeTrafficLabel</a>, <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>)</code></span>
+<span class="codeline" id="line-109"><code>	<label for="r16" class="ident">c</label>.<a href="conn.go.html#line-112" class="ident">in</a>.<a href="conn.go.html#line-259" class="ident">setTrafficSecret</a>(<label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>, <label for="r25" class="ident">clientSecret</label>)</code></span>
+<span class="codeline" id="line-110"><code>	<span class="comment">// SAHTS &lt;- HKDF.Expand(AHS, "s ahs traffic", CH..CKC)</span></code></span>
+<span class="codeline" id="line-111"><code>	<label for="r26" class="ident">serverSecret</label> := <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-56" class="ident">deriveSecret</a>(<label for="r17" class="ident">ahs</label>,</code></span>
+<span class="codeline" id="line-112"><code>		<a href="key_schedule.go.html#line-30" class="ident">serverAuthenticatedHandshakeTrafficLabel</a>, <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>)</code></span>
+<span class="codeline" id="line-113"><code>	<label for="r16" class="ident">c</label>.<a href="conn.go.html#line-112" class="ident">out</a>.<a href="conn.go.html#line-259" class="ident">setTrafficSecret</a>(<label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>, <label for="r26" class="ident">serverSecret</label>)</code></span>
+<span class="codeline" id="line-114"><code></code></span>
+<span class="codeline" id="line-115"><code>	<span class="comment">// dAHS  &lt;- HKDF.Expand(AHS, "derived", nil)</span></code></span>
+<span class="codeline" id="line-116"><code>	<label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-47" class="ident">handshakeSecret</a> = <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-56" class="ident">deriveSecret</a>(<label for="r17" class="ident">ahs</label>, <span class="lit-string">"derived"</span>, <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a>)</code></span>
+<span class="codeline" id="line-117"><code></code></span>
+<span class="codeline" id="line-118"><code>	<label for="r27" class="ident">err</label> := <label for="r16" class="ident">c</label>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-1767" class="ident">writeKeyLog</a>(<a href="common.go.html#line-1761" class="ident">keyLogLabelClientKEMAuthenticatedHandshake</a>, <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-28" class="ident">clientHello</a>.<a href="handshake_messages.go.html#line-72" class="ident">random</a>, <label for="r25" class="ident">clientSecret</label>)</code></span>
+<span class="codeline" id="line-119"><code>	<span class="keyword">if</span> <label for="r27" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-120"><code>		<label for="r16" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-38" class="ident">alertInternalError</a>)</code></span>
+<span class="codeline" id="line-121"><code>		<span class="keyword">return</span> <label for="r27" class="ident">err</label></code></span>
+<span class="codeline" id="line-122"><code>	}</code></span>
+<span class="codeline" id="line-123"><code></code></span>
+<span class="codeline" id="line-124"><code>	<label for="r27" class="ident">err</label> = <label for="r16" class="ident">c</label>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-1767" class="ident">writeKeyLog</a>(<a href="common.go.html#line-1762" class="ident">keyLogLabelServerKEMAuthenticatedHandshake</a>, <label for="r14" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-28" class="ident">clientHello</a>.<a href="handshake_messages.go.html#line-72" class="ident">random</a>, <label for="r26" class="ident">serverSecret</label>)</code></span>
+<span class="codeline" id="line-125"><code>	<span class="keyword">if</span> <label for="r27" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-126"><code>		<label for="r16" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-38" class="ident">alertInternalError</a>)</code></span>
+<span class="codeline" id="line-127"><code>		<span class="keyword">return</span> <label for="r27" class="ident">err</label></code></span>
+<span class="codeline" id="line-128"><code>	}</code></span>
+<span class="codeline" id="line-129"><code></code></span>
+<span class="codeline" id="line-130"><code>	<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-131"><code>}</code></span>
+<span class="codeline" id="line-132"><code></code></span>
+<span class="codeline" id="line-133"><code><span class="keyword">func</span> (<label for="r28" class="ident">hs</label> *<a href="handshake_server_tls13.go.html#line-26" class="ident">serverHandshakeStateTLS13</a>) <label for="r29" class="ident"><a href="../../../use/crypto/tls..serverHandshakeStateTLS13^8fe02.requestClientKEMCert^22942.html" class="ident">requestClientKEMCert</a></label>() <a href="../../../pkg/builtin.html#name-bool" class="ident">bool</a> {</code></span>
+<span class="codeline" id="line-134"><code>	<span class="keyword">return</span> <label for="r28" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-27" class="ident">c</a>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-998" class="ident">ClientAuth</a> &gt;= <a href="common.go.html#line-512" class="ident">RequestClientCert</a> &amp;&amp; !<label for="r28" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-31" class="ident">usingPSK</a></code></span>
+<span class="codeline" id="line-135"><code>}</code></span>
+<span class="codeline" id="line-136"><code></code></span>
+<span class="codeline" id="line-137"><code><span class="keyword">func</span> (<label for="r30" class="ident">hs</label> *<a href="handshake_server_tls13.go.html#line-26" class="ident">serverHandshakeStateTLS13</a>) <label for="r31" class="ident"><a href="../../../use/crypto/tls..serverHandshakeStateTLS13^8fe02.readClientKEMCertificate^da960.html" class="ident">readClientKEMCertificate</a></label>() <a href="../../../pkg/builtin.html#name-error" class="ident">error</a> {</code></span>
+<span class="codeline" id="line-138"><code>	<label for="r32" class="ident">c</label> := <label for="r30" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-27" class="ident">c</a></code></span>
+<span class="codeline" id="line-139"><code></code></span>
+<span class="codeline" id="line-140"><code>	<span class="keyword">if</span> !<label for="r30" class="ident">hs</label>.<a href="#line-133" class="ident">requestClientKEMCert</a>() {</code></span>
+<span class="codeline" id="line-141"><code>		<span class="comment">// Make sure the connection is still being verified whether or not</span></code></span>
+<span class="codeline" id="line-142"><code><span class="comment">		// the server requested a client certificate.</span></code></span>
+<span class="codeline" id="line-143"><code>		<span class="keyword">if</span> <label for="r32" class="ident">c</label>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-979" class="ident">VerifyConnection</a> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-144"><code>			<span class="keyword">if</span> <label for="r33" class="ident">err</label> := <label for="r32" class="ident">c</label>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-979" class="ident">VerifyConnection</a>(<label for="r32" class="ident">c</label>.<a href="conn.go.html#line-1490" class="ident">connectionStateLocked</a>()); <label for="r33" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-145"><code>				<label for="r32" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-25" class="ident">alertBadCertificate</a>)</code></span>
+<span class="codeline" id="line-146"><code>				<span class="keyword">return</span> <label for="r33" class="ident">err</label></code></span>
+<span class="codeline" id="line-147"><code>			}</code></span>
+<span class="codeline" id="line-148"><code>		}</code></span>
+<span class="codeline" id="line-149"><code>		<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-150"><code>	}</code></span>
+<span class="codeline" id="line-151"><code></code></span>
+<span class="codeline" id="line-152"><code>	<span class="comment">// If we requested a client kem certificate, then the client must send a</span></code></span>
+<span class="codeline" id="line-153"><code><span class="comment">	// kem certificate message.</span></code></span>
+<span class="codeline" id="line-154"><code>	<label for="r34" class="ident">msg</label>, <label for="r35" class="ident">err</label> := <label for="r32" class="ident">c</label>.<a href="conn.go.html#line-1057" class="ident">readHandshake</a>()</code></span>
+<span class="codeline" id="line-155"><code>	<span class="keyword">if</span> <label for="r35" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-156"><code>		<span class="keyword">return</span> <label for="r35" class="ident">err</label></code></span>
+<span class="codeline" id="line-157"><code>	}</code></span>
+<span class="codeline" id="line-158"><code></code></span>
+<span class="codeline" id="line-159"><code>	<label for="r36" class="ident">certMsg</label>, <label for="r37" class="ident">ok</label> := <label for="r34" class="ident">msg</label>.(*<a href="handshake_messages.go.html#line-1470" class="ident">certificateMsgTLS13</a>)</code></span>
+<span class="codeline" id="line-160"><code>	<span class="keyword">if</span> !<label for="r37" class="ident">ok</label> {</code></span>
+<span class="codeline" id="line-161"><code>		<label for="r32" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-19" class="ident">alertUnexpectedMessage</a>)</code></span>
+<span class="codeline" id="line-162"><code>		<span class="keyword">return</span> <a href="common.go.html#line-2011" class="ident">unexpectedMessageError</a>(<label for="r36" class="ident">certMsg</label>, <label for="r34" class="ident">msg</label>)</code></span>
+<span class="codeline" id="line-163"><code>	}</code></span>
+<span class="codeline" id="line-164"><code>	<label for="r30" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>.<a href="../../io/io.go.html#line-97" class="ident">Write</a>(<label for="r36" class="ident">certMsg</label>.<a href="handshake_messages.go.html#line-1523" class="ident">marshal</a>())</code></span>
+<span class="codeline" id="line-165"><code></code></span>
+<span class="codeline" id="line-166"><code>	<label for="r30" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-188" class="ident">ReadCertificate</a> = <label for="r30" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-219" class="ident">elapsedTime</a>()</code></span>
+<span class="codeline" id="line-167"><code></code></span>
+<span class="codeline" id="line-168"><code>	<span class="keyword">if</span> <label for="r38" class="ident">err</label> := <label for="r32" class="ident">c</label>.<a href="handshake_server.go.html#line-798" class="ident">processCertsFromClient</a>(<label for="r36" class="ident">certMsg</label>.<a href="handshake_messages.go.html#line-1472" class="ident">certificate</a>); <label for="r38" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-169"><code>		<span class="keyword">return</span> <label for="r38" class="ident">err</label></code></span>
+<span class="codeline" id="line-170"><code>	}</code></span>
+<span class="codeline" id="line-171"><code></code></span>
+<span class="codeline" id="line-172"><code>	<span class="keyword">if</span> <label for="r32" class="ident">c</label>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-979" class="ident">VerifyConnection</a> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-173"><code>		<span class="keyword">if</span> <label for="r39" class="ident">err</label> := <label for="r32" class="ident">c</label>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-979" class="ident">VerifyConnection</a>(<label for="r32" class="ident">c</label>.<a href="conn.go.html#line-1490" class="ident">connectionStateLocked</a>()); <label for="r39" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-174"><code>			<label for="r32" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-25" class="ident">alertBadCertificate</a>)</code></span>
+<span class="codeline" id="line-175"><code>			<span class="keyword">return</span> <label for="r39" class="ident">err</label></code></span>
+<span class="codeline" id="line-176"><code>		}</code></span>
+<span class="codeline" id="line-177"><code>	}</code></span>
+<span class="codeline" id="line-178"><code></code></span>
+<span class="codeline" id="line-179"><code>	<span class="keyword">if</span> <a href="../../../pkg/builtin.html#name-len" class="ident">len</a>(<label for="r36" class="ident">certMsg</label>.<a href="handshake_messages.go.html#line-1472" class="ident">certificate</a>.<a href="common.go.html#line-1797" class="ident">Certificate</a>) != <span class="lit-number">0</span> {</code></span>
+<span class="codeline" id="line-180"><code>		<span class="keyword">if</span> <label for="r36" class="ident">certMsg</label>.<a href="handshake_messages.go.html#line-1475" class="ident">delegatedCredential</a> {</code></span>
+<span class="codeline" id="line-181"><code>			<span class="keyword">if</span> <label for="r40" class="ident">err</label> := <label for="r30" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-63" class="ident">processDelegatedCredentialFromClient</a>(<label for="r36" class="ident">certMsg</label>.<a href="handshake_messages.go.html#line-1472" class="ident">certificate</a>.<a href="common.go.html#line-1821" class="ident">DelegatedCredential</a>, <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a>); <label for="r40" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-182"><code>				<span class="keyword">return</span> <label for="r40" class="ident">err</label></code></span>
+<span class="codeline" id="line-183"><code>			}</code></span>
+<span class="codeline" id="line-184"><code>		}</code></span>
+<span class="codeline" id="line-185"><code></code></span>
+<span class="codeline" id="line-186"><code>		<label for="r41" class="ident">pk</label> := <label for="r32" class="ident">c</label>.<a href="conn.go.html#line-51" class="ident">peerCertificates</a>[<span class="lit-number">0</span>].<a href="../x509/x509.go.html#line-760" class="ident">PublicKey</a></code></span>
+<span class="codeline" id="line-187"><code>		<span class="keyword">if</span> <label for="r32" class="ident">c</label>.<a href="conn.go.html#line-57" class="ident">verifiedDC</a> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-188"><code>			<label for="r41" class="ident">pk</label> = <label for="r32" class="ident">c</label>.<a href="conn.go.html#line-57" class="ident">verifiedDC</a>.<a href="delegated_credentials.go.html#line-112" class="ident">cred</a>.<a href="delegated_credentials.go.html#line-102" class="ident">publicKey</a></code></span>
+<span class="codeline" id="line-189"><code>		}</code></span>
+<span class="codeline" id="line-190"><code></code></span>
+<span class="codeline" id="line-191"><code>		_, <label for="r37" class="ident">ok</label> = <label for="r41" class="ident">pk</label>.(*<a href="../../../pkg/crypto/kem.html" class="ident i1">kem</a>.<a href="../kem/kem.go.html#line-72" class="ident">PublicKey</a>)</code></span>
+<span class="codeline" id="line-192"><code>		<span class="keyword">if</span> !<label for="r37" class="ident">ok</label> {</code></span>
+<span class="codeline" id="line-193"><code>			<span class="comment">// it has to be a KEM key</span></code></span>
+<span class="codeline" id="line-194"><code>			<label for="r32" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-38" class="ident">alertInternalError</a>)</code></span>
+<span class="codeline" id="line-195"><code>			<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-196"><code>		}</code></span>
+<span class="codeline" id="line-197"><code>	}</code></span>
+<span class="codeline" id="line-198"><code></code></span>
+<span class="codeline" id="line-199"><code>	<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-200"><code>}</code></span>
+<span class="codeline" id="line-201"><code></code></span>
+<span class="codeline" id="line-202"><code><span class="keyword">func</span> (<label for="r42" class="ident">hs</label> *<a href="handshake_server_tls13.go.html#line-26" class="ident">serverHandshakeStateTLS13</a>) <label for="r43" class="ident"><a href="../../../use/crypto/tls..serverHandshakeStateTLS13^8fe02.sendServerKEMCiphertext^fdbf1.html" class="ident">sendServerKEMCiphertext</a></label>() <a href="../../../pkg/builtin.html#name-error" class="ident">error</a> {</code></span>
+<span class="codeline" id="line-203"><code>	<label for="r44" class="ident">c</label> := <label for="r42" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-27" class="ident">c</a></code></span>
+<span class="codeline" id="line-204"><code></code></span>
+<span class="codeline" id="line-205"><code>	<span class="keyword">if</span> !<label for="r42" class="ident">hs</label>.<a href="#line-133" class="ident">requestClientKEMCert</a>() {</code></span>
+<span class="codeline" id="line-206"><code>		<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-207"><code>	}</code></span>
+<span class="codeline" id="line-208"><code></code></span>
+<span class="codeline" id="line-209"><code>	<span class="keyword">if</span> <a href="../../../pkg/builtin.html#name-len" class="ident">len</a>(<label for="r44" class="ident">c</label>.<a href="conn.go.html#line-51" class="ident">peerCertificates</a>) == <span class="lit-number">0</span> {</code></span>
+<span class="codeline" id="line-210"><code>		<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-211"><code>	}</code></span>
+<span class="codeline" id="line-212"><code></code></span>
+<span class="codeline" id="line-213"><code>	<span class="keyword">var</span> <label for="r45" class="ident">pk</label> *<a href="../../../pkg/crypto/kem.html" class="ident i1">kem</a>.<a href="../kem/kem.go.html#line-72" class="ident">PublicKey</a></code></span>
+<span class="codeline" id="line-214"><code>	<span class="keyword">var</span> <label for="r46" class="ident">ok</label> <a href="../../../pkg/builtin.html#name-bool" class="ident">bool</a></code></span>
+<span class="codeline" id="line-215"><code></code></span>
+<span class="codeline" id="line-216"><code>	<span class="keyword">if</span> <label for="r44" class="ident">c</label>.<a href="conn.go.html#line-57" class="ident">verifiedDC</a> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> &amp;&amp; <label for="r44" class="ident">c</label>.<a href="conn.go.html#line-57" class="ident">verifiedDC</a>.<a href="delegated_credentials.go.html#line-112" class="ident">cred</a>.<a href="delegated_credentials.go.html#line-100" class="ident">expCertVerfAlgo</a>.<a href="common.go.html#line-736" class="ident">isKEMTLS</a>() {</code></span>
+<span class="codeline" id="line-217"><code>		<label for="r45" class="ident">pk</label>, <label for="r46" class="ident">ok</label> = <label for="r44" class="ident">c</label>.<a href="conn.go.html#line-57" class="ident">verifiedDC</a>.<a href="delegated_credentials.go.html#line-112" class="ident">cred</a>.<a href="delegated_credentials.go.html#line-102" class="ident">publicKey</a>.(*<a href="../../../pkg/crypto/kem.html" class="ident i1">kem</a>.<a href="../kem/kem.go.html#line-72" class="ident">PublicKey</a>)</code></span>
+<span class="codeline" id="line-218"><code>		<span class="keyword">if</span> !<label for="r46" class="ident">ok</label> {</code></span>
+<span class="codeline" id="line-219"><code>			<label for="r44" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-38" class="ident">alertInternalError</a>)</code></span>
+<span class="codeline" id="line-220"><code>			<span class="keyword">return</span> <a href="../../../pkg/errors.html" class="ident i2">errors</a>.<a href="../../errors/errors.go.html#line-58" class="ident">New</a>(<span class="lit-string">"tls: invalid key"</span>)</code></span>
+<span class="codeline" id="line-221"><code>		}</code></span>
+<span class="codeline" id="line-222"><code>	} <span class="keyword">else</span> {</code></span>
+<span class="codeline" id="line-223"><code>		<label for="r45" class="ident">pk</label>, <label for="r46" class="ident">ok</label> = <label for="r44" class="ident">c</label>.<a href="conn.go.html#line-51" class="ident">peerCertificates</a>[<span class="lit-number">0</span>].<a href="../x509/x509.go.html#line-760" class="ident">PublicKey</a>.(*<a href="../../../pkg/crypto/kem.html" class="ident i1">kem</a>.<a href="../kem/kem.go.html#line-72" class="ident">PublicKey</a>)</code></span>
+<span class="codeline" id="line-224"><code>		<span class="keyword">if</span> !<label for="r46" class="ident">ok</label> {</code></span>
+<span class="codeline" id="line-225"><code>			<label for="r44" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-38" class="ident">alertInternalError</a>)</code></span>
+<span class="codeline" id="line-226"><code>			<span class="keyword">return</span> <a href="../../../pkg/errors.html" class="ident i2">errors</a>.<a href="../../errors/errors.go.html#line-58" class="ident">New</a>(<span class="lit-string">"tls: invalid key"</span>)</code></span>
+<span class="codeline" id="line-227"><code>		}</code></span>
+<span class="codeline" id="line-228"><code>	}</code></span>
+<span class="codeline" id="line-229"><code></code></span>
+<span class="codeline" id="line-230"><code>	<label for="r47" class="ident">ss</label>, <label for="r48" class="ident">ct</label>, <label for="r49" class="ident">err</label> := <a href="../../../pkg/crypto/kem.html" class="ident i1">kem</a>.<a href="../kem/kem.go.html#line-172" class="ident">Encapsulate</a>(<label for="r42" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-27" class="ident">c</a>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-1370" class="ident">rand</a>(), <label for="r45" class="ident">pk</label>)</code></span>
+<span class="codeline" id="line-231"><code>	<span class="keyword">if</span> <label for="r49" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-232"><code>		<span class="keyword">return</span> <label for="r49" class="ident">err</label></code></span>
+<span class="codeline" id="line-233"><code>	}</code></span>
+<span class="codeline" id="line-234"><code></code></span>
+<span class="codeline" id="line-235"><code>	<span class="comment">// Secret Print</span></code></span>
+<span class="codeline" id="line-236"><code><span class="comment">	// fmt.Printf("Client Auth (server side)\nKEMId: %x\nsharedKey:\n  %x\n\n", pk.KEMId, ss)</span></code></span>
+<span class="codeline" id="line-237"><code></code></span>
+<span class="codeline" id="line-238"><code>	<label for="r50" class="ident">msg</label> := <a href="handshake_messages.go.html#line-1681" class="ident">serverKeyExchangeMsg</a>{</code></span>
+<span class="codeline" id="line-239"><code>		<a href="handshake_messages.go.html#line-1682" class="ident">raw</a>: <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a>,</code></span>
+<span class="codeline" id="line-240"><code>		<a href="handshake_messages.go.html#line-1683" class="ident">key</a>: <label for="r48" class="ident">ct</label>,</code></span>
+<span class="codeline" id="line-241"><code>	}</code></span>
+<span class="codeline" id="line-242"><code></code></span>
+<span class="codeline" id="line-243"><code>	<label for="r51" class="ident">marshalledServerKEMCT</label> := <label for="r50" class="ident">msg</label>.<a href="handshake_messages.go.html#line-1686" class="ident">marshal</a>()</code></span>
+<span class="codeline" id="line-244"><code></code></span>
+<span class="codeline" id="line-245"><code>	_, <label for="r49" class="ident">err</label> = <label for="r44" class="ident">c</label>.<a href="conn.go.html#line-1048" class="ident">writeRecord</a>(<a href="common.go.html#line-60" class="ident">recordTypeHandshake</a>, <label for="r51" class="ident">marshalledServerKEMCT</label>)</code></span>
+<span class="codeline" id="line-246"><code>	<span class="keyword">if</span> <label for="r49" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-247"><code>		<span class="keyword">return</span> <label for="r49" class="ident">err</label></code></span>
+<span class="codeline" id="line-248"><code>	}</code></span>
+<span class="codeline" id="line-249"><code>	_, <label for="r49" class="ident">err</label> = <label for="r42" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>.<a href="../../io/io.go.html#line-97" class="ident">Write</a>(<label for="r51" class="ident">marshalledServerKEMCT</label>)</code></span>
+<span class="codeline" id="line-250"><code>	<span class="keyword">if</span> <label for="r49" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-251"><code>		<span class="keyword">return</span> <label for="r49" class="ident">err</label></code></span>
+<span class="codeline" id="line-252"><code>	}</code></span>
+<span class="codeline" id="line-253"><code></code></span>
+<span class="codeline" id="line-254"><code>	<label for="r52" class="ident">serverKEMCTSize</label>, <label for="r49" class="ident">err</label> := <a href="common.go.html#line-2073" class="ident">getMessageLength</a>(<label for="r51" class="ident">marshalledServerKEMCT</label>)</code></span>
+<span class="codeline" id="line-255"><code>	<span class="keyword">if</span> <label for="r49" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-256"><code>		<span class="keyword">return</span> <label for="r49" class="ident">err</label></code></span>
+<span class="codeline" id="line-257"><code>	}</code></span>
+<span class="codeline" id="line-258"><code></code></span>
+<span class="codeline" id="line-259"><code>	<label for="r42" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-27" class="ident">c</a>.<a href="conn.go.html#line-160" class="ident">serverHandshakeSizes</a>.<a href="tls_cf.go.html#line-208" class="ident">ServerKEMCiphertext</a> = <label for="r52" class="ident">serverKEMCTSize</label></code></span>
+<span class="codeline" id="line-260"><code></code></span>
+<span class="codeline" id="line-261"><code>	<label for="r42" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-193" class="ident">WriteKEMCiphertext</a> = <label for="r42" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-219" class="ident">elapsedTime</a>()</code></span>
+<span class="codeline" id="line-262"><code></code></span>
+<span class="codeline" id="line-263"><code>	<span class="comment">// MS &lt;- HKDF.Extract(dAHS, ssC)</span></code></span>
+<span class="codeline" id="line-264"><code>	<label for="r42" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-48" class="ident">masterSecret</a> = <label for="r42" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-64" class="ident">extract</a>(<label for="r47" class="ident">ss</label>, <label for="r42" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-47" class="ident">handshakeSecret</a>)</code></span>
+<span class="codeline" id="line-265"><code>	<label for="r42" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-40" class="ident">isClientAuthKEMTLS</a> = <a href="../../../pkg/builtin.html#name-true" class="ident">true</a></code></span>
+<span class="codeline" id="line-266"><code>	<label for="r44" class="ident">c</label>.<a href="conn.go.html#line-63" class="ident">didClientAuthentication</a> = <a href="../../../pkg/builtin.html#name-true" class="ident">true</a></code></span>
+<span class="codeline" id="line-267"><code></code></span>
+<span class="codeline" id="line-268"><code>	<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-269"><code>}</code></span>
+<span class="codeline" id="line-270"><code></code></span>
+<span class="codeline" id="line-271"><code><span class="keyword">func</span> (<label for="r53" class="ident">hs</label> *<a href="handshake_server_tls13.go.html#line-26" class="ident">serverHandshakeStateTLS13</a>) <label for="r54" class="ident"><a href="../../../use/crypto/tls..serverHandshakeStateTLS13^8fe02.readKEMTLSClientFinished^81e2d.html" class="ident">readKEMTLSClientFinished</a></label>() <a href="../../../pkg/builtin.html#name-error" class="ident">error</a> {</code></span>
+<span class="codeline" id="line-272"><code>	<label for="r55" class="ident">c</label> := <label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-27" class="ident">c</a></code></span>
+<span class="codeline" id="line-273"><code></code></span>
+<span class="codeline" id="line-274"><code>	<label for="r56" class="ident">msg</label>, <label for="r57" class="ident">err</label> := <label for="r55" class="ident">c</label>.<a href="conn.go.html#line-1057" class="ident">readHandshake</a>()</code></span>
+<span class="codeline" id="line-275"><code>	<span class="keyword">if</span> <label for="r57" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-276"><code>		<span class="keyword">return</span> <label for="r57" class="ident">err</label></code></span>
+<span class="codeline" id="line-277"><code>	}</code></span>
+<span class="codeline" id="line-278"><code></code></span>
+<span class="codeline" id="line-279"><code>	<label for="r58" class="ident">finished</label>, <label for="r59" class="ident">ok</label> := <label for="r56" class="ident">msg</label>.(*<a href="handshake_messages.go.html#line-1794" class="ident">finishedMsg</a>)</code></span>
+<span class="codeline" id="line-280"><code>	<span class="keyword">if</span> !<label for="r59" class="ident">ok</label> {</code></span>
+<span class="codeline" id="line-281"><code>		<label for="r55" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-19" class="ident">alertUnexpectedMessage</a>)</code></span>
+<span class="codeline" id="line-282"><code>		<span class="keyword">return</span> <a href="common.go.html#line-2011" class="ident">unexpectedMessageError</a>(<label for="r58" class="ident">finished</label>, <label for="r56" class="ident">msg</label>)</code></span>
+<span class="codeline" id="line-283"><code>	}</code></span>
+<span class="codeline" id="line-284"><code></code></span>
+<span class="codeline" id="line-285"><code>	<label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-190" class="ident">ReadClientFinished</a> = <label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-219" class="ident">elapsedTime</a>()</code></span>
+<span class="codeline" id="line-286"><code></code></span>
+<span class="codeline" id="line-287"><code>	<span class="keyword">if</span> !<label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-40" class="ident">isClientAuthKEMTLS</a> {</code></span>
+<span class="codeline" id="line-288"><code>		<span class="comment">// compute MS</span></code></span>
+<span class="codeline" id="line-289"><code><span class="comment">		// MS &lt;- HKDF.Extract(dAHS, 0)</span></code></span>
+<span class="codeline" id="line-290"><code>		<label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-48" class="ident">masterSecret</a> = <label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-64" class="ident">extract</a>(<a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a>, <label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-47" class="ident">handshakeSecret</a>)</code></span>
+<span class="codeline" id="line-291"><code>	}</code></span>
+<span class="codeline" id="line-292"><code></code></span>
+<span class="codeline" id="line-293"><code>	<span class="comment">// fk_s &lt;- HKDF.Expand(MS, "s finished", nil)</span></code></span>
+<span class="codeline" id="line-294"><code>	<label for="r60" class="ident">expectedMAC</label> := <label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-95" class="ident">finishedHashKEMTLS</a>(<label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-48" class="ident">masterSecret</a>, <span class="lit-string">"c"</span>, <label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>)</code></span>
+<span class="codeline" id="line-295"><code>	<span class="keyword">if</span> !<a href="../../../pkg/crypto/hmac.html" class="ident i0">hmac</a>.<a href="../hmac/hmac.go.html#line-167" class="ident">Equal</a>(<label for="r60" class="ident">expectedMAC</label>, <label for="r58" class="ident">finished</label>.<a href="handshake_messages.go.html#line-1796" class="ident">verifyData</a>) {</code></span>
+<span class="codeline" id="line-296"><code>		<label for="r55" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-34" class="ident">alertDecryptError</a>)</code></span>
+<span class="codeline" id="line-297"><code>		<span class="keyword">return</span> <a href="../../../pkg/errors.html" class="ident i2">errors</a>.<a href="../../errors/errors.go.html#line-58" class="ident">New</a>(<span class="lit-string">"tls: invalid server finished hash"</span>)</code></span>
+<span class="codeline" id="line-298"><code>	}</code></span>
+<span class="codeline" id="line-299"><code></code></span>
+<span class="codeline" id="line-300"><code>	<span class="keyword">if</span> <label for="r61" class="ident">_</label>, <label for="r62" class="ident">err</label> := <label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>.<a href="../../io/io.go.html#line-97" class="ident">Write</a>(<label for="r58" class="ident">finished</label>.<a href="handshake_messages.go.html#line-1799" class="ident">marshal</a>()); <label for="r62" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-301"><code>		<span class="keyword">return</span> <label for="r62" class="ident">err</label></code></span>
+<span class="codeline" id="line-302"><code>	}</code></span>
+<span class="codeline" id="line-303"><code></code></span>
+<span class="codeline" id="line-304"><code>	<span class="comment">// CATS &lt;- HKDF.Expand(MS, "c ap traffic", CH..CF)</span></code></span>
+<span class="codeline" id="line-305"><code>	<label for="r63" class="ident">clientSecret</label> := <label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-56" class="ident">deriveSecret</a>(<label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-48" class="ident">masterSecret</a>, <a href="key_schedule.go.html#line-27" class="ident">clientApplicationTrafficLabel</a>, <label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>)</code></span>
+<span class="codeline" id="line-306"><code>	<label for="r55" class="ident">c</label>.<a href="conn.go.html#line-112" class="ident">in</a>.<a href="conn.go.html#line-259" class="ident">setTrafficSecret</a>(<label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>, <label for="r63" class="ident">clientSecret</label>)</code></span>
+<span class="codeline" id="line-307"><code></code></span>
+<span class="codeline" id="line-308"><code>	<label for="r57" class="ident">err</label> = <label for="r55" class="ident">c</label>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-1767" class="ident">writeKeyLog</a>(<a href="common.go.html#line-1763" class="ident">keyLogLabelClientTraffic</a>, <label for="r53" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-28" class="ident">clientHello</a>.<a href="handshake_messages.go.html#line-72" class="ident">random</a>, <label for="r63" class="ident">clientSecret</label>)</code></span>
+<span class="codeline" id="line-309"><code>	<span class="keyword">if</span> <label for="r57" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-310"><code>		<label for="r55" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-38" class="ident">alertInternalError</a>)</code></span>
+<span class="codeline" id="line-311"><code>		<span class="keyword">return</span> <label for="r57" class="ident">err</label></code></span>
+<span class="codeline" id="line-312"><code>	}</code></span>
+<span class="codeline" id="line-313"><code></code></span>
+<span class="codeline" id="line-314"><code>	<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-315"><code>}</code></span>
+<span class="codeline" id="line-316"><code></code></span>
+<span class="codeline" id="line-317"><code><span class="keyword">func</span> (<label for="r64" class="ident">hs</label> *<a href="handshake_server_tls13.go.html#line-26" class="ident">serverHandshakeStateTLS13</a>) <label for="r65" class="ident"><a href="../../../use/crypto/tls..serverHandshakeStateTLS13^8fe02.writeKEMTLSServerFinished^2e76f.html" class="ident">writeKEMTLSServerFinished</a></label>() <a href="../../../pkg/builtin.html#name-error" class="ident">error</a> {</code></span>
+<span class="codeline" id="line-318"><code>	<label for="r66" class="ident">c</label> := <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-27" class="ident">c</a></code></span>
+<span class="codeline" id="line-319"><code></code></span>
+<span class="codeline" id="line-320"><code>	<label for="r67" class="ident">finished</label> := &amp;<a href="handshake_messages.go.html#line-1794" class="ident">finishedMsg</a>{</code></span>
+<span class="codeline" id="line-321"><code>		<a href="handshake_messages.go.html#line-1796" class="ident">verifyData</a>: <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-95" class="ident">finishedHashKEMTLS</a>(<label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-48" class="ident">masterSecret</a>, <span class="lit-string">"s"</span>, <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>),</code></span>
+<span class="codeline" id="line-322"><code>	}</code></span>
+<span class="codeline" id="line-323"><code></code></span>
+<span class="codeline" id="line-324"><code>	<label for="r68" class="ident">marshalledFinished</label> := <label for="r67" class="ident">finished</label>.<a href="handshake_messages.go.html#line-1799" class="ident">marshal</a>()</code></span>
+<span class="codeline" id="line-325"><code></code></span>
+<span class="codeline" id="line-326"><code>	<span class="keyword">if</span> <label for="r69" class="ident">_</label>, <label for="r70" class="ident">err</label> := <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>.<a href="../../io/io.go.html#line-97" class="ident">Write</a>(<label for="r68" class="ident">marshalledFinished</label>); <label for="r70" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-327"><code>		<span class="keyword">return</span> <label for="r70" class="ident">err</label></code></span>
+<span class="codeline" id="line-328"><code>	}</code></span>
+<span class="codeline" id="line-329"><code>	<span class="keyword">if</span> <label for="r71" class="ident">_</label>, <label for="r72" class="ident">err</label> := <label for="r66" class="ident">c</label>.<a href="conn.go.html#line-1048" class="ident">writeRecord</a>(<a href="common.go.html#line-60" class="ident">recordTypeHandshake</a>, <label for="r68" class="ident">marshalledFinished</label>); <label for="r72" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-330"><code>		<span class="keyword">return</span> <label for="r72" class="ident">err</label></code></span>
+<span class="codeline" id="line-331"><code>	}</code></span>
+<span class="codeline" id="line-332"><code></code></span>
+<span class="codeline" id="line-333"><code>	<label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-187" class="ident">WriteServerFinished</a> = <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-54" class="ident">handshakeTimings</a>.<a href="tls_cf.go.html#line-219" class="ident">elapsedTime</a>()</code></span>
+<span class="codeline" id="line-334"><code></code></span>
+<span class="codeline" id="line-335"><code>	<label for="r73" class="ident">finishedSize</label>, <label for="r74" class="ident">err1</label> := <a href="common.go.html#line-2073" class="ident">getMessageLength</a>(<label for="r68" class="ident">marshalledFinished</label>)</code></span>
+<span class="codeline" id="line-336"><code>	<span class="keyword">if</span> <label for="r74" class="ident">err1</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-337"><code>		<span class="keyword">return</span> <label for="r74" class="ident">err1</label></code></span>
+<span class="codeline" id="line-338"><code>	}</code></span>
+<span class="codeline" id="line-339"><code></code></span>
+<span class="codeline" id="line-340"><code>	<label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-27" class="ident">c</a>.<a href="conn.go.html#line-160" class="ident">serverHandshakeSizes</a>.<a href="tls_cf.go.html#line-205" class="ident">Finished</a> = <label for="r73" class="ident">finishedSize</label></code></span>
+<span class="codeline" id="line-341"><code></code></span>
+<span class="codeline" id="line-342"><code>	<span class="comment">// SATS &lt;- HKDF.Expand(MS, "s ap traffic", CH..SF)</span></code></span>
+<span class="codeline" id="line-343"><code>	<label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-49" class="ident">trafficSecret</a> = <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-56" class="ident">deriveSecret</a>(<label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-48" class="ident">masterSecret</a>,</code></span>
+<span class="codeline" id="line-344"><code>		<a href="key_schedule.go.html#line-28" class="ident">serverApplicationTrafficLabel</a>, <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>)</code></span>
+<span class="codeline" id="line-345"><code></code></span>
+<span class="codeline" id="line-346"><code>	<label for="r66" class="ident">c</label>.<a href="conn.go.html#line-112" class="ident">out</a>.<a href="conn.go.html#line-259" class="ident">setTrafficSecret</a>(<label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>, <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-49" class="ident">trafficSecret</a>)</code></span>
+<span class="codeline" id="line-347"><code></code></span>
+<span class="codeline" id="line-348"><code>	<label for="r75" class="ident">err</label> := <label for="r66" class="ident">c</label>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-1767" class="ident">writeKeyLog</a>(<a href="common.go.html#line-1764" class="ident">keyLogLabelServerTraffic</a>, <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-28" class="ident">clientHello</a>.<a href="handshake_messages.go.html#line-72" class="ident">random</a>, <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-49" class="ident">trafficSecret</a>)</code></span>
+<span class="codeline" id="line-349"><code>	<span class="keyword">if</span> <label for="r75" class="ident">err</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-350"><code>		<label for="r66" class="ident">c</label>.<a href="conn.go.html#line-873" class="ident">sendAlert</a>(<a href="alert.go.html#line-38" class="ident">alertInternalError</a>)</code></span>
+<span class="codeline" id="line-351"><code>		<span class="keyword">return</span> <label for="r75" class="ident">err</label></code></span>
+<span class="codeline" id="line-352"><code>	}</code></span>
+<span class="codeline" id="line-353"><code></code></span>
+<span class="codeline" id="line-354"><code>	<span class="keyword">if</span> !<label for="r66" class="ident">c</label>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-1030" class="ident">SessionTicketsDisabled</a> &amp;&amp; <label for="r66" class="ident">c</label>.<a href="conn.go.html#line-42" class="ident">config</a>.<a href="common.go.html#line-1044" class="ident">ClientSessionCache</a> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-355"><code>		<label for="r66" class="ident">c</label>.<a href="conn.go.html#line-74" class="ident">resumptionSecret</a> = <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-56" class="ident">deriveSecret</a>(<label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-48" class="ident">masterSecret</a>,</code></span>
+<span class="codeline" id="line-356"><code>			<a href="key_schedule.go.html#line-32" class="ident">resumptionLabel</a>, <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>)</code></span>
+<span class="codeline" id="line-357"><code>	}</code></span>
+<span class="codeline" id="line-358"><code></code></span>
+<span class="codeline" id="line-359"><code>	<label for="r66" class="ident">c</label>.<a href="conn.go.html#line-71" class="ident">ekm</a> = <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-42" class="ident">suite</a>.<a href="key_schedule.go.html#line-104" class="ident">exportKeyingMaterial</a>(<label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-48" class="ident">masterSecret</a>, <label for="r64" class="ident">hs</label>.<a href="handshake_server_tls13.go.html#line-50" class="ident">transcript</a>)</code></span>
+<span class="codeline" id="line-360"><code>	<label for="r66" class="ident">c</label>.<a href="conn.go.html#line-61" class="ident">didKEMTLS</a> = <a href="../../../pkg/builtin.html#name-true" class="ident">true</a></code></span>
+<span class="codeline" id="line-361"><code></code></span>
+<span class="codeline" id="line-362"><code>	<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-363"><code>}</code></span>
+</pre><pre id="footer">
+<table><tr><td><img src="../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Package: github.com/go-acme/lego/v4/certificate</title>
+<link href="../../../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="package-details"><code><span style="font-size:xx-large;">package <b>certificate</b></span>
+
+<span class="title">Import Path</span>
+	<a href="../../../../../index.html#pkg-github.com/go-acme/lego/v4/certificate">github.com/go-acme/lego/v4/certificate</a><i> (on <a href="https://pkg.go.dev/github.com/go-acme/lego/v4/certificate" target="_blank">go.dev</a>)</i>
+
+<span class="title">Dependency Relation</span>
+	imports <a href="../../../../../dep/github.com/go-acme/lego/v4/certificate.html">25 packages</a>, and imported by 0 packages
+
+<div id="files"><span class="title">Involved Source Files</span>
+
+	<span class="nodocs">    <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/authorization.go.html">authorization.go</a></span>
+	<span class="nodocs">    <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html">certificates.go</a></span>
+	<span class="nodocs">    <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/errors.go.html">errors.go</a></span></div>
+<div id="exported-types"><span class="title">Package-Level Type Names<span class="title-stat"><i> (total 9, in which 6 are exported)</i></span></span>
+
+<div id="exported-types-buttons" class="js-on">	/* sort exporteds by: <label id="sort-types-by-alphabet" class="button">alphabet</label> | <label id="sort-types-by-popularity" class="button">popularity</label> */</div><div class="anchor type-res" id="name-CertificatesStorage" data-popularity="70">	<input type='checkbox' class="fold" id="CertificatesStorage-fold-content"><label for="CertificatesStorage-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..CertificatesStorage.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-618">CertificatesStorage</a> <i>(struct)</i></label><span id='CertificatesStorage-fold-content-docs' class="fold-docs">
+<span class="md-text">		Can not import from cert_storage, so I need the struct and ReadResource function...</span>
+
+		<input type='checkbox' class="fold" id="CertificatesStorage-fold-fields"><label for="CertificatesStorage-fold-fields">Fields (<i>total 7, all are exported</i>)</label><span id='CertificatesStorage-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-620">ArchivePath</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-625">CertPSKID</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span><span>
+			<input type='checkbox' class="fold" id="CertificatesStorage-fold-field-Filename"><label for="CertificatesStorage-fold-field-Filename"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-624">Filename</a> <i><a href="../../../../builtin.html#name-string">string</a></i></label><span id='CertificatesStorage-fold-field-Filename-docs' class="fold-docs">
+<span class="md-text">				// Deprecated</span>
+</span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-621">Pem</a> <i><a href="../../../../builtin.html#name-bool">bool</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-622">Pfx</a> <i><a href="../../../../builtin.html#name-bool">bool</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-623">PfxPassword</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-619">RootPath</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span></span>
+		<input type='checkbox' class="fold" id="CertificatesStorage-fold-params"><label for="CertificatesStorage-fold-params">As Inputs Of (<i>at least 2, both are exported</i>)</label><span id='CertificatesStorage-fold-params-items' class="fold-items"><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-715">TLSMutualAuthPostHandler</a>(endpoint <a href="../../../../builtin.html#name-string">string</a>, domain <a href="../../../../builtin.html#name-string">string</a>, requestMessage <a href="acme.html">acme</a>.<a href="acme.html#name-PQOrderMessage">PQOrderMessage</a>, storage *<b>CertificatesStorage</b>) (*<a href="../../../../net/http.html">http</a>.<a href="../../../../net/http.html#name-Response">Response</a>, <a href="../../../../builtin.html#name-error">error</a>)</span><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-635">TransitToPQC</a>(request <a href="#name-ObtainRequest">ObtainRequest</a>, serverURL <a href="../../../../builtin.html#name-string">string</a>, storage *<b>CertificatesStorage</b>, certlabel <a href="../../../../builtin.html#name-string">string</a>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></span>
+
+</span></div><div class="anchor type-res" id="name-Certifier" data-popularity="775">	<input type='checkbox' class="fold" id="Certifier-fold-content"><label for="Certifier-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..Certifier.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-97">Certifier</a> <i>(struct)</i></label><span id='Certifier-fold-content-docs' class="fold-docs">
+<span class="md-text">		Certifier A service to obtain/renew/revoke certificates.</span>
+
+		<input type='checkbox' class="fold" id="Certifier-fold-fields"><label for="Certifier-fold-fields">Fields (<i>total 3, none are exported</i>)</label><span id='Certifier-fold-fields-items' class="fold-items">
+			<input type='checkbox' class="showhide" id="Certifier-showhide-fields"><i><label for="Certifier-showhide-fields" class="show-inline">/* 3 unexporteds ... */</label><label for="Certifier-showhide-fields" class="hide-inline">/* 3 unexporteds: */</label></i><span class="hidden"><i>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-98">core</a> <i>*<a href="acme/api.html">api</a>.<a href="acme/api.html#name-Core">Core</a></i></span></i></span><span class="hidden"><i>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-100">options</a> <i><a href="#name-CertifierOptions">CertifierOptions</a></i></span></i></span><span class="hidden"><i>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-99">resolver</a> <i><a href="#name-resolver">resolver</a></i></span></i></span></span>
+		<input type='checkbox' class="fold" id="Certifier-fold-methods"><label for="Certifier-fold-methods">Methods (<i>total 14, in which 9 are exported</i>)</label><span id='Certifier-fold-methods-items' class="fold-items"><span>
+			<input type='checkbox' class="fold" id="Certifier-fold-method-Get"><label for="Certifier-fold-method-Get">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-551">Get</a>(url <a href="../../../../builtin.html#name-string">string</a>, bundle <a href="../../../../builtin.html#name-bool">bool</a>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='Certifier-fold-method-Get-docs' class="fold-docs">
+<span class="md-text">				Get attempts to fetch the certificate at the supplied URL.
+				The URL is the same as what would normally be supplied at the Resource's CertURL.
+				
+				The returned Resource will not have the PrivateKey and CSR fields populated as these will not be available.
+				
+				If bundle is true, the Certificate field in the returned Resource includes the issuer certificate.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="Certifier-fold-method-GetOCSP"><label for="Certifier-fold-method-GetOCSP">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-473">GetOCSP</a>(bundle []<a href="../../../../builtin.html#name-byte">byte</a>) ([]<a href="../../../../builtin.html#name-byte">byte</a>, *<a href="../../../../golang.org/x/crypto/ocsp.html">ocsp</a>.<a href="../../../../golang.org/x/crypto/ocsp.html#name-Response">Response</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='Certifier-fold-method-GetOCSP-docs' class="fold-docs">
+<span class="md-text">				GetOCSP takes a PEM encoded cert or cert bundle returning the raw OCSP response,
+				the parsed response, and an error, if any.
+				
+				The returned []byte can be passed directly into the OCSPStaple property of a tls.Certificate.
+				If the bundle only contains the issued certificate,
+				this function will try to get the issuer certificate from the IssuingCertificateURL in the certificate.
+				
+				If the []byte and/or ocsp.Response return values are nil, the OCSP status may be assumed OCSPUnknown.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="Certifier-fold-method-Obtain"><label for="Certifier-fold-method-Obtain">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-116">Obtain</a>(request <a href="#name-ObtainRequest">ObtainRequest</a>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='Certifier-fold-method-Obtain-docs' class="fold-docs">
+<span class="md-text">				Obtain tries to obtain a single certificate using all domains passed into it.
+				
+				This function will never return a partial certificate.
+				If one domain in the list fails, the whole certificate will fail.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="Certifier-fold-method-ObtainForCSR"><label for="Certifier-fold-method-ObtainForCSR">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-179">ObtainForCSR</a>(request <a href="#name-ObtainForCSRRequest">ObtainForCSRRequest</a>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='Certifier-fold-method-ObtainForCSR-docs' class="fold-docs">
+<span class="md-text">				ObtainForCSR tries to obtain a certificate matching the CSR passed into it.
+				
+				The domains are inferred from the CommonName and SubjectAltNames, if any.
+				The private key for this CSR is not required.
+				
+				If bundle is true, the []byte contains both the issuer certificate and your issued certificate as a bundle.
+				
+				This function will never return a partial certificate.
+				If one domain in the list fails, the whole certificate will fail.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="Certifier-fold-method-Renew"><label for="Certifier-fold-method-Renew">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-413">Renew</a>(certRes <a href="#name-Resource">Resource</a>, bundle, mustStaple <a href="../../../../builtin.html#name-bool">bool</a>, preferredChain <a href="../../../../builtin.html#name-string">string</a>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='Certifier-fold-method-Renew-docs' class="fold-docs">
+<span class="md-text">				Renew takes a Resource and tries to renew the certificate.
+				
+				If the renewal process succeeds, the new certificate will be returned in a new CertResource.
+				Please be aware that this function will return a new certificate in ANY case that is not an error.
+				If the server does not provide us with a new cert on a GET request to the CertURL
+				this function will start a new-cert flow where a new certificate gets generated.
+				
+				If bundle is true, the []byte contains both the issuer certificate and your issued certificate as a bundle.
+				
+				For private key reuse the PrivateKey property of the passed in Resource should be non-nil.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="Certifier-fold-method-Revoke"><label for="Certifier-fold-method-Revoke">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-379">Revoke</a>(cert []<a href="../../../../builtin.html#name-byte">byte</a>) <a href="../../../../builtin.html#name-error">error</a></label><span id='Certifier-fold-method-Revoke-docs' class="fold-docs">
+<span class="md-text">				Revoke takes a PEM encoded certificate or bundle and tries to revoke it at the CA.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="Certifier-fold-method-RevokeWithReason"><label for="Certifier-fold-method-RevokeWithReason">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-384">RevokeWithReason</a>(cert []<a href="../../../../builtin.html#name-byte">byte</a>, reason *<a href="../../../../builtin.html#name-uint">uint</a>) <a href="../../../../builtin.html#name-error">error</a></label><span id='Certifier-fold-method-RevokeWithReason-docs' class="fold-docs">
+<span class="md-text">				RevokeWithReason takes a PEM encoded certificate or bundle and tries to revoke it at the CA.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="Certifier-fold-method-TLSMutualAuthPostHandler"><label for="Certifier-fold-method-TLSMutualAuthPostHandler">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-715">TLSMutualAuthPostHandler</a>(endpoint <a href="../../../../builtin.html#name-string">string</a>, domain <a href="../../../../builtin.html#name-string">string</a>, requestMessage <a href="acme.html">acme</a>.<a href="acme.html#name-PQOrderMessage">PQOrderMessage</a>, storage *<a href="#name-CertificatesStorage">CertificatesStorage</a>) (*<a href="../../../../net/http.html">http</a>.<a href="../../../../net/http.html#name-Response">Response</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='Certifier-fold-method-TLSMutualAuthPostHandler-docs' class="fold-docs">
+<span class="md-text">				POST request. A better place for this would be at the sender.go (although we need things from api.go)
+				It takes an endpoint (check if Pebble is advertising it, currently it is hardcoded in the caller function)
+				the cert resource is used to read private key and certificate to the TLS handshake (with client auth)
+				If the handshake is established, confirms the POST and returns the http response
+				If not, Pebble will not issue the (new and PQC) certificate
+				code based on api.go</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="Certifier-fold-method-TransitToPQC"><label for="Certifier-fold-method-TransitToPQC">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-635">TransitToPQC</a>(request <a href="#name-ObtainRequest">ObtainRequest</a>, serverURL <a href="../../../../builtin.html#name-string">string</a>, storage *<a href="#name-CertificatesStorage">CertificatesStorage</a>, certlabel <a href="../../../../builtin.html#name-string">string</a>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='Certifier-fold-method-TransitToPQC-docs' class="fold-docs">
+<span class="md-text">				TransitToPQC tries to obtain a single certificate using all domains passed into it (just like Obtain)
+				however, it uses the 'new challenge'. In summary:
+							Gets domains from request and retrieves previously issued certificate,
+							make an auth. POST to Pebble's /pq-order
+							including a CSR in that POST
+							if ok, then post-as-get to download certificate
+				Requirement: a previously generated certificate for the TLS client auth (tries to retrieve from storage)</span>
+</span></span>
+			<input type='checkbox' class="showhide" id="Certifier-showhide-methods"><i><label for="Certifier-showhide-methods" class="show-inline">/* 5 unexporteds ... */</label><label for="Certifier-showhide-methods" class="hide-inline">/* 5 unexporteds: */</label></i><span class="hidden"><i>
+			<input type='checkbox' class="fold" id="Certifier-fold-method-checkResponse"><label for="Certifier-fold-method-checkResponse">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-332">checkResponse</a>(order <a href="acme.html">acme</a>.<a href="acme.html#name-ExtendedOrder">ExtendedOrder</a>, certRes *<a href="#name-Resource">Resource</a>, bundle <a href="../../../../builtin.html#name-bool">bool</a>, preferredChain <a href="../../../../builtin.html#name-string">string</a>) (<a href="../../../../builtin.html#name-bool">bool</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='Certifier-fold-method-checkResponse-docs' class="fold-docs">
+<span class="md-text">				checkResponse checks to see if the certificate is ready and a link is contained in the response.
+				
+				If so, loads it into certRes and returns true.
+				If the cert is not yet ready, it returns false.
+				
+				The certRes input should already have the Domain (common name) field populated.
+				
+				If bundle is true, the certificate will be bundled with the issuer's cert.</span>
+</span></i></span><span class="hidden"><i>
+			<span class="nodocs">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/authorization.go.html#line-63">deactivateAuthorizations</a>(order <a href="acme.html">acme</a>.<a href="acme.html#name-ExtendedOrder">ExtendedOrder</a>, force <a href="../../../../builtin.html#name-bool">bool</a>)</span></i></span><span class="hidden"><i>
+			<span class="nodocs">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/authorization.go.html#line-18">getAuthorizations</a>(order <a href="acme.html">acme</a>.<a href="acme.html#name-ExtendedOrder">ExtendedOrder</a>) ([]<a href="acme.html">acme</a>.<a href="acme.html#name-Authorization">Authorization</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></i></span><span class="hidden"><i>
+			<span class="nodocs">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-277">getForCSR</a>(domains []<a href="../../../../builtin.html#name-string">string</a>, order <a href="acme.html">acme</a>.<a href="acme.html#name-ExtendedOrder">ExtendedOrder</a>, bundle <a href="../../../../builtin.html#name-bool">bool</a>, csr, privateKeyPem []<a href="../../../../builtin.html#name-byte">byte</a>, preferredChain <a href="../../../../builtin.html#name-string">string</a>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></i></span><span class="hidden"><i>
+			<span class="nodocs">(*Certifier) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-240">getForOrder</a>(domains []<a href="../../../../builtin.html#name-string">string</a>, order <a href="acme.html">acme</a>.<a href="acme.html#name-ExtendedOrder">ExtendedOrder</a>, bundle <a href="../../../../builtin.html#name-bool">bool</a>, privateKey <a href="../../../../crypto.html">crypto</a>.<a href="../../../../crypto.html#name-PrivateKey">PrivateKey</a>, mustStaple <a href="../../../../builtin.html#name-bool">bool</a>, preferredChain <a href="../../../../builtin.html#name-string">string</a>, certAlgorithm <a href="certcrypto.html">certcrypto</a>.<a href="certcrypto.html#name-KeyType">KeyType</a>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></i></span></span>
+		<input type='checkbox' class="fold" id="Certifier-fold-results"><label for="Certifier-fold-results">As Outputs Of (<i>at least one exported</i>)</label><span id='Certifier-fold-results-items' class="fold-items"><span>
+			func <a href="#name-NewCertifier">NewCertifier</a>(core *<a href="acme/api.html">api</a>.<a href="acme/api.html#name-Core">Core</a>, resolver <a href="#name-resolver">resolver</a>, options <a href="#name-CertifierOptions">CertifierOptions</a>) *<b>Certifier</b></span></span>
+
+</span></div><div class="anchor type-res" id="name-CertifierOptions" data-popularity="35">	<input type='checkbox' class="fold" id="CertifierOptions-fold-content"><label for="CertifierOptions-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..CertifierOptions.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-91">CertifierOptions</a> <i>(struct)</i></label><span id='CertifierOptions-fold-content-docs' class="fold-docs">
+
+		<input type='checkbox' class="fold" id="CertifierOptions-fold-fields"><label for="CertifierOptions-fold-fields">Fields (<i>total 2, both are exported</i>)</label><span id='CertifierOptions-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-92">KeyType</a> <i><a href="certcrypto.html">certcrypto</a>.<a href="certcrypto.html#name-KeyType">KeyType</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-93">Timeout</a> <i><a href="../../../../time.html">time</a>.<a href="../../../../time.html#name-Duration">Duration</a></i></span></span></span>
+		<input type='checkbox' class="fold" id="CertifierOptions-fold-params"><label for="CertifierOptions-fold-params">As Inputs Of (<i>at least one exported</i>)</label><span id='CertifierOptions-fold-params-items' class="fold-items"><span>
+			func <a href="#name-NewCertifier">NewCertifier</a>(core *<a href="acme/api.html">api</a>.<a href="acme/api.html#name-Core">Core</a>, resolver <a href="#name-resolver">resolver</a>, options <b>CertifierOptions</b>) *<a href="#name-Certifier">Certifier</a></span></span>
+
+</span></div><div class="anchor type-res" id="name-ObtainForCSRRequest" data-popularity="35">	<input type='checkbox' class="fold" id="ObtainForCSRRequest-fold-content"><label for="ObtainForCSRRequest-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..ObtainForCSRRequest.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-80">ObtainForCSRRequest</a> <i>(struct)</i></label><span id='ObtainForCSRRequest-fold-content-docs' class="fold-docs">
+<span class="md-text">		ObtainForCSRRequest The request to obtain a certificate matching the CSR passed into it.
+		
+		If `Bundle` is true, the `[]byte` contains both the issuer certificate and your issued certificate as a bundle.
+		
+		If `AlwaysDeactivateAuthorizations` is true, the authorizations are also relinquished if the obtain request was successful.
+		See https://datatracker.ietf.org/doc/html/rfc8555#section-7.5.2.</span>
+
+		<input type='checkbox' class="fold" id="ObtainForCSRRequest-fold-fields"><label for="ObtainForCSRRequest-fold-fields">Fields (<i>total 4, all are exported</i>)</label><span id='ObtainForCSRRequest-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-84">AlwaysDeactivateAuthorizations</a> <i><a href="../../../../builtin.html#name-bool">bool</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-82">Bundle</a> <i><a href="../../../../builtin.html#name-bool">bool</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-81">CSR</a> <i>*<a href="../../../../crypto/x509.html">x509</a>.<a href="../../../../crypto/x509.html#name-CertificateRequest">CertificateRequest</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-83">PreferredChain</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span></span>
+		<input type='checkbox' class="fold" id="ObtainForCSRRequest-fold-params"><label for="ObtainForCSRRequest-fold-params">As Inputs Of (<i>at least one exported</i>)</label><span id='ObtainForCSRRequest-fold-params-items' class="fold-items"><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-179">ObtainForCSR</a>(request <b>ObtainForCSRRequest</b>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></span>
+
+</span></div><div class="anchor type-res" id="name-ObtainRequest" data-popularity="70">	<input type='checkbox' class="fold" id="ObtainRequest-fold-content"><label for="ObtainRequest-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..ObtainRequest.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-64">ObtainRequest</a> <i>(struct)</i></label><span id='ObtainRequest-fold-content-docs' class="fold-docs">
+<span class="md-text">		ObtainRequest The request to obtain certificate.
+		
+		The first domain in domains is used for the CommonName field of the certificate,
+		all other domains are added using the Subject Alternate Names extension.
+		
+		A new private key is generated for every invocation of the function Obtain.
+		If you do not want that you can supply your own private key in the privateKey parameter.
+		If this parameter is non-nil it will be used instead of generating a new one.
+		
+		If `Bundle` is true, the `[]byte` contains both the issuer certificate and your issued certificate as a bundle.
+		
+		If `AlwaysDeactivateAuthorizations` is true, the authorizations are also relinquished if the obtain request was successful.
+		See https://datatracker.ietf.org/doc/html/rfc8555#section-7.5.2.</span>
+
+		<input type='checkbox' class="fold" id="ObtainRequest-fold-fields"><label for="ObtainRequest-fold-fields">Fields (<i>total 7, all are exported</i>)</label><span id='ObtainRequest-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-70">AlwaysDeactivateAuthorizations</a> <i><a href="../../../../builtin.html#name-bool">bool</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-66">Bundle</a> <i><a href="../../../../builtin.html#name-bool">bool</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-71">CertAlgorithm</a> <i><a href="certcrypto.html">certcrypto</a>.<a href="certcrypto.html#name-KeyType">KeyType</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-65">Domains</a> <i>[]<a href="../../../../builtin.html#name-string">string</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-68">MustStaple</a> <i><a href="../../../../builtin.html#name-bool">bool</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-69">PreferredChain</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-67">PrivateKey</a> <i><a href="../../../../crypto.html">crypto</a>.<a href="../../../../crypto.html#name-PrivateKey">PrivateKey</a></i></span></span></span>
+		<input type='checkbox' class="fold" id="ObtainRequest-fold-params"><label for="ObtainRequest-fold-params">As Inputs Of (<i>at least 2, both are exported</i>)</label><span id='ObtainRequest-fold-params-items' class="fold-items"><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-116">Obtain</a>(request <b>ObtainRequest</b>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</span><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-635">TransitToPQC</a>(request <b>ObtainRequest</b>, serverURL <a href="../../../../builtin.html#name-string">string</a>, storage *<a href="#name-CertificatesStorage">CertificatesStorage</a>, certlabel <a href="../../../../builtin.html#name-string">string</a>) (*<a href="#name-Resource">Resource</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></span>
+
+</span></div><div class="anchor type-res" id="name-Resource" data-popularity="595">	<input type='checkbox' class="fold" id="Resource-fold-content"><label for="Resource-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..Resource.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-41">Resource</a> <i>(struct)</i></label><span id='Resource-fold-content-docs' class="fold-docs">
+<span class="md-text">		Resource represents a CA issued certificate.
+		PrivateKey, Certificate and IssuerCertificate are all
+		already PEM encoded and can be directly written to disk.
+		Certificate may be a certificate bundle,
+		depending on the options supplied to create it.</span>
+
+		<input type='checkbox' class="fold" id="Resource-fold-fields"><label for="Resource-fold-fields">Fields (<i>total 7, all are exported</i>)</label><span id='Resource-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-48">CSR</a> <i>[]<a href="../../../../builtin.html#name-byte">byte</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-44">CertStableURL</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-43">CertURL</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-46">Certificate</a> <i>[]<a href="../../../../builtin.html#name-byte">byte</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-42">Domain</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-47">IssuerCertificate</a> <i>[]<a href="../../../../builtin.html#name-byte">byte</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-45">PrivateKey</a> <i>[]<a href="../../../../builtin.html#name-byte">byte</a></i></span></span></span>
+		<input type='checkbox' class="fold" id="Resource-fold-results"><label for="Resource-fold-results">As Outputs Of (<i>at least 7, in which 5 are exported</i>)</label><span id='Resource-fold-results-items' class="fold-items"><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-551">Get</a>(url <a href="../../../../builtin.html#name-string">string</a>, bundle <a href="../../../../builtin.html#name-bool">bool</a>) (*<b>Resource</b>, <a href="../../../../builtin.html#name-error">error</a>)</span><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-116">Obtain</a>(request <a href="#name-ObtainRequest">ObtainRequest</a>) (*<b>Resource</b>, <a href="../../../../builtin.html#name-error">error</a>)</span><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-179">ObtainForCSR</a>(request <a href="#name-ObtainForCSRRequest">ObtainForCSRRequest</a>) (*<b>Resource</b>, <a href="../../../../builtin.html#name-error">error</a>)</span><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-413">Renew</a>(certRes <b>Resource</b>, bundle, mustStaple <a href="../../../../builtin.html#name-bool">bool</a>, preferredChain <a href="../../../../builtin.html#name-string">string</a>) (*<b>Resource</b>, <a href="../../../../builtin.html#name-error">error</a>)</span><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-635">TransitToPQC</a>(request <a href="#name-ObtainRequest">ObtainRequest</a>, serverURL <a href="../../../../builtin.html#name-string">string</a>, storage *<a href="#name-CertificatesStorage">CertificatesStorage</a>, certlabel <a href="../../../../builtin.html#name-string">string</a>) (*<b>Resource</b>, <a href="../../../../builtin.html#name-error">error</a>)</span>
+			<input type='checkbox' class="showhide" id="Resource-showhide-inputofs"><i><label for="Resource-showhide-inputofs" class="show-inline">/* 2+ unexporteds ... */</label><label for="Resource-showhide-inputofs" class="hide-inline">/* 2+ unexporteds: */</label></i><span class="hidden"><i>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-277">getForCSR</a>(domains []<a href="../../../../builtin.html#name-string">string</a>, order <a href="acme.html">acme</a>.<a href="acme.html#name-ExtendedOrder">ExtendedOrder</a>, bundle <a href="../../../../builtin.html#name-bool">bool</a>, csr, privateKeyPem []<a href="../../../../builtin.html#name-byte">byte</a>, preferredChain <a href="../../../../builtin.html#name-string">string</a>) (*<b>Resource</b>, <a href="../../../../builtin.html#name-error">error</a>)</i></span><span class="hidden"><i>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-240">getForOrder</a>(domains []<a href="../../../../builtin.html#name-string">string</a>, order <a href="acme.html">acme</a>.<a href="acme.html#name-ExtendedOrder">ExtendedOrder</a>, bundle <a href="../../../../builtin.html#name-bool">bool</a>, privateKey <a href="../../../../crypto.html">crypto</a>.<a href="../../../../crypto.html#name-PrivateKey">PrivateKey</a>, mustStaple <a href="../../../../builtin.html#name-bool">bool</a>, preferredChain <a href="../../../../builtin.html#name-string">string</a>, certAlgorithm <a href="certcrypto.html">certcrypto</a>.<a href="certcrypto.html#name-KeyType">KeyType</a>) (*<b>Resource</b>, <a href="../../../../builtin.html#name-error">error</a>)</i></span></span>
+		<input type='checkbox' class="fold" id="Resource-fold-params"><label for="Resource-fold-params">As Inputs Of (<i>at least 2, in which 1 is exported</i>)</label><span id='Resource-fold-params-items' class="fold-items"><span>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-413">Renew</a>(certRes <b>Resource</b>, bundle, mustStaple <a href="../../../../builtin.html#name-bool">bool</a>, preferredChain <a href="../../../../builtin.html#name-string">string</a>) (*<b>Resource</b>, <a href="../../../../builtin.html#name-error">error</a>)</span>
+			<input type='checkbox' class="showhide" id="Resource-showhide-outputofs"><i><label for="Resource-showhide-outputofs" class="show-inline">/* at least one unexported ... */</label><label for="Resource-showhide-outputofs" class="hide-inline">/* at least one unexported: */</label></i><span class="hidden"><i>
+			func (*<a href="#name-Certifier">Certifier</a>).<a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-332">checkResponse</a>(order <a href="acme.html">acme</a>.<a href="acme.html#name-ExtendedOrder">ExtendedOrder</a>, certRes *<b>Resource</b>, bundle <a href="../../../../builtin.html#name-bool">bool</a>, preferredChain <a href="../../../../builtin.html#name-string">string</a>) (<a href="../../../../builtin.html#name-bool">bool</a>, <a href="../../../../builtin.html#name-error">error</a>)</i></span></span>
+
+</span></div></div><div>	<input type='checkbox' class="showhide" id="unexported-typenames-showhide"><i><label for="unexported-typenames-showhide" class="show-inline">/* 3 unexporteds ... */</label><label for="unexported-typenames-showhide" class="hide-inline">/* 3 unexporteds: */</label></i><div class="anchor type-res hidden" id="name-domainError" data-popularity="0">	<input type='checkbox' class="fold" id="domainError-fold-content"><label for="domainError-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..domainError^1d697.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/errors.go.html#line-27">domainError</a> <i>(struct)</i></label><span id='domainError-fold-content-docs' class="fold-docs">
+
+		<input type='checkbox' class="fold" id="domainError-fold-fields"><label for="domainError-fold-fields">Fields (<i>total 2, both are exported</i>)</label><span id='domainError-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/errors.go.html#line-28">Domain</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/errors.go.html#line-29">Error</a> <i><a href="../../../../builtin.html#name-error">error</a></i></span></span></span>
+
+</span></div><div class="anchor type-res hidden" id="name-obtainError" data-popularity="100">	<input type='checkbox' class="fold" id="obtainError-fold-content"><label for="obtainError-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..obtainError^becbb.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/errors.go.html#line-10">obtainError</a> <i>(map)</i></label><span id='obtainError-fold-content-docs' class="fold-docs">
+<span class="md-text">		obtainError is returned when there are specific errors available per domain.</span>
+
+		<input type='checkbox' class="fold" id="obtainError-fold-methods"><label for="obtainError-fold-methods">Methods (<i>only one, which is exported</i>)</label><span id='obtainError-fold-methods-items' class="fold-items"><span>
+			<span class="nodocs">( obtainError) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/errors.go.html#line-12">Error</a>() <a href="../../../../builtin.html#name-string">string</a></span></span></span>
+		<input type='checkbox' class="fold" id="obtainError-fold-impls"><label for="obtainError-fold-impls">Implements (<i>at least one exported</i>)</label><span id='obtainError-fold-impls-items' class="fold-items"><span>
+			 obtainError : <a href="../../../../builtin.html#name-error">error</a></span></span>
+
+</span></div><div class="anchor type-res hidden" id="name-resolver" data-popularity="85">	<input type='checkbox' class="fold" id="resolver-fold-content"><label for="resolver-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..resolver^439c3.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-87">resolver</a> <b><i>(interface)</i></b></label><span id='resolver-fold-content-docs' class="fold-docs">
+
+		<input type='checkbox' class="fold" id="resolver-fold-methods"><label for="resolver-fold-methods">Methods (<i>only one, which is exported</i>)</label><span id='resolver-fold-methods-items' class="fold-items"><span>
+			<span class="nodocs">( resolver) <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-88">Solve</a>(authorizations []<a href="acme.html">acme</a>.<a href="acme.html#name-Authorization">Authorization</a>) <a href="../../../../builtin.html#name-error">error</a></span></span></span>
+		<input type='checkbox' class="fold" id="resolver-fold-params"><label for="resolver-fold-params">As Inputs Of (<i>at least one exported</i>)</label><span id='resolver-fold-params-items' class="fold-items"><span>
+			func <a href="#name-NewCertifier">NewCertifier</a>(core *<a href="acme/api.html">api</a>.<a href="acme/api.html#name-Core">Core</a>, resolver <b>resolver</b>, options <a href="#name-CertifierOptions">CertifierOptions</a>) *<a href="#name-Certifier">Certifier</a></span></span>
+
+</span></div></div>
+<div id="exported-functions"><span class="title">Package-Level Functions<span class="title-stat"><i> (total 7, in which 2 are exported)</i></span></span>
+
+<div class="anchor value-res" id="name-GetNonceFromResponse">	<input type='checkbox' class="fold" id="GetNonceFromResponse-fold-content"><label for="GetNonceFromResponse-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..GetNonceFromResponse.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-783">GetNonceFromResponse</a>(resp *<a href="../../../../net/http.html">http</a>.<a href="../../../../net/http.html#name-Response">Response</a>) (<a href="../../../../builtin.html#name-string">string</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='GetNonceFromResponse-fold-content-docs' class="fold-docs">
+<span class="md-text">		GetFromResponse Extracts a nonce from a HTTP response (from nonce_manager.go, but it is internal package).</span>
+
+</span></div><div class="anchor value-res" id="name-NewCertifier">	<input type='checkbox' class="fold" id="NewCertifier-fold-content"><label for="NewCertifier-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..NewCertifier.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-104">NewCertifier</a>(core *<a href="acme/api.html">api</a>.<a href="acme/api.html#name-Core">Core</a>, resolver <a href="#name-resolver">resolver</a>, options <a href="#name-CertifierOptions">CertifierOptions</a>) *<a href="#name-Certifier">Certifier</a></label><span id='NewCertifier-fold-content-docs' class="fold-docs">
+<span class="md-text">		NewCertifier creates a Certifier.</span>
+
+</span></div>	<input type='checkbox' class="showhide" id="unexported-functions-showhide"><i><label for="unexported-functions-showhide" class="show-inline">/* 5 unexporteds ... */</label><label for="unexported-functions-showhide" class="hide-inline">/* 5 unexporteds: */</label></i><div class="anchor value-res hidden" id="name-checkOrderStatus"><i>	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..checkOrderStatus^09785.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-587">checkOrderStatus</a>(order <a href="acme.html">acme</a>.<a href="acme.html#name-ExtendedOrder">ExtendedOrder</a>) (<a href="../../../../builtin.html#name-bool">bool</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></i></div><div class="anchor value-res hidden" id="name-getPQOrderEndpoint"><i>	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..getPQOrderEndpoint^8610d.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-805">getPQOrderEndpoint</a>(serverURL, pqPort <a href="../../../../builtin.html#name-string">string</a>) <a href="../../../../builtin.html#name-string">string</a></span></i></div><div class="anchor value-res hidden" id="name-hasPreferredChain"><i>	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..hasPreferredChain^90c0c.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-572">hasPreferredChain</a>(issuer []<a href="../../../../builtin.html#name-byte">byte</a>, preferredChain <a href="../../../../builtin.html#name-string">string</a>) (<a href="../../../../builtin.html#name-bool">bool</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></i></div><div class="anchor value-res hidden" id="name-sanitizedDomain"><i>	<input type='checkbox' class="fold" id="sanitizedDomain-fold-content"><label for="sanitizedDomain-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..sanitizedDomain^d3dab.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-797">sanitizedDomain</a>(domain <a href="../../../../builtin.html#name-string">string</a>) <a href="../../../../builtin.html#name-string">string</a></label><span id='sanitizedDomain-fold-content-docs' class="fold-docs">
+<span class="md-text">		sanitizedDomain is also from certs_storage.go</span>
+
+</span></i></div><div class="anchor value-res hidden" id="name-sanitizeDomain"><i>	<input type='checkbox' class="fold" id="sanitizeDomain-fold-content"><label for="sanitizeDomain-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/certificate..sanitizeDomain^bdc7b.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-603">sanitizeDomain</a>(domains []<a href="../../../../builtin.html#name-string">string</a>) []<a href="../../../../builtin.html#name-string">string</a></label><span id='sanitizeDomain-fold-content-docs' class="fold-docs">
+<span class="md-text">		https://www.rfc-editor.org/rfc/rfc8555.html#section-7.1.4
+		The domain name MUST be encoded in the form in which it would appear in a certificate.
+		That is, it MUST be encoded according to the rules in Section 7 of [RFC5280].
+		
+		https://www.rfc-editor.org/rfc/rfc5280.html#section-7</span>
+
+</span></i></div></div>
+<div id="exported-constants"><span class="title">Package-Level Constants<span class="title-stat"><i> (total 2, neither is exported)</i></span></span>
+
+	<input type='checkbox' class="showhide" id="unexported-constants-showhide"><i><label for="unexported-constants-showhide" class="show-inline">/* 2 unexporteds ... */</label><label for="unexported-constants-showhide" class="hide-inline">/* 2 unexporteds: */</label></i><div class="anchor value-res hidden" id="name-maxBodySize"><i>	<input type='checkbox' class="fold" id="maxBodySize-fold-content"><label for="maxBodySize-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certificate..maxBodySize^7a1a7.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-34">maxBodySize</a> = 1048576</label><span id='maxBodySize-fold-content-docs' class="fold-docs">
+<span class="md-text">		maxBodySize is the maximum size of body that we will read.</span>
+
+</span></i></div><div class="anchor value-res hidden" id="name-overallRequestLimit"><i>	<input type='checkbox' class="fold" id="overallRequestLimit-fold-content"><label for="overallRequestLimit-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/certificate..overallRequestLimit^c102b.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/certificate/authorization.go.html#line-15">overallRequestLimit</a> = 18</label><span id='overallRequestLimit-fold-content-docs' class="fold-docs">
+<span class="md-text">		overallRequestLimit is the overall number of request per second
+		limited on the "new-reg", "new-authz" and "new-cert" endpoints.
+		From the documentation the limitation is 20 requests per second,
+		but using 20 as value doesn't work but 18 do.</span>
+
+</span></i></div></div></code></pre><pre id="footer">
+<table><tr><td><img src="../../../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

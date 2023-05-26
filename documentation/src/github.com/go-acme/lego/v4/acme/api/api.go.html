@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Source: api.go in package github.com/go-acme/lego/v4/acme/api</title>
+<link href="../../../../../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../../../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="header"><code><span class="title">Source File</span>
+	api.go
+
+<span class="title">Belonging Package</span>
+	<a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api.html">github.com/go-acme/lego/v4/acme/api</a>
+</code></pre>
+<style>input[type=radio] {display: none;}
+input[id=r0]:checked ~pre label[for=r0],
+input[id=r1]:checked ~pre label[for=r1],
+input[id=r2]:checked ~pre label[for=r2],
+input[id=r3]:checked ~pre label[for=r3],
+input[id=r4]:checked ~pre label[for=r4],
+input[id=r5]:checked ~pre label[for=r5],
+input[id=r6]:checked ~pre label[for=r6],
+input[id=r7]:checked ~pre label[for=r7],
+input[id=r8]:checked ~pre label[for=r8],
+input[id=r9]:checked ~pre label[for=r9],
+input[id=r10]:checked ~pre label[for=r10],
+input[id=r11]:checked ~pre label[for=r11],
+input[id=r12]:checked ~pre label[for=r12],
+input[id=r13]:checked ~pre label[for=r13],
+input[id=r14]:checked ~pre label[for=r14],
+input[id=r15]:checked ~pre label[for=r15],
+input[id=r16]:checked ~pre label[for=r16],
+input[id=r17]:checked ~pre label[for=r17],
+input[id=r18]:checked ~pre label[for=r18],
+input[id=r19]:checked ~pre label[for=r19],
+input[id=r20]:checked ~pre label[for=r20],
+input[id=r21]:checked ~pre label[for=r21],
+input[id=r22]:checked ~pre label[for=r22],
+input[id=r23]:checked ~pre label[for=r23],
+input[id=r24]:checked ~pre label[for=r24],
+input[id=r25]:checked ~pre label[for=r25],
+input[id=r26]:checked ~pre label[for=r26],
+input[id=r27]:checked ~pre label[for=r27],
+input[id=r28]:checked ~pre label[for=r28],
+input[id=r29]:checked ~pre label[for=r29],
+input[id=r30]:checked ~pre label[for=r30],
+input[id=r31]:checked ~pre label[for=r31],
+input[id=r32]:checked ~pre label[for=r32],
+input[id=r33]:checked ~pre label[for=r33],
+input[id=r34]:checked ~pre label[for=r34],
+input[id=r35]:checked ~pre label[for=r35],
+input[id=r36]:checked ~pre label[for=r36],
+input[id=r37]:checked ~pre label[for=r37],
+input[id=r38]:checked ~pre label[for=r38],
+input[id=r39]:checked ~pre label[for=r39],
+input[id=r40]:checked ~pre label[for=r40],
+input[id=r41]:checked ~pre label[for=r41],
+input[id=r42]:checked ~pre label[for=r42],
+input[id=r43]:checked ~pre label[for=r43],
+input[id=r44]:checked ~pre label[for=r44],
+input[id=r45]:checked ~pre label[for=r45],
+input[id=r46]:checked ~pre label[for=r46],
+input[id=r47]:checked ~pre label[for=r47],
+input[id=r48]:checked ~pre label[for=r48],
+input[id=r49]:checked ~pre label[for=r49],
+input[id=r50]:checked ~pre label[for=r50],
+input[id=r51]:checked ~pre label[for=r51],
+input[id=r52]:checked ~pre label[for=r52],
+input[id=r53]:checked ~pre label[for=r53],
+input[id=r54]:checked ~pre label[for=r54],
+input[id=r55]:checked ~pre label[for=r55],
+input[id=r56]:checked ~pre label[for=r56],
+input[id=r57]:checked ~pre label[for=r57],
+input[id=r58]:checked ~pre label[for=r58],
+input[id=r59]:checked ~pre label[for=r59],
+input[id=r60]:checked ~pre label[for=r60],
+input[id=r61]:checked ~pre label[for=r61],
+input[id=r62]:checked ~pre label[for=r62],
+input[id=r63]:checked ~pre label[for=r63],
+input[id=r64]:checked ~pre label[for=r64],
+input[id=r65]:checked ~pre label[for=r65]
+{background: #226; color: #ff8;}
+input[id=i0]:checked ~pre .i0,
+input[id=i1]:checked ~pre .i1,
+input[id=i2]:checked ~pre .i2,
+input[id=i3]:checked ~pre .i3,
+input[id=i4]:checked ~pre .i4,
+input[id=i5]:checked ~pre .i5,
+input[id=i6]:checked ~pre .i6,
+input[id=i7]:checked ~pre .i7,
+input[id=i8]:checked ~pre .i8,
+input[id=i9]:checked ~pre .i9,
+input[id=i10]:checked ~pre .i10,
+input[id=i11]:checked ~pre .i11,
+input[id=i12]:checked ~pre .i12
+{background: brown; color: #eed;}
+</style><input id="r0" type="radio" name="g"/>
+<input id="r1" type="radio" name="g"/>
+<input id="r2" type="radio" name="g"/>
+<input id="r3" type="radio" name="g"/>
+<input id="r4" type="radio" name="g"/>
+<input id="r5" type="radio" name="g"/>
+<input id="r6" type="radio" name="g"/>
+<input id="r7" type="radio" name="g"/>
+<input id="r8" type="radio" name="g"/>
+<input id="r9" type="radio" name="g"/>
+<input id="r10" type="radio" name="g"/>
+<input id="r11" type="radio" name="g"/>
+<input id="r12" type="radio" name="g"/>
+<input id="r13" type="radio" name="g"/>
+<input id="r14" type="radio" name="g"/>
+<input id="r15" type="radio" name="g"/>
+<input id="r16" type="radio" name="g"/>
+<input id="r17" type="radio" name="g"/>
+<input id="r18" type="radio" name="g"/>
+<input id="r19" type="radio" name="g"/>
+<input id="r20" type="radio" name="g"/>
+<input id="r21" type="radio" name="g"/>
+<input id="r22" type="radio" name="g"/>
+<input id="r23" type="radio" name="g"/>
+<input id="r24" type="radio" name="g"/>
+<input id="r25" type="radio" name="g"/>
+<input id="r26" type="radio" name="g"/>
+<input id="r27" type="radio" name="g"/>
+<input id="r28" type="radio" name="g"/>
+<input id="r29" type="radio" name="g"/>
+<input id="r30" type="radio" name="g"/>
+<input id="r31" type="radio" name="g"/>
+<input id="r32" type="radio" name="g"/>
+<input id="r33" type="radio" name="g"/>
+<input id="r34" type="radio" name="g"/>
+<input id="r35" type="radio" name="g"/>
+<input id="r36" type="radio" name="g"/>
+<input id="r37" type="radio" name="g"/>
+<input id="r38" type="radio" name="g"/>
+<input id="r39" type="radio" name="g"/>
+<input id="r40" type="radio" name="g"/>
+<input id="r41" type="radio" name="g"/>
+<input id="r42" type="radio" name="g"/>
+<input id="r43" type="radio" name="g"/>
+<input id="r44" type="radio" name="g"/>
+<input id="r45" type="radio" name="g"/>
+<input id="r46" type="radio" name="g"/>
+<input id="r47" type="radio" name="g"/>
+<input id="r48" type="radio" name="g"/>
+<input id="r49" type="radio" name="g"/>
+<input id="r50" type="radio" name="g"/>
+<input id="r51" type="radio" name="g"/>
+<input id="r52" type="radio" name="g"/>
+<input id="r53" type="radio" name="g"/>
+<input id="r54" type="radio" name="g"/>
+<input id="r55" type="radio" name="g"/>
+<input id="r56" type="radio" name="g"/>
+<input id="r57" type="radio" name="g"/>
+<input id="r58" type="radio" name="g"/>
+<input id="r59" type="radio" name="g"/>
+<input id="r60" type="radio" name="g"/>
+<input id="r61" type="radio" name="g"/>
+<input id="r62" type="radio" name="g"/>
+<input id="r63" type="radio" name="g"/>
+<input id="r64" type="radio" name="g"/>
+<input id="r65" type="radio" name="g"/>
+<input id="i0" type="radio" name="i"/>
+<input id="i1" type="radio" name="i"/>
+<input id="i2" type="radio" name="i"/>
+<input id="i3" type="radio" name="i"/>
+<input id="i4" type="radio" name="i"/>
+<input id="i5" type="radio" name="i"/>
+<input id="i6" type="radio" name="i"/>
+<input id="i7" type="radio" name="i"/>
+<input id="i8" type="radio" name="i"/>
+<input id="i9" type="radio" name="i"/>
+<input id="i10" type="radio" name="i"/>
+<input id="i11" type="radio" name="i"/>
+<input id="i12" type="radio" name="i"/>
+
+<pre class="line-numbers">
+<span class="codeline" id="line-1"><code><span class="keyword">package</span> api</code></span>
+<span class="codeline" id="line-2"><code></code></span>
+<span class="codeline" id="line-3"><code><span class="keyword">import</span> (</code></span>
+<span class="codeline" id="line-4"><code>	<label for="i0"><span class="lit-string i0">"bytes"</span></label></code></span>
+<span class="codeline" id="line-5"><code>	<label for="i1"><span class="lit-string i1">"crypto"</span></label></code></span>
+<span class="codeline" id="line-6"><code>	<label for="i2"><span class="lit-string i2">"encoding/json"</span></label></code></span>
+<span class="codeline" id="line-7"><code>	<label for="i3"><span class="lit-string i3">"errors"</span></label></code></span>
+<span class="codeline" id="line-8"><code>	<label for="i4"><span class="lit-string i4">"fmt"</span></label></code></span>
+<span class="codeline" id="line-9"><code>	<label for="i5"><span class="lit-string i5">"net/http"</span></label></code></span>
+<span class="codeline" id="line-10"><code>	<label for="i6"><span class="lit-string i6">"time"</span></label></code></span>
+<span class="codeline" id="line-11"><code></code></span>
+<span class="codeline" id="line-12"><code>	<label for="i7"><span class="lit-string i7">"github.com/cenkalti/backoff/v4"</span></label></code></span>
+<span class="codeline" id="line-13"><code>	<label for="i8"><span class="lit-string i8">"github.com/go-acme/lego/v4/acme"</span></label></code></span>
+<span class="codeline" id="line-14"><code>	<label for="i9"><span class="lit-string i9">"github.com/go-acme/lego/v4/acme/api/internal/nonces"</span></label></code></span>
+<span class="codeline" id="line-15"><code>	<label for="i10"><span class="lit-string i10">"github.com/go-acme/lego/v4/acme/api/internal/secure"</span></label></code></span>
+<span class="codeline" id="line-16"><code>	<label for="i11"><span class="lit-string i11">"github.com/go-acme/lego/v4/acme/api/internal/sender"</span></label></code></span>
+<span class="codeline" id="line-17"><code>	<label for="i12"><span class="lit-string i12">"github.com/go-acme/lego/v4/log"</span></label></code></span>
+<span class="codeline" id="line-18"><code>)</code></span>
+<span class="codeline" id="line-19"><code></code></span>
+<span class="codeline" id="line-20"><code><span class="comment">// Core ACME/LE core API.</span></code></span>
+<span class="codeline" id="line-21"><code><span class="keyword">type</span> <a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api.html#name-Core" class="ident">Core</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-22"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.doer^935e8.html" class="ident">doer</a>         *<a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api/internal/sender.html" class="ident i11">sender</a>.<a href="internal/sender/sender.go.html#line-23" class="ident">Doer</a></code></span>
+<span class="codeline" id="line-23"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.NonceManager.html" class="ident">NonceManager</a> *<a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api/internal/nonces.html" class="ident i9">nonces</a>.<a href="internal/nonces/nonce_manager.go.html#line-13" class="ident">Manager</a></code></span>
+<span class="codeline" id="line-24"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.Jws^efe2b.html" class="ident">Jws</a>          *<a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api/internal/secure.html" class="ident i10">secure</a>.<a href="internal/secure/jws.go.html#line-17" class="ident">JWS</a></code></span>
+<span class="codeline" id="line-25"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.directory^33317.html" class="ident">directory</a>    <a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme.html" class="ident i8">acme</a>.<a href="../commons.go.html#line-41" class="ident">Directory</a></code></span>
+<span class="codeline" id="line-26"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.HTTPClient.html" class="ident">HTTPClient</a>   *<a href="../../../../../../../pkg/net/http.html" class="ident i5">http</a>.<a href="../../../../../../net/http/client.go.html#line-57" class="ident">Client</a></code></span>
+<span class="codeline" id="line-27"><code></code></span>
+<span class="codeline" id="line-28"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.common^92a5d.html" class="ident">common</a>         <a href="service.go.html#line-8" class="ident">service</a> <span class="comment">// Reuse a single struct instead of allocating one for each service on the heap.</span></code></span>
+<span class="codeline" id="line-29"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.Accounts.html" class="ident">Accounts</a>       *<a href="account.go.html#line-11" class="ident">AccountService</a></code></span>
+<span class="codeline" id="line-30"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.Authorizations.html" class="ident">Authorizations</a> *<a href="authorization.go.html#line-9" class="ident">AuthorizationService</a></code></span>
+<span class="codeline" id="line-31"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.Certificates.html" class="ident">Certificates</a>   *<a href="certificate.go.html#line-18" class="ident">CertificateService</a></code></span>
+<span class="codeline" id="line-32"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.Challenges.html" class="ident">Challenges</a>     *<a href="challenge.go.html#line-9" class="ident">ChallengeService</a></code></span>
+<span class="codeline" id="line-33"><code>	<a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.Orders.html" class="ident">Orders</a>         *<a href="order.go.html#line-24" class="ident">OrderService</a></code></span>
+<span class="codeline" id="line-34"><code>}</code></span>
+<span class="codeline" id="line-35"><code></code></span>
+<span class="codeline" id="line-36"><code><span class="comment">// New Creates a new Core.</span></code></span>
+<span class="codeline" id="line-37"><code><span class="keyword">func</span> <label for="r0" class="ident"><a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api.html#name-New" class="ident">New</a></label>(<label for="r1" class="ident">httpClient</label> *<a href="../../../../../../../pkg/net/http.html" class="ident i5">http</a>.<a href="../../../../../../net/http/client.go.html#line-57" class="ident">Client</a>, <label for="r2" class="ident">userAgent</label>, <label for="r3" class="ident">caDirURL</label>, <label for="r4" class="ident">kid</label> <a href="../../../../../../../pkg/builtin.html#name-string" class="ident">string</a>, <label for="r5" class="ident">privateKey</label> <a href="../../../../../../../pkg/crypto.html" class="ident i1">crypto</a>.<a href="../../../../../../crypto/crypto.go.html#line-156" class="ident">PrivateKey</a>) (*<a href="#line-21" class="ident">Core</a>, <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-38"><code>	<label for="r6" class="ident">doer</label> := <a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api/internal/sender.html" class="ident i11">sender</a>.<a href="internal/sender/sender.go.html#line-29" class="ident">NewDoer</a>(<label for="r1" class="ident">httpClient</label>, <label for="r2" class="ident">userAgent</label>)</code></span>
+<span class="codeline" id="line-39"><code></code></span>
+<span class="codeline" id="line-40"><code>	<label for="r7" class="ident">dir</label>, <label for="r8" class="ident">err</label> := <a href="#line-151" class="ident">getDirectory</a>(<label for="r6" class="ident">doer</label>, <label for="r3" class="ident">caDirURL</label>)</code></span>
+<span class="codeline" id="line-41"><code>	<span class="keyword">if</span> <label for="r8" class="ident">err</label> != <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-42"><code>		<span class="keyword">return</span> <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a>, <label for="r8" class="ident">err</label></code></span>
+<span class="codeline" id="line-43"><code>	}</code></span>
+<span class="codeline" id="line-44"><code></code></span>
+<span class="codeline" id="line-45"><code>	<label for="r9" class="ident">nonceManager</label> := <a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api/internal/nonces.html" class="ident i9">nonces</a>.<a href="internal/nonces/nonce_manager.go.html#line-21" class="ident">NewManager</a>(<label for="r6" class="ident">doer</label>, <label for="r7" class="ident">dir</label>.<a href="../commons.go.html#line-42" class="ident">NewNonceURL</a>)</code></span>
+<span class="codeline" id="line-46"><code></code></span>
+<span class="codeline" id="line-47"><code>	<label for="r10" class="ident">jws</label> := <a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api/internal/secure.html" class="ident i10">secure</a>.<a href="internal/secure/jws.go.html#line-24" class="ident">NewJWS</a>(<label for="r5" class="ident">privateKey</label>, <label for="r4" class="ident">kid</label>, <label for="r9" class="ident">nonceManager</label>)</code></span>
+<span class="codeline" id="line-48"><code></code></span>
+<span class="codeline" id="line-49"><code>	<label for="r11" class="ident">c</label> := &amp;<a href="#line-21" class="ident">Core</a>{<a href="#line-22" class="ident">doer</a>: <label for="r6" class="ident">doer</label>, <a href="#line-23" class="ident">NonceManager</a>: <label for="r9" class="ident">nonceManager</label>, <a href="#line-24" class="ident">Jws</a>: <label for="r10" class="ident">jws</label>, <a href="#line-25" class="ident">directory</a>: <label for="r7" class="ident">dir</label>, <a href="#line-26" class="ident">HTTPClient</a>: <label for="r1" class="ident">httpClient</label>}</code></span>
+<span class="codeline" id="line-50"><code></code></span>
+<span class="codeline" id="line-51"><code>	<label for="r11" class="ident">c</label>.<a href="#line-28" class="ident">common</a>.<a href="service.go.html#line-9" class="ident">core</a> = <label for="r11" class="ident">c</label></code></span>
+<span class="codeline" id="line-52"><code>	<label for="r11" class="ident">c</label>.<a href="#line-29" class="ident">Accounts</a> = (*<a href="account.go.html#line-11" class="ident">AccountService</a>)(&amp;<label for="r11" class="ident">c</label>.<a href="#line-28" class="ident">common</a>)</code></span>
+<span class="codeline" id="line-53"><code>	<label for="r11" class="ident">c</label>.<a href="#line-30" class="ident">Authorizations</a> = (*<a href="authorization.go.html#line-9" class="ident">AuthorizationService</a>)(&amp;<label for="r11" class="ident">c</label>.<a href="#line-28" class="ident">common</a>)</code></span>
+<span class="codeline" id="line-54"><code>	<label for="r11" class="ident">c</label>.<a href="#line-31" class="ident">Certificates</a> = (*<a href="certificate.go.html#line-18" class="ident">CertificateService</a>)(&amp;<label for="r11" class="ident">c</label>.<a href="#line-28" class="ident">common</a>)</code></span>
+<span class="codeline" id="line-55"><code>	<label for="r11" class="ident">c</label>.<a href="#line-32" class="ident">Challenges</a> = (*<a href="challenge.go.html#line-9" class="ident">ChallengeService</a>)(&amp;<label for="r11" class="ident">c</label>.<a href="#line-28" class="ident">common</a>)</code></span>
+<span class="codeline" id="line-56"><code>	<label for="r11" class="ident">c</label>.<a href="#line-33" class="ident">Orders</a> = (*<a href="order.go.html#line-24" class="ident">OrderService</a>)(&amp;<label for="r11" class="ident">c</label>.<a href="#line-28" class="ident">common</a>)</code></span>
+<span class="codeline" id="line-57"><code></code></span>
+<span class="codeline" id="line-58"><code>	<span class="keyword">return</span> <label for="r11" class="ident">c</label>, <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-59"><code>}</code></span>
+<span class="codeline" id="line-60"><code></code></span>
+<span class="codeline" id="line-61"><code><span class="comment">// post performs an HTTP POST request and parses the response body as JSON,</span></code></span>
+<span class="codeline" id="line-62"><code><span class="comment">// into the provided respBody object.</span></code></span>
+<span class="codeline" id="line-63"><code><span class="keyword">func</span> (<label for="r12" class="ident">a</label> *<a href="#line-21" class="ident">Core</a>) <label for="r13" class="ident"><a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.post^72231.html" class="ident">post</a></label>(<label for="r14" class="ident">uri</label> <a href="../../../../../../../pkg/builtin.html#name-string" class="ident">string</a>, <label for="r15" class="ident">reqBody</label>, <label for="r16" class="ident">response</label> <span class="keyword">interface</span>{}) (*<a href="../../../../../../../pkg/net/http.html" class="ident i5">http</a>.<a href="../../../../../../net/http/response.go.html#line-35" class="ident">Response</a>, <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-64"><code>	<label for="r17" class="ident">content</label>, <label for="r18" class="ident">err</label> := <a href="../../../../../../../pkg/encoding/json.html" class="ident i2">json</a>.<a href="../../../../../../encoding/json/encode.go.html#line-158" class="ident">Marshal</a>(<label for="r15" class="ident">reqBody</label>)</code></span>
+<span class="codeline" id="line-65"><code>	<span class="keyword">if</span> <label for="r18" class="ident">err</label> != <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-66"><code>		<span class="keyword">return</span> <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a>, <a href="../../../../../../../pkg/errors.html" class="ident i3">errors</a>.<a href="../../../../../../errors/errors.go.html#line-58" class="ident">New</a>(<span class="lit-string">"failed to marshal message"</span>)</code></span>
+<span class="codeline" id="line-67"><code>	}</code></span>
+<span class="codeline" id="line-68"><code></code></span>
+<span class="codeline" id="line-69"><code>	<span class="keyword">return</span> <label for="r12" class="ident">a</label>.<a href="#line-78" class="ident">retrievablePost</a>(<label for="r14" class="ident">uri</label>, <label for="r17" class="ident">content</label>, <label for="r16" class="ident">response</label>)</code></span>
+<span class="codeline" id="line-70"><code>}</code></span>
+<span class="codeline" id="line-71"><code></code></span>
+<span class="codeline" id="line-72"><code><span class="comment">// postAsGet performs an HTTP POST ("POST-as-GET") request.</span></code></span>
+<span class="codeline" id="line-73"><code><span class="comment">// https://www.rfc-editor.org/rfc/rfc8555.html#section-6.3</span></code></span>
+<span class="codeline" id="line-74"><code><span class="keyword">func</span> (<label for="r19" class="ident">a</label> *<a href="#line-21" class="ident">Core</a>) <label for="r20" class="ident"><a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.postAsGet^8de2b.html" class="ident">postAsGet</a></label>(<label for="r21" class="ident">uri</label> <a href="../../../../../../../pkg/builtin.html#name-string" class="ident">string</a>, <label for="r22" class="ident">response</label> <span class="keyword">interface</span>{}) (*<a href="../../../../../../../pkg/net/http.html" class="ident i5">http</a>.<a href="../../../../../../net/http/response.go.html#line-35" class="ident">Response</a>, <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-75"><code>	<span class="keyword">return</span> <label for="r19" class="ident">a</label>.<a href="#line-78" class="ident">retrievablePost</a>(<label for="r21" class="ident">uri</label>, []<a href="../../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a>{}, <label for="r22" class="ident">response</label>)</code></span>
+<span class="codeline" id="line-76"><code>}</code></span>
+<span class="codeline" id="line-77"><code></code></span>
+<span class="codeline" id="line-78"><code><span class="keyword">func</span> (<label for="r23" class="ident">a</label> *<a href="#line-21" class="ident">Core</a>) <label for="r24" class="ident"><a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.retrievablePost^ce503.html" class="ident">retrievablePost</a></label>(<label for="r25" class="ident">uri</label> <a href="../../../../../../../pkg/builtin.html#name-string" class="ident">string</a>, <label for="r26" class="ident">content</label> []<a href="../../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a>, <label for="r27" class="ident">response</label> <span class="keyword">interface</span>{}) (*<a href="../../../../../../../pkg/net/http.html" class="ident i5">http</a>.<a href="../../../../../../net/http/response.go.html#line-35" class="ident">Response</a>, <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-79"><code>	<span class="comment">// during tests, allow to support ~90% of bad nonce with a minimum of attempts.</span></code></span>
+<span class="codeline" id="line-80"><code>	<label for="r28" class="ident">bo</label> := <a href="../../../../../../../pkg/github.com/cenkalti/backoff/v4.html" class="ident i7">backoff</a>.<a href="../../../../../cenkalti/backoff/v4/exponential.go.html#line-84" class="ident">NewExponentialBackOff</a>()</code></span>
+<span class="codeline" id="line-81"><code>	<label for="r28" class="ident">bo</label>.<a href="../../../../../cenkalti/backoff/v4/exponential.go.html#line-55" class="ident">InitialInterval</a> = <span class="lit-number">200</span> * <a href="../../../../../../../pkg/time.html" class="ident i6">time</a>.<a href="../../../../../../time/time.go.html#line-604" class="ident">Millisecond</a></code></span>
+<span class="codeline" id="line-82"><code>	<label for="r28" class="ident">bo</label>.<a href="../../../../../cenkalti/backoff/v4/exponential.go.html#line-58" class="ident">MaxInterval</a> = <span class="lit-number">5</span> * <a href="../../../../../../../pkg/time.html" class="ident i6">time</a>.<a href="../../../../../../time/time.go.html#line-605" class="ident">Second</a></code></span>
+<span class="codeline" id="line-83"><code>	<label for="r28" class="ident">bo</label>.<a href="../../../../../cenkalti/backoff/v4/exponential.go.html#line-61" class="ident">MaxElapsedTime</a> = <span class="lit-number">20</span> * <a href="../../../../../../../pkg/time.html" class="ident i6">time</a>.<a href="../../../../../../time/time.go.html#line-605" class="ident">Second</a></code></span>
+<span class="codeline" id="line-84"><code></code></span>
+<span class="codeline" id="line-85"><code>	<span class="keyword">var</span> <label for="r29" class="ident">resp</label> *<a href="../../../../../../../pkg/net/http.html" class="ident i5">http</a>.<a href="../../../../../../net/http/response.go.html#line-35" class="ident">Response</a></code></span>
+<span class="codeline" id="line-86"><code>	<label for="r30" class="ident">operation</label> := <span class="keyword">func</span>() <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a> {</code></span>
+<span class="codeline" id="line-87"><code>		<span class="keyword">var</span> <label for="r31" class="ident">err</label> <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a></code></span>
+<span class="codeline" id="line-88"><code>		<label for="r29" class="ident">resp</label>, <label for="r31" class="ident">err</label> = <label for="r23" class="ident">a</label>.<a href="#line-114" class="ident">signedPost</a>(<label for="r25" class="ident">uri</label>, <label for="r26" class="ident">content</label>, <label for="r27" class="ident">response</label>)</code></span>
+<span class="codeline" id="line-89"><code>		<span class="keyword">if</span> <label for="r31" class="ident">err</label> != <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-90"><code>			<span class="comment">// Retry if the nonce was invalidated</span></code></span>
+<span class="codeline" id="line-91"><code>			<span class="keyword">var</span> <label for="r32" class="ident">e</label> *<a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme.html" class="ident i8">acme</a>.<a href="../errors.go.html#line-56" class="ident">NonceError</a></code></span>
+<span class="codeline" id="line-92"><code>			<span class="keyword">if</span> <a href="../../../../../../../pkg/errors.html" class="ident i3">errors</a>.<a href="../../../../../../errors/wrap.go.html#line-77" class="ident">As</a>(<label for="r31" class="ident">err</label>, &amp;<label for="r32" class="ident">e</label>) {</code></span>
+<span class="codeline" id="line-93"><code>				<span class="keyword">return</span> <label for="r31" class="ident">err</label></code></span>
+<span class="codeline" id="line-94"><code>			}</code></span>
+<span class="codeline" id="line-95"><code></code></span>
+<span class="codeline" id="line-96"><code>			<span class="keyword">return</span> <a href="../../../../../../../pkg/github.com/cenkalti/backoff/v4.html" class="ident i7">backoff</a>.<a href="../../../../../cenkalti/backoff/v4/retry.go.html#line-105" class="ident">Permanent</a>(<label for="r31" class="ident">err</label>)</code></span>
+<span class="codeline" id="line-97"><code>		}</code></span>
+<span class="codeline" id="line-98"><code></code></span>
+<span class="codeline" id="line-99"><code>		<span class="keyword">return</span> <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-100"><code>	}</code></span>
+<span class="codeline" id="line-101"><code></code></span>
+<span class="codeline" id="line-102"><code>	<label for="r33" class="ident">notify</label> := <span class="keyword">func</span>(<label for="r34" class="ident">err</label> <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a>, <label for="r35" class="ident">duration</label> <a href="../../../../../../../pkg/time.html" class="ident i6">time</a>.<a href="../../../../../../time/time.go.html#line-583" class="ident">Duration</a>) {</code></span>
+<span class="codeline" id="line-103"><code>		<a href="../../../../../../../pkg/github.com/go-acme/lego/v4/log.html" class="ident i12">log</a>.<a href="../../log/logger.go.html#line-57" class="ident">Infof</a>(<span class="lit-string">"retry due to: %v"</span>, <label for="r34" class="ident">err</label>)</code></span>
+<span class="codeline" id="line-104"><code>	}</code></span>
+<span class="codeline" id="line-105"><code></code></span>
+<span class="codeline" id="line-106"><code>	<label for="r36" class="ident">err</label> := <a href="../../../../../../../pkg/github.com/cenkalti/backoff/v4.html" class="ident i7">backoff</a>.<a href="../../../../../cenkalti/backoff/v4/retry.go.html#line-33" class="ident">RetryNotify</a>(<label for="r30" class="ident">operation</label>, <label for="r28" class="ident">bo</label>, <label for="r33" class="ident">notify</label>)</code></span>
+<span class="codeline" id="line-107"><code>	<span class="keyword">if</span> <label for="r36" class="ident">err</label> != <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-108"><code>		<span class="keyword">return</span> <label for="r29" class="ident">resp</label>, <label for="r36" class="ident">err</label></code></span>
+<span class="codeline" id="line-109"><code>	}</code></span>
+<span class="codeline" id="line-110"><code></code></span>
+<span class="codeline" id="line-111"><code>	<span class="keyword">return</span> <label for="r29" class="ident">resp</label>, <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-112"><code>}</code></span>
+<span class="codeline" id="line-113"><code></code></span>
+<span class="codeline" id="line-114"><code><span class="keyword">func</span> (<label for="r37" class="ident">a</label> *<a href="#line-21" class="ident">Core</a>) <label for="r38" class="ident"><a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.signedPost^7aa52.html" class="ident">signedPost</a></label>(<label for="r39" class="ident">uri</label> <a href="../../../../../../../pkg/builtin.html#name-string" class="ident">string</a>, <label for="r40" class="ident">content</label> []<a href="../../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a>, <label for="r41" class="ident">response</label> <span class="keyword">interface</span>{}) (*<a href="../../../../../../../pkg/net/http.html" class="ident i5">http</a>.<a href="../../../../../../net/http/response.go.html#line-35" class="ident">Response</a>, <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-115"><code>	<label for="r42" class="ident">signedContent</label>, <label for="r43" class="ident">err</label> := <label for="r37" class="ident">a</label>.<a href="#line-24" class="ident">Jws</a>.<a href="internal/secure/jws.go.html#line-38" class="ident">SignContent</a>(<label for="r39" class="ident">uri</label>, <label for="r40" class="ident">content</label>)</code></span>
+<span class="codeline" id="line-116"><code>	<span class="keyword">if</span> <label for="r43" class="ident">err</label> != <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-117"><code>		<span class="keyword">return</span> <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a>, <a href="../../../../../../../pkg/fmt.html" class="ident i4">fmt</a>.<a href="../../../../../../fmt/errors.go.html#line-17" class="ident">Errorf</a>(<span class="lit-string">"failed to post JWS message: failed to sign content: %w"</span>, <label for="r43" class="ident">err</label>)</code></span>
+<span class="codeline" id="line-118"><code>	}</code></span>
+<span class="codeline" id="line-119"><code></code></span>
+<span class="codeline" id="line-120"><code>	<label for="r44" class="ident">signedBody</label> := <a href="../../../../../../../pkg/bytes.html" class="ident i0">bytes</a>.<a href="../../../../../../bytes/buffer.go.html#line-450" class="ident">NewBuffer</a>([]<a href="../../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a>(<label for="r42" class="ident">signedContent</label>.<a href="../../../../../../gopkg.in/square/go-jose.v2/jws.go.html#line-339" class="ident">FullSerialize</a>()))</code></span>
+<span class="codeline" id="line-121"><code></code></span>
+<span class="codeline" id="line-122"><code>	<label for="r45" class="ident">resp</label>, <label for="r43" class="ident">err</label> := <label for="r37" class="ident">a</label>.<a href="#line-22" class="ident">doer</a>.<a href="internal/sender/sender.go.html#line-60" class="ident">Post</a>(<label for="r39" class="ident">uri</label>, <label for="r44" class="ident">signedBody</label>, <span class="lit-string">"application/jose+json"</span>, <label for="r41" class="ident">response</label>)</code></span>
+<span class="codeline" id="line-123"><code></code></span>
+<span class="codeline" id="line-124"><code>	<span class="comment">// nonceErr is ignored to keep the root error.</span></code></span>
+<span class="codeline" id="line-125"><code>	<label for="r46" class="ident">nonce</label>, <label for="r47" class="ident">nonceErr</label> := <a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api/internal/nonces.html" class="ident i9">nonces</a>.<a href="internal/nonces/nonce_manager.go.html#line-67" class="ident">GetFromResponse</a>(<label for="r45" class="ident">resp</label>)</code></span>
+<span class="codeline" id="line-126"><code>	<span class="keyword">if</span> <label for="r47" class="ident">nonceErr</label> == <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-127"><code>		<label for="r37" class="ident">a</label>.<a href="#line-23" class="ident">NonceManager</a>.<a href="internal/nonces/nonce_manager.go.html#line-43" class="ident">Push</a>(<label for="r46" class="ident">nonce</label>)</code></span>
+<span class="codeline" id="line-128"><code>	}</code></span>
+<span class="codeline" id="line-129"><code></code></span>
+<span class="codeline" id="line-130"><code>	<span class="keyword">return</span> <label for="r45" class="ident">resp</label>, <label for="r43" class="ident">err</label></code></span>
+<span class="codeline" id="line-131"><code>}</code></span>
+<span class="codeline" id="line-132"><code></code></span>
+<span class="codeline" id="line-133"><code><span class="keyword">func</span> (<label for="r48" class="ident">a</label> *<a href="#line-21" class="ident">Core</a>) <label for="r49" class="ident"><a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.signEABContent^3daea.html" class="ident">signEABContent</a></label>(<label for="r50" class="ident">newAccountURL</label>, <label for="r51" class="ident">kid</label> <a href="../../../../../../../pkg/builtin.html#name-string" class="ident">string</a>, <label for="r52" class="ident">hmac</label> []<a href="../../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a>) ([]<a href="../../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a>, <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-134"><code>	<label for="r53" class="ident">eabJWS</label>, <label for="r54" class="ident">err</label> := <label for="r48" class="ident">a</label>.<a href="#line-24" class="ident">Jws</a>.<a href="internal/secure/jws.go.html#line-111" class="ident">SignEABContent</a>(<label for="r50" class="ident">newAccountURL</label>, <label for="r51" class="ident">kid</label>, <label for="r52" class="ident">hmac</label>)</code></span>
+<span class="codeline" id="line-135"><code>	<span class="keyword">if</span> <label for="r54" class="ident">err</label> != <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-136"><code>		<span class="keyword">return</span> <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a>, <label for="r54" class="ident">err</label></code></span>
+<span class="codeline" id="line-137"><code>	}</code></span>
+<span class="codeline" id="line-138"><code></code></span>
+<span class="codeline" id="line-139"><code>	<span class="keyword">return</span> []<a href="../../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a>(<label for="r53" class="ident">eabJWS</label>.<a href="../../../../../../gopkg.in/square/go-jose.v2/jws.go.html#line-339" class="ident">FullSerialize</a>()), <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-140"><code>}</code></span>
+<span class="codeline" id="line-141"><code></code></span>
+<span class="codeline" id="line-142"><code><span class="comment">// GetKeyAuthorization Gets the key authorization.</span></code></span>
+<span class="codeline" id="line-143"><code><span class="keyword">func</span> (<label for="r55" class="ident">a</label> *<a href="#line-21" class="ident">Core</a>) <label for="r56" class="ident"><a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.GetKeyAuthorization.html" class="ident">GetKeyAuthorization</a></label>(<label for="r57" class="ident">token</label> <a href="../../../../../../../pkg/builtin.html#name-string" class="ident">string</a>) (<a href="../../../../../../../pkg/builtin.html#name-string" class="ident">string</a>, <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-144"><code>	<span class="keyword">return</span> <label for="r55" class="ident">a</label>.<a href="#line-24" class="ident">Jws</a>.<a href="internal/secure/jws.go.html#line-141" class="ident">GetKeyAuthorization</a>(<label for="r57" class="ident">token</label>)</code></span>
+<span class="codeline" id="line-145"><code>}</code></span>
+<span class="codeline" id="line-146"><code></code></span>
+<span class="codeline" id="line-147"><code><span class="keyword">func</span> (<label for="r58" class="ident">a</label> *<a href="#line-21" class="ident">Core</a>) <label for="r59" class="ident"><a href="../../../../../../../use/github.com/go-acme/lego/v4/acme/api..Core.GetDirectory.html" class="ident">GetDirectory</a></label>() <a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme.html" class="ident i8">acme</a>.<a href="../commons.go.html#line-41" class="ident">Directory</a> {</code></span>
+<span class="codeline" id="line-148"><code>	<span class="keyword">return</span> <label for="r58" class="ident">a</label>.<a href="#line-25" class="ident">directory</a></code></span>
+<span class="codeline" id="line-149"><code>}</code></span>
+<span class="codeline" id="line-150"><code></code></span>
+<span class="codeline" id="line-151"><code><span class="keyword">func</span> <label for="r60" class="ident"><a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api.html#name-getDirectory" class="ident">getDirectory</a></label>(<label for="r61" class="ident">do</label> *<a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme/api/internal/sender.html" class="ident i11">sender</a>.<a href="internal/sender/sender.go.html#line-23" class="ident">Doer</a>, <label for="r62" class="ident">caDirURL</label> <a href="../../../../../../../pkg/builtin.html#name-string" class="ident">string</a>) (<a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme.html" class="ident i8">acme</a>.<a href="../commons.go.html#line-41" class="ident">Directory</a>, <a href="../../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-152"><code>	<span class="keyword">var</span> <label for="r63" class="ident">dir</label> <a href="../../../../../../../pkg/github.com/go-acme/lego/v4/acme.html" class="ident i8">acme</a>.<a href="../commons.go.html#line-41" class="ident">Directory</a></code></span>
+<span class="codeline" id="line-153"><code>	<span class="keyword">if</span> <label for="r64" class="ident">_</label>, <label for="r65" class="ident">err</label> := <label for="r61" class="ident">do</label>.<a href="internal/sender/sender.go.html#line-38" class="ident">Get</a>(<label for="r62" class="ident">caDirURL</label>, &amp;<label for="r63" class="ident">dir</label>); <label for="r65" class="ident">err</label> != <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-154"><code>		<span class="keyword">return</span> <label for="r63" class="ident">dir</label>, <a href="../../../../../../../pkg/fmt.html" class="ident i4">fmt</a>.<a href="../../../../../../fmt/errors.go.html#line-17" class="ident">Errorf</a>(<span class="lit-string">"get directory at '%s': %w"</span>, <label for="r62" class="ident">caDirURL</label>, <label for="r65" class="ident">err</label>)</code></span>
+<span class="codeline" id="line-155"><code>	}</code></span>
+<span class="codeline" id="line-156"><code></code></span>
+<span class="codeline" id="line-157"><code>	<span class="keyword">if</span> <label for="r63" class="ident">dir</label>.<a href="../commons.go.html#line-43" class="ident">NewAccountURL</a> == <span class="lit-string">""</span> {</code></span>
+<span class="codeline" id="line-158"><code>		<span class="keyword">return</span> <label for="r63" class="ident">dir</label>, <a href="../../../../../../../pkg/errors.html" class="ident i3">errors</a>.<a href="../../../../../../errors/errors.go.html#line-58" class="ident">New</a>(<span class="lit-string">"directory missing new registration URL"</span>)</code></span>
+<span class="codeline" id="line-159"><code>	}</code></span>
+<span class="codeline" id="line-160"><code>	<span class="keyword">if</span> <label for="r63" class="ident">dir</label>.<a href="../commons.go.html#line-44" class="ident">NewOrderURL</a> == <span class="lit-string">""</span> {</code></span>
+<span class="codeline" id="line-161"><code>		<span class="keyword">return</span> <label for="r63" class="ident">dir</label>, <a href="../../../../../../../pkg/errors.html" class="ident i3">errors</a>.<a href="../../../../../../errors/errors.go.html#line-58" class="ident">New</a>(<span class="lit-string">"directory missing new order URL"</span>)</code></span>
+<span class="codeline" id="line-162"><code>	}</code></span>
+<span class="codeline" id="line-163"><code></code></span>
+<span class="codeline" id="line-164"><code>	<span class="keyword">return</span> <label for="r63" class="ident">dir</label>, <a href="../../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-165"><code>}</code></span>
+</pre><pre id="footer">
+<table><tr><td><img src="../../../../../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

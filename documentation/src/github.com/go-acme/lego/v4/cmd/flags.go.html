@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Source: flags.go in package github.com/go-acme/lego/v4/cmd</title>
+<link href="../../../../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="header"><code><span class="title">Source File</span>
+	flags.go
+
+<span class="title">Belonging Package</span>
+	<a href="../../../../../../pkg/github.com/go-acme/lego/v4/cmd.html">github.com/go-acme/lego/v4/cmd</a>
+</code></pre>
+<style>input[type=radio] {display: none;}
+input[id=r0]:checked ~pre label[for=r0],
+input[id=r1]:checked ~pre label[for=r1]
+{background: #226; color: #ff8;}
+input[id=i0]:checked ~pre .i0,
+input[id=i1]:checked ~pre .i1,
+input[id=i2]:checked ~pre .i2
+{background: brown; color: #eed;}
+</style><input id="r0" type="radio" name="g"/>
+<input id="r1" type="radio" name="g"/>
+<input id="i0" type="radio" name="i"/>
+<input id="i1" type="radio" name="i"/>
+<input id="i2" type="radio" name="i"/>
+
+<pre class="line-numbers">
+<span class="codeline" id="line-1"><code><span class="keyword">package</span> cmd</code></span>
+<span class="codeline" id="line-2"><code></code></span>
+<span class="codeline" id="line-3"><code><span class="keyword">import</span> (</code></span>
+<span class="codeline" id="line-4"><code>	<label for="i0"><span class="lit-string i0">"github.com/go-acme/lego/v4/lego"</span></label></code></span>
+<span class="codeline" id="line-5"><code>	<label for="i1"><span class="lit-string i1">"github.com/urfave/cli/v2"</span></label></code></span>
+<span class="codeline" id="line-6"><code>	<label for="i2"><span class="lit-string i2">"software.sslmate.com/src/go-pkcs12"</span></label></code></span>
+<span class="codeline" id="line-7"><code>)</code></span>
+<span class="codeline" id="line-8"><code></code></span>
+<span class="codeline" id="line-9"><code><span class="keyword">func</span> <label for="r0" class="ident"><a href="../../../../../../pkg/github.com/go-acme/lego/v4/cmd.html#name-CreateFlags" class="ident">CreateFlags</a></label>(<label for="r1" class="ident">defaultPath</label> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>) []<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag.go.html#line-90" class="ident">Flag</a> {</code></span>
+<span class="codeline" id="line-10"><code>	<span class="keyword">return</span> []<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag.go.html#line-90" class="ident">Flag</a>{</code></span>
+<span class="codeline" id="line-11"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string_slice.go.html#line-62" class="ident">StringSliceFlag</a>{</code></span>
+<span class="codeline" id="line-12"><code>			<a href="../../../../urfave/cli/v2/flag_string_slice.go.html#line-63" class="ident">Name</a>:    <span class="lit-string">"domains"</span>,</code></span>
+<span class="codeline" id="line-13"><code>			<a href="../../../../urfave/cli/v2/flag_string_slice.go.html#line-64" class="ident">Aliases</a>: []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"d"</span>},</code></span>
+<span class="codeline" id="line-14"><code>			<a href="../../../../urfave/cli/v2/flag_string_slice.go.html#line-65" class="ident">Usage</a>:   <span class="lit-string">"Add a domain to the process. Can be specified multiple times."</span>,</code></span>
+<span class="codeline" id="line-15"><code>		},</code></span>
+<span class="codeline" id="line-16"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-17"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:    <span class="lit-string">"server"</span>,</code></span>
+<span class="codeline" id="line-18"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-8" class="ident">Aliases</a>: []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"s"</span>},</code></span>
+<span class="codeline" id="line-19"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>:   <span class="lit-string">"CA hostname (and optionally :port). The server certificate must be trusted in order to avoid further modifications to the client."</span>,</code></span>
+<span class="codeline" id="line-20"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>:   <a href="../../../../../../pkg/github.com/go-acme/lego/v4/lego.html" class="ident i0">lego</a>.<a href="../lego/client_config.go.html#line-38" class="ident">LEDirectoryProduction</a>,</code></span>
+<span class="codeline" id="line-21"><code>		},</code></span>
+<span class="codeline" id="line-22"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-23"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>:    <span class="lit-string">"accept-tos"</span>,</code></span>
+<span class="codeline" id="line-24"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-12" class="ident">Aliases</a>: []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"a"</span>},</code></span>
+<span class="codeline" id="line-25"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>:   <span class="lit-string">"By setting this flag to true you indicate that you accept the current Let's Encrypt terms of service."</span>,</code></span>
+<span class="codeline" id="line-26"><code>		},</code></span>
+<span class="codeline" id="line-27"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-28"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:    <span class="lit-string">"email"</span>,</code></span>
+<span class="codeline" id="line-29"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-8" class="ident">Aliases</a>: []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"m"</span>},</code></span>
+<span class="codeline" id="line-30"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>:   <span class="lit-string">"Email used for registration and recovery contact."</span>,</code></span>
+<span class="codeline" id="line-31"><code>		},</code></span>
+<span class="codeline" id="line-32"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-33"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:    <span class="lit-string">"csr"</span>,</code></span>
+<span class="codeline" id="line-34"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-8" class="ident">Aliases</a>: []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"c"</span>},</code></span>
+<span class="codeline" id="line-35"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>:   <span class="lit-string">"Certificate signing request filename, if an external CSR is to be used."</span>,</code></span>
+<span class="codeline" id="line-36"><code>		},</code></span>
+<span class="codeline" id="line-37"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-38"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"eab"</span>,</code></span>
+<span class="codeline" id="line-39"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Use External Account Binding for account registration. Requires --kid and --hmac."</span>,</code></span>
+<span class="codeline" id="line-40"><code>		},</code></span>
+<span class="codeline" id="line-41"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-42"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"kid"</span>,</code></span>
+<span class="codeline" id="line-43"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"Key identifier from External CA. Used for External Account Binding."</span>,</code></span>
+<span class="codeline" id="line-44"><code>		},</code></span>
+<span class="codeline" id="line-45"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-46"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"hmac"</span>,</code></span>
+<span class="codeline" id="line-47"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"MAC key from External CA. Should be in Base64 URL Encoding without padding format. Used for External Account Binding."</span>,</code></span>
+<span class="codeline" id="line-48"><code>		},</code></span>
+<span class="codeline" id="line-49"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-50"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:    <span class="lit-string">"key-type"</span>,</code></span>
+<span class="codeline" id="line-51"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-8" class="ident">Aliases</a>: []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"k"</span>},</code></span>
+<span class="codeline" id="line-52"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>:   <span class="lit-string">"ec256"</span>,</code></span>
+<span class="codeline" id="line-53"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>:   <span class="lit-string">"Key type to use for private keys. Supported: rsa2048, rsa4096, rsa8192, ec256, ec384."</span>,</code></span>
+<span class="codeline" id="line-54"><code>		},</code></span>
+<span class="codeline" id="line-55"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-56"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"filename"</span>,</code></span>
+<span class="codeline" id="line-57"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"(deprecated) Filename of the generated certificate."</span>,</code></span>
+<span class="codeline" id="line-58"><code>		},</code></span>
+<span class="codeline" id="line-59"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-60"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:    <span class="lit-string">"path"</span>,</code></span>
+<span class="codeline" id="line-61"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-10" class="ident">EnvVars</a>: []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"LEGO_PATH"</span>},</code></span>
+<span class="codeline" id="line-62"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>:   <span class="lit-string">"Directory to use for storing the data."</span>,</code></span>
+<span class="codeline" id="line-63"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>:   <label for="r1" class="ident">defaultPath</label>,</code></span>
+<span class="codeline" id="line-64"><code>		},</code></span>
+<span class="codeline" id="line-65"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-66"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"http"</span>,</code></span>
+<span class="codeline" id="line-67"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Use the HTTP challenge to solve challenges. Can be mixed with other types of challenges."</span>,</code></span>
+<span class="codeline" id="line-68"><code>		},</code></span>
+<span class="codeline" id="line-69"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-70"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"http.port"</span>,</code></span>
+<span class="codeline" id="line-71"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"Set the port and interface to use for HTTP based challenges to listen on.Supported: interface:port or :port."</span>,</code></span>
+<span class="codeline" id="line-72"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>: <span class="lit-string">":80"</span>,</code></span>
+<span class="codeline" id="line-73"><code>		},</code></span>
+<span class="codeline" id="line-74"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-75"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"http.proxy-header"</span>,</code></span>
+<span class="codeline" id="line-76"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"Validate against this HTTP header when solving HTTP based challenges behind a reverse proxy."</span>,</code></span>
+<span class="codeline" id="line-77"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>: <span class="lit-string">"Host"</span>,</code></span>
+<span class="codeline" id="line-78"><code>		},</code></span>
+<span class="codeline" id="line-79"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-80"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"http.webroot"</span>,</code></span>
+<span class="codeline" id="line-81"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"Set the webroot folder to use for HTTP based challenges to write directly in a file in .well-known/acme-challenge. This disables the built-in server and expects the given directory to be publicly served with access to .well-known/acme-challenge"</span>,</code></span>
+<span class="codeline" id="line-82"><code>		},</code></span>
+<span class="codeline" id="line-83"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string_slice.go.html#line-62" class="ident">StringSliceFlag</a>{</code></span>
+<span class="codeline" id="line-84"><code>			<a href="../../../../urfave/cli/v2/flag_string_slice.go.html#line-63" class="ident">Name</a>:  <span class="lit-string">"http.memcached-host"</span>,</code></span>
+<span class="codeline" id="line-85"><code>			<a href="../../../../urfave/cli/v2/flag_string_slice.go.html#line-65" class="ident">Usage</a>: <span class="lit-string">"Set the memcached host(s) to use for HTTP based challenges. Challenges will be written to all specified hosts."</span>,</code></span>
+<span class="codeline" id="line-86"><code>		},</code></span>
+<span class="codeline" id="line-87"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-88"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"tls"</span>,</code></span>
+<span class="codeline" id="line-89"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Use the TLS challenge to solve challenges. Can be mixed with other types of challenges."</span>,</code></span>
+<span class="codeline" id="line-90"><code>		},</code></span>
+<span class="codeline" id="line-91"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-92"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"tls.port"</span>,</code></span>
+<span class="codeline" id="line-93"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"Set the port and interface to use for TLS based challenges to listen on. Supported: interface:port or :port."</span>,</code></span>
+<span class="codeline" id="line-94"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>: <span class="lit-string">":443"</span>,</code></span>
+<span class="codeline" id="line-95"><code>		},</code></span>
+<span class="codeline" id="line-96"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-97"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"dns"</span>,</code></span>
+<span class="codeline" id="line-98"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"Solve a DNS challenge using the specified provider. Can be mixed with other types of challenges. Run 'lego dnshelp' for help on usage."</span>,</code></span>
+<span class="codeline" id="line-99"><code>		},</code></span>
+<span class="codeline" id="line-100"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-101"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"dns.disable-cp"</span>,</code></span>
+<span class="codeline" id="line-102"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"By setting this flag to true, disables the need to wait the propagation of the TXT record to all authoritative name servers."</span>,</code></span>
+<span class="codeline" id="line-103"><code>		},</code></span>
+<span class="codeline" id="line-104"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string_slice.go.html#line-62" class="ident">StringSliceFlag</a>{</code></span>
+<span class="codeline" id="line-105"><code>			<a href="../../../../urfave/cli/v2/flag_string_slice.go.html#line-63" class="ident">Name</a>:  <span class="lit-string">"dns.resolvers"</span>,</code></span>
+<span class="codeline" id="line-106"><code>			<a href="../../../../urfave/cli/v2/flag_string_slice.go.html#line-65" class="ident">Usage</a>: <span class="lit-string">"Set the resolvers to use for performing recursive DNS queries. Supported: host:port. The default is to use the system resolvers, or Google's DNS resolvers if the system's cannot be determined."</span>,</code></span>
+<span class="codeline" id="line-107"><code>		},</code></span>
+<span class="codeline" id="line-108"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_int.go.html#line-10" class="ident">IntFlag</a>{</code></span>
+<span class="codeline" id="line-109"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"http-timeout"</span>,</code></span>
+<span class="codeline" id="line-110"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Set the HTTP timeout value to a specific value in seconds."</span>,</code></span>
+<span class="codeline" id="line-111"><code>		},</code></span>
+<span class="codeline" id="line-112"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_int.go.html#line-10" class="ident">IntFlag</a>{</code></span>
+<span class="codeline" id="line-113"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"dns-timeout"</span>,</code></span>
+<span class="codeline" id="line-114"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Set the DNS timeout value to a specific value in seconds. Used only when performing authoritative name servers queries."</span>,</code></span>
+<span class="codeline" id="line-115"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-18" class="ident">Value</a>: <span class="lit-number">10</span>,</code></span>
+<span class="codeline" id="line-116"><code>		},</code></span>
+<span class="codeline" id="line-117"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-118"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"pem"</span>,</code></span>
+<span class="codeline" id="line-119"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Generate a .pem file by concatenating the .key and .crt files together."</span>,</code></span>
+<span class="codeline" id="line-120"><code>		},</code></span>
+<span class="codeline" id="line-121"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-122"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"pfx"</span>,</code></span>
+<span class="codeline" id="line-123"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Generate a .pfx (PKCS#12) file by with the .key and .crt and issuer .crt files together."</span>,</code></span>
+<span class="codeline" id="line-124"><code>		},</code></span>
+<span class="codeline" id="line-125"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-126"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"pfx.pass"</span>,</code></span>
+<span class="codeline" id="line-127"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"The password used to encrypt the .pfx (PCKS#12) file."</span>,</code></span>
+<span class="codeline" id="line-128"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>: <a href="../../../../../../pkg/software.sslmate.com/src/go-pkcs12.html" class="ident i2">pkcs12</a>.<a href="../../../../../software.sslmate.com/src/go-pkcs12/pkcs12.go.html#line-37" class="ident">DefaultPassword</a>,</code></span>
+<span class="codeline" id="line-129"><code>		},</code></span>
+<span class="codeline" id="line-130"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_int.go.html#line-10" class="ident">IntFlag</a>{</code></span>
+<span class="codeline" id="line-131"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"cert.timeout"</span>,</code></span>
+<span class="codeline" id="line-132"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Set the certificate timeout value to a specific value in seconds. Only used when obtaining certificates."</span>,</code></span>
+<span class="codeline" id="line-133"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-18" class="ident">Value</a>: <span class="lit-number">30</span>,</code></span>
+<span class="codeline" id="line-134"><code>		},</code></span>
+<span class="codeline" id="line-135"><code></code></span>
+<span class="codeline" id="line-136"><code>		<span class="comment">// PQTLS related flags</span></code></span>
+<span class="codeline" id="line-137"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-138"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>: <span class="lit-string">"pqtls"</span>,</code></span>
+<span class="codeline" id="line-139"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"By setting this flag to true, the ACME Client will perform a PQTLS connection with the ACME server"</span>,</code></span>
+<span class="codeline" id="line-140"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-18" class="ident">Value</a>: <a href="../../../../../../pkg/builtin.html#name-false" class="ident">false</a>,</code></span>
+<span class="codeline" id="line-141"><code>		},</code></span>
+<span class="codeline" id="line-142"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-143"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>: <span class="lit-string">"kex"</span>,</code></span>
+<span class="codeline" id="line-144"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"Set the KEX algorithm to be used in the TLS connection"</span>,</code></span>
+<span class="codeline" id="line-145"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>: <span class="lit-string">""</span>,</code></span>
+<span class="codeline" id="line-146"><code>		},</code></span>
+<span class="codeline" id="line-147"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-148"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"certalgo"</span>,</code></span>
+<span class="codeline" id="line-149"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"The signature algorithm to be used in the certificate issuing. Possible values: P256, P348, 2048, 4096, 8192, Dilithium2, Dilithium3, Dilithium5, Falcon512, Falcon1024"</span>,</code></span>
+<span class="codeline" id="line-150"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>: <span class="lit-string">""</span>,</code></span>
+<span class="codeline" id="line-151"><code>		},</code></span>
+<span class="codeline" id="line-152"><code>		<span class="comment">// Timing measurement related flags</span></code></span>
+<span class="codeline" id="line-153"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-154"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"timingcsv"</span>,</code></span>
+<span class="codeline" id="line-155"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"Path to the CSV file where the timing metrics are written to."</span>,</code></span>
+<span class="codeline" id="line-156"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>: <span class="lit-string">""</span>,</code></span>
+<span class="codeline" id="line-157"><code>		},</code></span>
+<span class="codeline" id="line-158"><code></code></span>
+<span class="codeline" id="line-159"><code>		<span class="comment">// Load Test related flags</span></code></span>
+<span class="codeline" id="line-160"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-161"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>: <span class="lit-string">"loadtestfinalize"</span>,</code></span>
+<span class="codeline" id="line-162"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"By setting this flag to true, the ACME Client will perform a load test in the /finalize-order/ endpoint of the ACME Server"</span>,</code></span>
+<span class="codeline" id="line-163"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-18" class="ident">Value</a>: <a href="../../../../../../pkg/builtin.html#name-false" class="ident">false</a>,</code></span>
+<span class="codeline" id="line-164"><code>		},</code></span>
+<span class="codeline" id="line-165"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-166"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>: <span class="lit-string">"genCSRatLoadTest"</span>,</code></span>
+<span class="codeline" id="line-167"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"By setting this flag to true, CSR will be generated by each LoadTest's client."</span>,</code></span>
+<span class="codeline" id="line-168"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-18" class="ident">Value</a>: <a href="../../../../../../pkg/builtin.html#name-false" class="ident">false</a>,</code></span>
+<span class="codeline" id="line-169"><code>		},</code></span>
+<span class="codeline" id="line-170"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_int.go.html#line-10" class="ident">IntFlag</a>{</code></span>
+<span class="codeline" id="line-171"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"numthreads"</span>,</code></span>
+<span class="codeline" id="line-172"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Number of threads to be used in the load test. This flag will only take effect if '-loadtestfinalize' flag is true."</span>,</code></span>
+<span class="codeline" id="line-173"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-18" class="ident">Value</a>: <span class="lit-number">1</span>,</code></span>
+<span class="codeline" id="line-174"><code>		},</code></span>
+<span class="codeline" id="line-175"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_int.go.html#line-10" class="ident">IntFlag</a>{</code></span>
+<span class="codeline" id="line-176"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"loadtestduration"</span>,</code></span>
+<span class="codeline" id="line-177"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Set the duration in seconds for the load test. This flag will only take effect if '-loadtestfinalize' flag is true."</span>,</code></span>
+<span class="codeline" id="line-178"><code>			<a href="../../../../urfave/cli/v2/flag_int.go.html#line-18" class="ident">Value</a>: <span class="lit-number">5</span>,</code></span>
+<span class="codeline" id="line-179"><code>		},</code></span>
+<span class="codeline" id="line-180"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-181"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>:  <span class="lit-string">"loadtestcsv"</span>,</code></span>
+<span class="codeline" id="line-182"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"Path to the CSV file where the load tests results are written to."</span>,</code></span>
+<span class="codeline" id="line-183"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>: <span class="lit-string">""</span>,</code></span>
+<span class="codeline" id="line-184"><code>		},</code></span>
+<span class="codeline" id="line-185"><code></code></span>
+<span class="codeline" id="line-186"><code>		<span class="comment">// Miscellaneous flags</span></code></span>
+<span class="codeline" id="line-187"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-188"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"synclego"</span>,</code></span>
+<span class="codeline" id="line-189"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"By setting this flag to true, the ACME Server will send a notification to the ACME Client saying that the server is ready for connections. This notification will be sent through a socket."</span>,</code></span>
+<span class="codeline" id="line-190"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-18" class="ident">Value</a>: <a href="../../../../../../pkg/builtin.html#name-false" class="ident">false</a>,</code></span>
+<span class="codeline" id="line-191"><code>		},</code></span>
+<span class="codeline" id="line-192"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-10" class="ident">BoolFlag</a>{</code></span>
+<span class="codeline" id="line-193"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-11" class="ident">Name</a>:  <span class="lit-string">"newchallenge"</span>, <span class="comment">//'new challenge' will not be 'new' forever </span></code></span>
+<span class="codeline" id="line-194"><code>			<a href="../../../../urfave/cli/v2/flag_bool.go.html#line-13" class="ident">Usage</a>: <span class="lit-string">"Creates account and download certificate as usual, but uses the new challenge to transit X times to PQC certificate (asking Pebble's /pq-order endpoint). Requires a previously generated certificate to the desired domain."</span>,</code></span>
+<span class="codeline" id="line-195"><code>		},</code></span>
+<span class="codeline" id="line-196"><code>		&amp;<a href="../../../../../../pkg/github.com/urfave/cli/v2.html" class="ident i1">cli</a>.<a href="../../../../urfave/cli/v2/flag_string.go.html#line-6" class="ident">StringFlag</a>{</code></span>
+<span class="codeline" id="line-197"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-7" class="ident">Name</a>: <span class="lit-string">"pqorderport"</span>,</code></span>
+<span class="codeline" id="line-198"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-9" class="ident">Usage</a>: <span class="lit-string">"teste"</span>,</code></span>
+<span class="codeline" id="line-199"><code>			<a href="../../../../urfave/cli/v2/flag_string.go.html#line-15" class="ident">Value</a>: <span class="lit-string">"10003"</span>,</code></span>
+<span class="codeline" id="line-200"><code>		},</code></span>
+<span class="codeline" id="line-201"><code>	}</code></span>
+<span class="codeline" id="line-202"><code>}</code></span>
+</pre><pre id="footer">
+<table><tr><td><img src="../../../../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

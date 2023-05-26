@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Source: nonces.go in package github.com/letsencrypt/pebble/v2/wfe</title>
+<link href="../../../../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="header"><code><span class="title">Source File</span>
+	nonces.go
+
+<span class="title">Belonging Package</span>
+	<a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/wfe.html">github.com/letsencrypt/pebble/v2/wfe</a>
+</code></pre>
+<style>input[type=radio] {display: none;}
+input[id=r0]:checked ~pre label[for=r0],
+input[id=r1]:checked ~pre label[for=r1],
+input[id=r2]:checked ~pre label[for=r2],
+input[id=r3]:checked ~pre label[for=r3],
+input[id=r4]:checked ~pre label[for=r4],
+input[id=r5]:checked ~pre label[for=r5],
+input[id=r6]:checked ~pre label[for=r6],
+input[id=r7]:checked ~pre label[for=r7],
+input[id=r8]:checked ~pre label[for=r8],
+input[id=r9]:checked ~pre label[for=r9],
+input[id=r10]:checked ~pre label[for=r10],
+input[id=r11]:checked ~pre label[for=r11]
+{background: #226; color: #ff8;}
+input[id=i0]:checked ~pre .i0,
+input[id=i1]:checked ~pre .i1,
+input[id=i2]:checked ~pre .i2,
+input[id=i3]:checked ~pre .i3,
+input[id=i4]:checked ~pre .i4
+{background: brown; color: #eed;}
+</style><input id="r0" type="radio" name="g"/>
+<input id="r1" type="radio" name="g"/>
+<input id="r2" type="radio" name="g"/>
+<input id="r3" type="radio" name="g"/>
+<input id="r4" type="radio" name="g"/>
+<input id="r5" type="radio" name="g"/>
+<input id="r6" type="radio" name="g"/>
+<input id="r7" type="radio" name="g"/>
+<input id="r8" type="radio" name="g"/>
+<input id="r9" type="radio" name="g"/>
+<input id="r10" type="radio" name="g"/>
+<input id="r11" type="radio" name="g"/>
+<input id="i0" type="radio" name="i"/>
+<input id="i1" type="radio" name="i"/>
+<input id="i2" type="radio" name="i"/>
+<input id="i3" type="radio" name="i"/>
+<input id="i4" type="radio" name="i"/>
+
+<pre class="line-numbers">
+<span class="codeline" id="line-1"><code><span class="keyword">package</span> wfe</code></span>
+<span class="codeline" id="line-2"><code></code></span>
+<span class="codeline" id="line-3"><code><span class="keyword">import</span> (</code></span>
+<span class="codeline" id="line-4"><code>	<label for="i0"><span class="lit-string i0">"crypto/rand"</span></label></code></span>
+<span class="codeline" id="line-5"><code>	<label for="i1"><span class="lit-string i1">"encoding/base64"</span></label></code></span>
+<span class="codeline" id="line-6"><code>	<label for="i2"><span class="lit-string i2">"fmt"</span></label></code></span>
+<span class="codeline" id="line-7"><code>	<label for="i3"><span class="lit-string i3">"io"</span></label></code></span>
+<span class="codeline" id="line-8"><code>	<label for="i4"><span class="lit-string i4">"sync"</span></label></code></span>
+<span class="codeline" id="line-9"><code>)</code></span>
+<span class="codeline" id="line-10"><code></code></span>
+<span class="codeline" id="line-11"><code><span class="comment">/*</span></code></span>
+<span class="codeline" id="line-12"><code><span class="comment"> * Boulder uses 32 byte nonces.  We specifically choose to use 16 byte nonces</span></code></span>
+<span class="codeline" id="line-13"><code><span class="comment"> * here to A) be different than Boulder and force clients to not rely on</span></code></span>
+<span class="codeline" id="line-14"><code><span class="comment"> * Boulder-specific details B) to match the example text from draft-04 that</span></code></span>
+<span class="codeline" id="line-15"><code><span class="comment"> * describes "a random 128-bit value for each response"</span></code></span>
+<span class="codeline" id="line-16"><code><span class="comment"> */</span></code></span>
+<span class="codeline" id="line-17"><code><span class="keyword">const</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/wfe.html#name-nonceLen" class="ident">nonceLen</a> = <span class="lit-number">16</span></code></span>
+<span class="codeline" id="line-18"><code></code></span>
+<span class="codeline" id="line-19"><code><span class="comment">/*</span></code></span>
+<span class="codeline" id="line-20"><code><span class="comment"> * Note: We place no upper bound on the number of nonces we issue. We obtain</span></code></span>
+<span class="codeline" id="line-21"><code><span class="comment"> * a lock for both issuing nonces and checking them. This is *not* a performant</span></code></span>
+<span class="codeline" id="line-22"><code><span class="comment"> * or safe strategy for a production server. Consider the NonceServer</span></code></span>
+<span class="codeline" id="line-23"><code><span class="comment"> * approach[0] used by Boulder if you are looking for a more robust nonce</span></code></span>
+<span class="codeline" id="line-24"><code><span class="comment"> * implementation for an ACME server.</span></code></span>
+<span class="codeline" id="line-25"><code><span class="comment"> *</span></code></span>
+<span class="codeline" id="line-26"><code><span class="comment"> * [0] - https://github.com/letsencrypt/boulder/blob/c8f1fb3e2fade026aad76f23eafa137482d89bf5/nonce/nonce.go</span></code></span>
+<span class="codeline" id="line-27"><code><span class="comment"> */</span></code></span>
+<span class="codeline" id="line-28"><code><span class="keyword">type</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/wfe.html#name-nonceMap" class="ident">nonceMap</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-29"><code>	<a href="../../../../../../pkg/sync.html" class="ident i4">sync</a>.<a href="../../../../../sync/mutex.go.html#line-25" class="ident">Mutex</a></code></span>
+<span class="codeline" id="line-30"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/wfe..nonceMap^f595f.nonces^212cc.html" class="ident">nonces</a> <span class="keyword">map</span>[<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>]<span class="keyword">struct</span>{}</code></span>
+<span class="codeline" id="line-31"><code>}</code></span>
+<span class="codeline" id="line-32"><code></code></span>
+<span class="codeline" id="line-33"><code><span class="keyword">func</span> <label for="r0" class="ident"><a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/wfe.html#name-newNonceMap" class="ident">newNonceMap</a></label>() *<a href="#line-28" class="ident">nonceMap</a> {</code></span>
+<span class="codeline" id="line-34"><code>	<span class="keyword">return</span> &amp;<a href="#line-28" class="ident">nonceMap</a>{<a href="#line-30" class="ident">nonces</a>: <a href="../../../../../../pkg/builtin.html#name-make" class="ident">make</a>(<span class="keyword">map</span>[<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>]<span class="keyword">struct</span>{})}</code></span>
+<span class="codeline" id="line-35"><code>}</code></span>
+<span class="codeline" id="line-36"><code></code></span>
+<span class="codeline" id="line-37"><code><span class="keyword">func</span> (<label for="r1" class="ident">n</label> *<a href="#line-28" class="ident">nonceMap</a>) <label for="r2" class="ident"><a href="../../../../../../use/github.com/letsencrypt/pebble/v2/wfe..nonceMap^f595f.createNonce^9596a.html" class="ident">createNonce</a></label>() <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a> {</code></span>
+<span class="codeline" id="line-38"><code>	<label for="r1" class="ident">n</label>.<a href="../../../../../sync/mutex.go.html#line-72" class="ident">Lock</a>()</code></span>
+<span class="codeline" id="line-39"><code>	<span class="keyword">defer</span> <label for="r1" class="ident">n</label>.<a href="../../../../../sync/mutex.go.html#line-179" class="ident">Unlock</a>()</code></span>
+<span class="codeline" id="line-40"><code></code></span>
+<span class="codeline" id="line-41"><code>	<span class="comment">// Read `nonceLen` random bytes from rand.Reader</span></code></span>
+<span class="codeline" id="line-42"><code>	<label for="r3" class="ident">b</label> := <a href="../../../../../../pkg/builtin.html#name-make" class="ident">make</a>([]<a href="../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a>, <a href="#line-17" class="ident">nonceLen</a>)</code></span>
+<span class="codeline" id="line-43"><code>	<label for="r4" class="ident">_</label>, <label for="r5" class="ident">err</label> := <a href="../../../../../../pkg/io.html" class="ident i3">io</a>.<a href="../../../../../io/io.go.html#line-346" class="ident">ReadFull</a>(<a href="../../../../../../pkg/crypto/rand.html" class="ident i0">rand</a>.<a href="../../../../../crypto/rand/rand.go.html#line-19" class="ident">Reader</a>, <label for="r3" class="ident">b</label>)</code></span>
+<span class="codeline" id="line-44"><code>	<span class="keyword">if</span> <label for="r5" class="ident">err</label> != <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-45"><code>		<a href="../../../../../../pkg/builtin.html#name-panic" class="ident">panic</a>(<a href="../../../../../../pkg/fmt.html" class="ident i2">fmt</a>.<a href="../../../../../fmt/print.go.html#line-217" class="ident">Sprintf</a>(<span class="lit-string">"Error reading random bytes: %s"</span>, <label for="r5" class="ident">err</label>))</code></span>
+<span class="codeline" id="line-46"><code>	}</code></span>
+<span class="codeline" id="line-47"><code></code></span>
+<span class="codeline" id="line-48"><code>	<span class="comment">// Encode the bytes to base64 URL encoding</span></code></span>
+<span class="codeline" id="line-49"><code>	<label for="r6" class="ident">nonce</label> := <a href="../../../../../../pkg/encoding/base64.html" class="ident i1">base64</a>.<a href="../../../../../encoding/base64/base64.go.html#line-113" class="ident">RawURLEncoding</a>.<a href="../../../../../encoding/base64/base64.go.html#line-177" class="ident">EncodeToString</a>(<label for="r3" class="ident">b</label>)</code></span>
+<span class="codeline" id="line-50"><code>	<span class="comment">// Record the nonce, and give it back to the caller</span></code></span>
+<span class="codeline" id="line-51"><code>	<label for="r1" class="ident">n</label>.<a href="#line-30" class="ident">nonces</a>[<label for="r6" class="ident">nonce</label>] = <span class="keyword">struct</span>{}{}</code></span>
+<span class="codeline" id="line-52"><code>	<span class="keyword">return</span> <label for="r6" class="ident">nonce</label></code></span>
+<span class="codeline" id="line-53"><code>}</code></span>
+<span class="codeline" id="line-54"><code></code></span>
+<span class="codeline" id="line-55"><code><span class="keyword">func</span> (<label for="r7" class="ident">n</label> *<a href="#line-28" class="ident">nonceMap</a>) <label for="r8" class="ident"><a href="../../../../../../use/github.com/letsencrypt/pebble/v2/wfe..nonceMap^f595f.validNonce^4403e.html" class="ident">validNonce</a></label>(<label for="r9" class="ident">nonce</label> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>) <a href="../../../../../../pkg/builtin.html#name-bool" class="ident">bool</a> {</code></span>
+<span class="codeline" id="line-56"><code>	<label for="r7" class="ident">n</label>.<a href="../../../../../sync/mutex.go.html#line-72" class="ident">Lock</a>()</code></span>
+<span class="codeline" id="line-57"><code>	<span class="keyword">defer</span> <label for="r7" class="ident">n</label>.<a href="../../../../../sync/mutex.go.html#line-179" class="ident">Unlock</a>()</code></span>
+<span class="codeline" id="line-58"><code></code></span>
+<span class="codeline" id="line-59"><code>	<span class="comment">// If the nonce is one we generated its valid</span></code></span>
+<span class="codeline" id="line-60"><code>	<span class="keyword">if</span> <label for="r10" class="ident">_</label>, <label for="r11" class="ident">present</label> := <label for="r7" class="ident">n</label>.<a href="#line-30" class="ident">nonces</a>[<label for="r9" class="ident">nonce</label>]; <label for="r11" class="ident">present</label> {</code></span>
+<span class="codeline" id="line-61"><code>		<span class="comment">// Strike the nonce after it has been validated</span></code></span>
+<span class="codeline" id="line-62"><code><span class="comment">		// It can only be used once!</span></code></span>
+<span class="codeline" id="line-63"><code>		<a href="../../../../../../pkg/builtin.html#name-delete" class="ident">delete</a>(<label for="r7" class="ident">n</label>.<a href="#line-30" class="ident">nonces</a>, <label for="r9" class="ident">nonce</label>)</code></span>
+<span class="codeline" id="line-64"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-true" class="ident">true</a></code></span>
+<span class="codeline" id="line-65"><code>	}</code></span>
+<span class="codeline" id="line-66"><code></code></span>
+<span class="codeline" id="line-67"><code>	<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-false" class="ident">false</a></code></span>
+<span class="codeline" id="line-68"><code>}</code></span>
+</pre><pre id="footer">
+<table><tr><td><img src="../../../../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>
