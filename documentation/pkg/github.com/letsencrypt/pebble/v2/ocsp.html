@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Package: github.com/letsencrypt/pebble/v2/ocsp</title>
+<link href="../../../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="package-details"><code><span style="font-size:xx-large;">package <b>ocsp</b></span>
+
+<span class="title">Import Path</span>
+	<a href="../../../../../index.html#pkg-github.com/letsencrypt/pebble/v2/ocsp">github.com/letsencrypt/pebble/v2/ocsp</a><i> (on <a href="https://pkg.go.dev/github.com/letsencrypt/pebble/v2/ocsp" target="_blank">go.dev</a>)</i>
+
+<span class="title">Dependency Relation</span>
+	imports <a href="../../../../../dep/github.com/letsencrypt/pebble/v2/ocsp.html">5 packages</a>, and imported by 0 packages
+
+<div id="files"><span class="title">Involved Source Files</span>
+
+	<span class="nodocs">    <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html">ocsp_response.go</a></span></div>
+<div id="exported-types"><span class="title">Package-Level Type Names<span class="title-stat"><i> (total 7, none are exported)</i></span></span>
+
+<div id="exported-types-buttons" class="js-on">	/* sort exporteds by: <label id="sort-types-by-alphabet" class="button">alphabet</label> | <label id="sort-types-by-popularity" class="button">popularity</label> */</div></div><div>	<input type='checkbox' class="showhide" id="unexported-typenames-showhide"><i><label for="unexported-typenames-showhide" class="show-inline">/* 7 unexporteds ... */</label><label for="unexported-typenames-showhide" class="hide-inline">/* 7 unexporteds: */</label></i><div class="anchor type-res hidden" id="name-basicOCSPResponse" data-popularity="0">	<input type='checkbox' class="fold" id="basicOCSPResponse-fold-content"><label for="basicOCSPResponse-fold-content"> <a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..basicOCSPResponse^46204.html">type</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-31">basicOCSPResponse</a> <i>(struct)</i></label><span id='basicOCSPResponse-fold-content-docs' class="fold-docs">
+<span class="md-text">		basicOCSPResponse represents a BasicOCSPResponse as defined in RFC6960 4.2.1.</span>
+
+		<input type='checkbox' class="fold" id="basicOCSPResponse-fold-fields"><label for="basicOCSPResponse-fold-fields">Fields (<i>total 4, all are exported</i>)</label><span id='basicOCSPResponse-fold-fields-items' class="fold-items"><span>
+			<input type='checkbox' class="fold" id="basicOCSPResponse-fold-field-Certs"><label for="basicOCSPResponse-fold-field-Certs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-35">Certs</a> <i>[]<a href="../../../../crypto/x509.html">x509</a>.<a href="../../../../crypto/x509.html#name-Certificate">Certificate</a></i></label><span id='basicOCSPResponse-fold-field-Certs-docs' class="fold-docs">
+<span class="md-text">				// Optional</span>
+</span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-32">ResponseData</a> <i><a href="#name-responseData">responseData</a></i></span></span><span>
+			<input type='checkbox' class="fold" id="basicOCSPResponse-fold-field-Signature"><label for="basicOCSPResponse-fold-field-Signature"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-34">Signature</a> <i><a href="../../../../encoding/asn1.html">asn1</a>.<a href="../../../../encoding/asn1.html#name-BitString">BitString</a></i></label><span id='basicOCSPResponse-fold-field-Signature-docs' class="fold-docs">
+<span class="md-text">				// Be computed on the hash of the DER encoding of ResponseData</span>
+</span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-33">SignatureAlgo</a> <i><a href="../../../../crypto/x509/pkix.html">pkix</a>.<a href="../../../../crypto/x509/pkix.html#name-AlgorithmIdentifier">AlgorithmIdentifier</a></i></span></span></span>
+
+</span></div><div class="anchor type-res hidden" id="name-extension" data-popularity="0">	<input type='checkbox' class="fold" id="extension-fold-content"><label for="extension-fold-content"> <a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..extension^26f1d.html">type</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-38">extension</a> <i>(struct)</i></label><span id='extension-fold-content-docs' class="fold-docs">
+
+		<input type='checkbox' class="fold" id="extension-fold-fields"><label for="extension-fold-fields">Fields (<i>total 2, both are exported</i>)</label><span id='extension-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/crypto/x509/x509.go.html#line-3128">ExtensionData</a> <i>[]<a href="../../../../builtin.html#name-byte">byte</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/crypto/x509/x509.go.html#line-3127">ExtensionType</a> <i><a href="../../../../builtin.html#name-int">int</a></i></span></span></span>
+
+</span></div><div class="anchor type-res hidden" id="name-ocspResponse" data-popularity="0">	<input type='checkbox' class="fold" id="ocspResponse-fold-content"><label for="ocspResponse-fold-content"> <a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..ocspResponse^210a9.html">type</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-20">ocspResponse</a> <i>(struct)</i></label><span id='ocspResponse-fold-content-docs' class="fold-docs">
+<span class="md-text">		ocspResponse represents an OCSP response as defined in RFC6960 4.2.1</span>
+
+		<input type='checkbox' class="fold" id="ocspResponse-fold-fields"><label for="ocspResponse-fold-fields">Fields (<i>total 2, both are exported</i>)</label><span id='ocspResponse-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-22">ResponseBytes</a> <i><a href="#name-responseBytes">responseBytes</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-21">ResponseStatus</a> <i><a href="../../../../builtin.html#name-int">int</a></i></span></span></span>
+
+</span></div><div class="anchor type-res hidden" id="name-responderID" data-popularity="0">	<input type='checkbox' class="fold" id="responderID-fold-content"><label for="responderID-fold-content"> <a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responderID^41dc1.html">type</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-52">responderID</a> <i>(struct)</i></label><span id='responderID-fold-content-docs' class="fold-docs">
+<span class="md-text">		responderID represents a ResponderID as defined in RFC6960 4.2.1.</span>
+
+		<input type='checkbox' class="fold" id="responderID-fold-fields"><label for="responderID-fold-fields">Fields (<i>only one, which is exported</i>)</label><span id='responderID-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-53">ByName</a> <i><a href="../../../../crypto/x509/pkix.html">pkix</a>.<a href="../../../../crypto/x509/pkix.html#name-Name">Name</a></i></span></span></span>
+
+</span></div><div class="anchor type-res hidden" id="name-responseBytes" data-popularity="0">	<input type='checkbox' class="fold" id="responseBytes-fold-content"><label for="responseBytes-fold-content"> <a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responseBytes^2d46d.html">type</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-25">responseBytes</a> <i>(struct)</i></label><span id='responseBytes-fold-content-docs' class="fold-docs">
+<span class="md-text">		responseBytes represents a ResponseBytes as defined in RFC6960 4.2.1</span>
+
+		<input type='checkbox' class="fold" id="responseBytes-fold-fields"><label for="responseBytes-fold-fields">Fields (<i>total 2, both are exported</i>)</label><span id='responseBytes-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-27">Response</a> <i>[]<a href="../../../../builtin.html#name-byte">byte</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-26">ResponseType</a> <i><a href="../../../../encoding/asn1.html">asn1</a>.<a href="../../../../encoding/asn1.html#name-ObjectIdentifier">ObjectIdentifier</a></i></span></span></span>
+
+</span></div><div class="anchor type-res hidden" id="name-responseData" data-popularity="0">	<input type='checkbox' class="fold" id="responseData-fold-content"><label for="responseData-fold-content"> <a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responseData^dcb83.html">type</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-43">responseData</a> <i>(struct)</i></label><span id='responseData-fold-content-docs' class="fold-docs">
+<span class="md-text">		responseData represents a ResponseData as defined in RFC6960 4.2.1.</span>
+
+		<input type='checkbox' class="fold" id="responseData-fold-fields"><label for="responseData-fold-fields">Fields (<i>total 5, all are exported</i>)</label><span id='responseData-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-46">ProducedAt</a> <i><a href="../../../../time.html">time</a>.<a href="../../../../time.html#name-Time">Time</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-45">ResponderID</a> <i><a href="#name-responderID">responderID</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-48">ResponseExtensions</a> <i>[]<a href="#name-extension">extension</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-47">Responses</a> <i>[]<a href="#name-singleResponse">singleResponse</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-44">Version</a> <i><a href="../../../../builtin.html#name-int">int</a></i></span></span></span>
+
+</span></div><div class="anchor type-res hidden" id="name-singleResponse" data-popularity="0">	<input type='checkbox' class="fold" id="singleResponse-fold-content"><label for="singleResponse-fold-content"> <a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..singleResponse^e9c1e.html">type</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-56">singleResponse</a> <i>(struct)</i></label><span id='singleResponse-fold-content-docs' class="fold-docs">
+
+		<input type='checkbox' class="fold" id="singleResponse-fold-fields"><label for="singleResponse-fold-fields">Fields (<i>total 4, all are exported</i>)</label><span id='singleResponse-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-57">CertID</a> <i><a href="../../../../encoding/asn1.html">asn1</a>.<a href="../../../../encoding/asn1.html#name-ObjectIdentifier">ObjectIdentifier</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-58">CertStatus</a> <i><a href="../../../../builtin.html#name-int">int</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-60">NextUpdate</a> <i><a href="../../../../time.html">time</a>.<a href="../../../../time.html#name-Time">Time</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-59">ThisUpdate</a> <i><a href="../../../../time.html">time</a>.<a href="../../../../time.html#name-Time">Time</a></i></span></span></span>
+
+</span></div></div>
+<div id="exported-functions"><span class="title">Package-Level Functions<span class="title-stat"><i> (only one, which is exported)</i></span></span>
+
+<div class="anchor value-res" id="name-CreateOCSPResponse">	<input type='checkbox' class="fold" id="CreateOCSPResponse-fold-content"><label for="CreateOCSPResponse-fold-content"> <a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..CreateOCSPResponse.html">func</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-69">CreateOCSPResponse</a>(rand <a href="../../../../io.html">io</a>.<a href="../../../../io.html#name-Reader">Reader</a>, template *<a href="../../../../crypto/x509.html">x509</a>.<a href="../../../../crypto/x509.html#name-Certificate">Certificate</a>, priv interface{}) ([]<a href="../../../../builtin.html#name-byte">byte</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='CreateOCSPResponse-fold-content-docs' class="fold-docs">
+<span class="md-text">		The hash and signature algorithm are the same from Certificate</span>
+
+</span></div></div>
+<div id="exported-constants"><span class="title">Package-Level Constants<span class="title-stat"><i> (total 5, none are exported)</i></span></span>
+
+	<input type='checkbox' class="showhide" id="unexported-constants-showhide"><i><label for="unexported-constants-showhide" class="show-inline">/* 5 unexporteds ... */</label><label for="unexported-constants-showhide" class="hide-inline">/* 5 unexporteds: */</label></i><div class="anchor value-res hidden" id="name-byName"><i>	<span class="nodocs"><a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..byName^67fa0.html">const</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-16">byName</a> <a href="../../../../builtin.html#name-string">string</a> = "OCSP Responder"</span></i></div><div class="anchor value-res hidden" id="name-certStatus"><i>	<span class="nodocs"><a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..certStatus^db1af.html">const</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-15">certStatus</a> <a href="../../../../builtin.html#name-int">int</a> = 0 // <span class="md-text">Good</span></span></i></div><div class="anchor value-res hidden" id="name-name"><i>	<span class="nodocs"><a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..name^82a35.html">const</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-14">name</a> <a href="../../../../builtin.html#name-string">string</a> = "ResponderID"</span></i></div><div class="anchor value-res hidden" id="name-responseStatus"><i>	<span class="nodocs"><a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responseStatus^a135d.html">const</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-12">responseStatus</a> <a href="../../../../builtin.html#name-int">int</a> = 0 // <span class="md-text">Good</span></span></i></div><div class="anchor value-res hidden" id="name-version_default"><i>	<span class="nodocs"><a href="../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..version_default^aa84a.html">const</a> <a href="../../../../../src/github.com/letsencrypt/pebble/v2/ocsp/ocsp_response.go.html#line-13">version_default</a> <a href="../../../../builtin.html#name-int">int</a> = 1</span></i></div></div></code></pre><pre id="footer">
+<table><tr><td><img src="../../../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

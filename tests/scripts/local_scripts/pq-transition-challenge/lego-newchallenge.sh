@@ -37,6 +37,7 @@ go run cmd/lego/main.go \
 --http \
 -a \
 -newchallenge \
+--pqorderport 10003 \
 --pqtls \
 --kex Kyber512 \
 -k Dilithium2 \

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Package: github.com/go-acme/lego/v4/lego</title>
+<link href="../../../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="package-details"><code><span style="font-size:xx-large;">package <b>lego</b></span>
+
+<span class="title">Import Path</span>
+	<a href="../../../../../index.html#pkg-github.com/go-acme/lego/v4/lego">github.com/go-acme/lego/v4/lego</a><i> (on <a href="https://pkg.go.dev/github.com/go-acme/lego/v4/lego" target="_blank">go.dev</a>)</i>
+
+<span class="title">Dependency Relation</span>
+	imports <a href="../../../../../dep/github.com/go-acme/lego/v4/lego.html">17 packages</a>, and imported by 0 packages
+
+<div id="files"><span class="title">Involved Source Files</span>
+
+	<span class="nodocs">    <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client.go.html">client.go</a></span>
+	<span class="nodocs">    <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html">client_config.go</a></span></div>
+<div id="exported-types"><span class="title">Package-Level Type Names<span class="title-stat"><i> (total 3, all are exported)</i></span></span>
+
+<div id="exported-types-buttons" class="js-on">	/* sort exporteds by: <label id="sort-types-by-alphabet" class="button">alphabet</label> | <label id="sort-types-by-popularity" class="button">popularity</label> */</div><div class="anchor type-res" id="name-CertificateConfig" data-popularity="0">	<input type='checkbox' class="fold" id="CertificateConfig-fold-content"><label for="CertificateConfig-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/lego..CertificateConfig.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-76">CertificateConfig</a> <i>(struct)</i></label><span id='CertificateConfig-fold-content-docs' class="fold-docs">
+
+		<input type='checkbox' class="fold" id="CertificateConfig-fold-fields"><label for="CertificateConfig-fold-fields">Fields (<i>total 2, both are exported</i>)</label><span id='CertificateConfig-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-92">KeyType</a> <i><a href="certcrypto.html">certcrypto</a>.<a href="certcrypto.html#name-KeyType">KeyType</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/certificate/certificates.go.html#line-93">Timeout</a> <i><a href="../../../../time.html">time</a>.<a href="../../../../time.html#name-Duration">Duration</a></i></span></span></span>
+
+</span></div><div class="anchor type-res" id="name-Client" data-popularity="175">	<input type='checkbox' class="fold" id="Client-fold-content"><label for="Client-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/lego..Client.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client.go.html#line-14">Client</a> <i>(struct)</i></label><span id='Client-fold-content-docs' class="fold-docs">
+<span class="md-text">		Client is the user-friendly way to ACME.</span>
+
+		<input type='checkbox' class="fold" id="Client-fold-fields"><label for="Client-fold-fields">Fields (<i>total 4, in which 3 are exported</i>)</label><span id='Client-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/lego/client.go.html#line-15">Certificate</a> <i>*<a href="certificate.html">certificate</a>.<a href="certificate.html#name-Certifier">Certifier</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/lego/client.go.html#line-16">Challenge</a> <i>*<a href="challenge/resolver.html">resolver</a>.<a href="challenge/resolver.html#name-SolverManager">SolverManager</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/lego/client.go.html#line-17">Registration</a> <i>*<a href="registration.html">registration</a>.<a href="registration.html#name-Registrar">Registrar</a></i></span></span>
+			<input type='checkbox' class="showhide" id="Client-showhide-fields"><i><label for="Client-showhide-fields" class="show-inline">/* one unexported ... */</label><label for="Client-showhide-fields" class="hide-inline">/* one unexported: */</label></i><span class="hidden"><i>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/lego/client.go.html#line-18">core</a> <i>*<a href="acme/api.html">api</a>.<a href="acme/api.html#name-Core">Core</a></i></span></i></span></span>
+		<input type='checkbox' class="fold" id="Client-fold-methods"><label for="Client-fold-methods">Methods (<i>total 2, both are exported</i>)</label><span id='Client-fold-methods-items' class="fold-items"><span>
+			<input type='checkbox' class="fold" id="Client-fold-method-GetExternalAccountRequired"><label for="Client-fold-method-GetExternalAccountRequired">(*Client) <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client.go.html#line-72">GetExternalAccountRequired</a>() <a href="../../../../builtin.html#name-bool">bool</a></label><span id='Client-fold-method-GetExternalAccountRequired-docs' class="fold-docs">
+<span class="md-text">				GetExternalAccountRequired returns the External Account Binding requirement of the Directory.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="Client-fold-method-GetToSURL"><label for="Client-fold-method-GetToSURL">(*Client) <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client.go.html#line-67">GetToSURL</a>() <a href="../../../../builtin.html#name-string">string</a></label><span id='Client-fold-method-GetToSURL-docs' class="fold-docs">
+<span class="md-text">				GetToSURL returns the current ToS URL from the Directory.</span>
+</span></span></span>
+		<input type='checkbox' class="fold" id="Client-fold-results"><label for="Client-fold-results">As Outputs Of (<i>at least one exported</i>)</label><span id='Client-fold-results-items' class="fold-items"><span>
+			func <a href="#name-NewClient">NewClient</a>(config *<a href="#name-Config">Config</a>) (*<b>Client</b>, <a href="../../../../builtin.html#name-error">error</a>)</span></span>
+
+</span></div><div class="anchor type-res" id="name-Config" data-popularity="185">	<input type='checkbox' class="fold" id="Config-fold-content"><label for="Config-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/lego..Config.html">type</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-44">Config</a> <i>(struct)</i></label><span id='Config-fold-content-docs' class="fold-docs">
+
+		<input type='checkbox' class="fold" id="Config-fold-fields"><label for="Config-fold-fields">Fields (<i>total 5, all are exported</i>)</label><span id='Config-fold-fields-items' class="fold-items"><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-45">CADirURL</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-49">Certificate</a> <i><a href="#name-CertificateConfig">CertificateConfig</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-48">HTTPClient</a> <i>*<a href="../../../../net/http.html">http</a>.<a href="../../../../net/http.html#name-Client">Client</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-46">User</a> <i><a href="registration.html">registration</a>.<a href="registration.html#name-User">User</a></i></span></span><span>
+			<span class="nodocs"><a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-47">UserAgent</a> <i><a href="../../../../builtin.html#name-string">string</a></i></span></span></span>
+		<input type='checkbox' class="fold" id="Config-fold-results"><label for="Config-fold-results">As Outputs Of (<i>at least 2, both are exported</i>)</label><span id='Config-fold-results-items' class="fold-items"><span>
+			func <a href="#name-NewConfig">NewConfig</a>(user <a href="registration.html">registration</a>.<a href="registration.html#name-User">User</a>) *<b>Config</b></span><span>
+			func <a href="#name-NewPQTLSConfig">NewPQTLSConfig</a>(user <a href="registration.html">registration</a>.<a href="registration.html#name-User">User</a>, ctx *<a href="../../../urfave/cli/v2.html">cli</a>.<a href="../../../urfave/cli/v2.html#name-Context">Context</a>) *<b>Config</b></span></span>
+		<input type='checkbox' class="fold" id="Config-fold-params"><label for="Config-fold-params">As Inputs Of (<i>at least one exported</i>)</label><span id='Config-fold-params-items' class="fold-items"><span>
+			func <a href="#name-NewClient">NewClient</a>(config *<b>Config</b>) (*<a href="#name-Client">Client</a>, <a href="../../../../builtin.html#name-error">error</a>)</span></span>
+
+</span></div></div>
+<div id="exported-functions"><span class="title">Package-Level Functions<span class="title-stat"><i> (total 7, in which 3 are exported)</i></span></span>
+
+<div class="anchor value-res" id="name-NewClient">	<input type='checkbox' class="fold" id="NewClient-fold-content"><label for="NewClient-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/lego..NewClient.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client.go.html#line-24">NewClient</a>(config *<a href="#name-Config">Config</a>) (*<a href="#name-Client">Client</a>, <a href="../../../../builtin.html#name-error">error</a>)</label><span id='NewClient-fold-content-docs' class="fold-docs">
+<span class="md-text">		NewClient creates a new ACME client on behalf of the user.
+		The client will depend on the ACME directory located at CADirURL for the rest of its actions.
+		A private key of type keyType (see KeyType constants) will be generated when requesting a new certificate if one isn't provided.</span>
+
+</span></div><div class="anchor value-res" id="name-NewConfig">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/lego..NewConfig.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-52">NewConfig</a>(user <a href="registration.html">registration</a>.<a href="registration.html#name-User">User</a>) *<a href="#name-Config">Config</a></span></div><div class="anchor value-res" id="name-NewPQTLSConfig">	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/lego..NewPQTLSConfig.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-64">NewPQTLSConfig</a>(user <a href="registration.html">registration</a>.<a href="registration.html#name-User">User</a>, ctx *<a href="../../../urfave/cli/v2.html">cli</a>.<a href="../../../urfave/cli/v2.html#name-Context">Context</a>) *<a href="#name-Config">Config</a></span></div>	<input type='checkbox' class="showhide" id="unexported-functions-showhide"><i><label for="unexported-functions-showhide" class="show-inline">/* 4 unexporteds ... */</label><label for="unexported-functions-showhide" class="hide-inline">/* 4 unexporteds: */</label></i><div class="anchor value-res hidden" id="name-createDefaultHTTPClient"><i>	<input type='checkbox' class="fold" id="createDefaultHTTPClient-fold-content"><label for="createDefaultHTTPClient-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/lego..createDefaultHTTPClient^fae6e.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-84">createDefaultHTTPClient</a>() *<a href="../../../../net/http.html">http</a>.<a href="../../../../net/http.html#name-Client">Client</a></label><span id='createDefaultHTTPClient-fold-content-docs' class="fold-docs">
+<span class="md-text">		createDefaultHTTPClient Creates an HTTP client with a reasonable timeout value
+		and potentially a custom *x509.CertPool
+		based on the caCertificatesEnvVar environment variable (see the `initCertPool` function).</span>
+
+</span></i></div><div class="anchor value-res hidden" id="name-createPQTLSHTTPClient"><i>	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/lego..createPQTLSHTTPClient^2a72c.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-103">createPQTLSHTTPClient</a>(curveString <a href="../../../../builtin.html#name-string">string</a>) *<a href="../../../../net/http.html">http</a>.<a href="../../../../net/http.html#name-Client">Client</a></span></i></div><div class="anchor value-res hidden" id="name-getCertPool"><i>	<span class="nodocs"> <a href="../../../../../use/github.com/go-acme/lego/v4/lego..getCertPool^4ba59.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-164">getCertPool</a>() *<a href="../../../../crypto/x509.html">x509</a>.<a href="../../../../crypto/x509.html#name-CertPool">CertPool</a></span></i></div><div class="anchor value-res hidden" id="name-initCertPool"><i>	<input type='checkbox' class="fold" id="initCertPool-fold-content"><label for="initCertPool-fold-content"> <a href="../../../../../use/github.com/go-acme/lego/v4/lego..initCertPool^cb1e1.html">func</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-140">initCertPool</a>() *<a href="../../../../crypto/x509.html">x509</a>.<a href="../../../../crypto/x509.html#name-CertPool">CertPool</a></label><span id='initCertPool-fold-content-docs' class="fold-docs">
+<span class="md-text">		initCertPool creates a *x509.CertPool populated with the PEM certificates
+		found in the filepath specified in the caCertificatesEnvVar OS environment variable.
+		If the caCertificatesEnvVar is not set then initCertPool will return nil.
+		If there is an error creating a *x509.CertPool from the provided caCertificatesEnvVar value then initCertPool will panic.
+		If the caSystemCertPool is set to a "truthy value" (`1`, `t`, `T`, `TRUE`, `true`, `True`) then a copy of system cert pool will be used.
+		caSystemCertPool requires caCertificatesEnvVar to be set.</span>
+
+</span></i></div></div>
+<div id="exported-constants"><span class="title">Package-Level Constants<span class="title-stat"><i> (total 5, in which 2 are exported)</i></span></span>
+
+<div class="anchor value-res" id="name-LEDirectoryProduction">	<input type='checkbox' class="fold" id="LEDirectoryProduction-fold-content"><label for="LEDirectoryProduction-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/lego..LEDirectoryProduction.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-38">LEDirectoryProduction</a> = "https://acme-v02.api.letsencrypt.org/directory"</label><span id='LEDirectoryProduction-fold-content-docs' class="fold-docs">
+<span class="md-text">		LEDirectoryProduction URL to the Let's Encrypt production.</span>
+
+</span></div><div class="anchor value-res" id="name-LEDirectoryStaging">	<input type='checkbox' class="fold" id="LEDirectoryStaging-fold-content"><label for="LEDirectoryStaging-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/lego..LEDirectoryStaging.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-41">LEDirectoryStaging</a> = "https://acme-staging-v02.api.letsencrypt.org/directory"</label><span id='LEDirectoryStaging-fold-content-docs' class="fold-docs">
+<span class="md-text">		LEDirectoryStaging URL to the Let's Encrypt staging.</span>
+
+</span></div>	<input type='checkbox' class="showhide" id="unexported-constants-showhide"><i><label for="unexported-constants-showhide" class="show-inline">/* 3 unexporteds ... */</label><label for="unexported-constants-showhide" class="hide-inline">/* 3 unexporteds: */</label></i><div class="anchor value-res hidden" id="name-caCertificatesEnvVar"><i>	<input type='checkbox' class="fold" id="caCertificatesEnvVar-fold-content"><label for="caCertificatesEnvVar-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/lego..caCertificatesEnvVar^ff85e.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-25">caCertificatesEnvVar</a> = "LEGO_CA_CERTIFICATES"</label><span id='caCertificatesEnvVar-fold-content-docs' class="fold-docs">
+<span class="md-text">		caCertificatesEnvVar is the environment variable name that can be used to
+		specify the path to PEM encoded CA Certificates that can be used to
+		authenticate an ACME server with an HTTPS certificate not issued by a CA in
+		the system-wide trusted root list.
+		Multiple file paths can be added by using os.PathListSeparator as a separator.</span>
+
+</span></i></div><div class="anchor value-res hidden" id="name-caServerNameEnvVar"><i>	<input type='checkbox' class="fold" id="caServerNameEnvVar-fold-content"><label for="caServerNameEnvVar-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/lego..caServerNameEnvVar^3714e.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-35">caServerNameEnvVar</a> = "LEGO_CA_SERVER_NAME"</label><span id='caServerNameEnvVar-fold-content-docs' class="fold-docs">
+<span class="md-text">		caServerNameEnvVar is the environment variable name that can be used to
+		specify the CA server name that can be used to
+		authenticate an ACME server with a HTTPS certificate not issued by a CA in
+		the system-wide trusted root list.</span>
+
+</span></i></div><div class="anchor value-res hidden" id="name-caSystemCertPool"><i>	<input type='checkbox' class="fold" id="caSystemCertPool-fold-content"><label for="caSystemCertPool-fold-content"><a href="../../../../../use/github.com/go-acme/lego/v4/lego..caSystemCertPool^f79ed.html">const</a> <a href="../../../../../src/github.com/go-acme/lego/v4/lego/client_config.go.html#line-29">caSystemCertPool</a> = "LEGO_CA_SYSTEM_CERT_POOL"</label><span id='caSystemCertPool-fold-content-docs' class="fold-docs">
+<span class="md-text">		caSystemCertPool is the environment variable name that can be used to define
+		if the certificates pool must use a copy of the system cert pool.</span>
+
+</span></i></div></div></code></pre><pre id="footer">
+<table><tr><td><img src="../../../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

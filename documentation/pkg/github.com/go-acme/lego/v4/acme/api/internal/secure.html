@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Package: github.com/go-acme/lego/v4/acme/api/internal/secure</title>
+<link href="../../../../../../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../../../../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="package-details"><code><span style="font-size:xx-large;">package <b>secure</b></span>
+
+<span class="title">Import Path</span>
+	<a href="../../../../../../../../index.html#pkg-github.com/go-acme/lego/v4/acme/api/internal/secure">github.com/go-acme/lego/v4/acme/api/internal/secure</a><i> (on <a href="https://pkg.go.dev/github.com/go-acme/lego/v4/acme/api/internal/secure" target="_blank">go.dev</a>)</i>
+
+<span class="title">Dependency Relation</span>
+	imports <a href="../../../../../../../../dep/github.com/go-acme/lego/v4/acme/api/internal/secure.html">9 packages</a>, and imported by 0 packages
+
+<div id="files"><span class="title">Involved Source Files</span>
+
+	<span class="nodocs">    <a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html">jws.go</a></span></div>
+<div id="exported-types"><span class="title">Package-Level Type Names<span class="title-stat"><i> (only one, which is exported)</i></span></span>
+
+<div id="exported-types-buttons" class="js-on">	/* sort exporteds by: <label id="sort-types-by-alphabet" class="button">alphabet</label> | <label id="sort-types-by-popularity" class="button">popularity</label> */</div><div class="anchor type-res" id="name-JWS" data-popularity="325">	<input type='checkbox' class="fold" id="JWS-fold-content"><label for="JWS-fold-content"> <a href="../../../../../../../../use/github.com/go-acme/lego/v4/acme/api/internal/secure..JWS.html">type</a> <a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html#line-17">JWS</a> <i>(struct)</i></label><span id='JWS-fold-content-docs' class="fold-docs">
+<span class="md-text">		JWS Represents a JWS.</span>
+
+		<input type='checkbox' class="fold" id="JWS-fold-fields"><label for="JWS-fold-fields">Fields (<i>total 3, none are exported</i>)</label><span id='JWS-fold-fields-items' class="fold-items">
+			<input type='checkbox' class="showhide" id="JWS-showhide-fields"><i><label for="JWS-showhide-fields" class="show-inline">/* 3 unexporteds ... */</label><label for="JWS-showhide-fields" class="hide-inline">/* 3 unexporteds: */</label></i><span class="hidden"><i>
+			<input type='checkbox' class="fold" id="JWS-fold-field-kid"><label for="JWS-fold-field-kid"><a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html#line-19">kid</a> <i><a href="../../../../../../../builtin.html#name-string">string</a></i></label><span id='JWS-fold-field-kid-docs' class="fold-docs">
+<span class="md-text">				// Key identifier</span>
+</span></i></span><span class="hidden"><i>
+			<span class="nodocs"><a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html#line-20">nonces</a> <i>*<a href="nonces.html">nonces</a>.<a href="nonces.html#name-Manager">Manager</a></i></span></i></span><span class="hidden"><i>
+			<span class="nodocs"><a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html#line-18">privKey</a> <i><a href="../../../../../../../crypto.html">crypto</a>.<a href="../../../../../../../crypto.html#name-PrivateKey">PrivateKey</a></i></span></i></span></span>
+		<input type='checkbox' class="fold" id="JWS-fold-methods"><label for="JWS-fold-methods">Methods (<i>total 5, all are exported</i>)</label><span id='JWS-fold-methods-items' class="fold-items"><span>
+			<input type='checkbox' class="fold" id="JWS-fold-method-GetKeyAuthorization"><label for="JWS-fold-method-GetKeyAuthorization">(*JWS) <a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html#line-141">GetKeyAuthorization</a>(token <a href="../../../../../../../builtin.html#name-string">string</a>) (<a href="../../../../../../../builtin.html#name-string">string</a>, <a href="../../../../../../../builtin.html#name-error">error</a>)</label><span id='JWS-fold-method-GetKeyAuthorization-docs' class="fold-docs">
+<span class="md-text">				GetKeyAuthorization Gets the key authorization for a token.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="JWS-fold-method-SetKid"><label for="JWS-fold-method-SetKid">(*JWS) <a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html#line-33">SetKid</a>(kid <a href="../../../../../../../builtin.html#name-string">string</a>)</label><span id='JWS-fold-method-SetKid-docs' class="fold-docs">
+<span class="md-text">				SetKid Sets a key identifier.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="JWS-fold-method-SignContent"><label for="JWS-fold-method-SignContent">(*JWS) <a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html#line-38">SignContent</a>(url <a href="../../../../../../../builtin.html#name-string">string</a>, content []<a href="../../../../../../../builtin.html#name-byte">byte</a>) (*<a href="../../../../../../../gopkg.in/square/go-jose.v2.html">jose</a>.<a href="../../../../../../../gopkg.in/square/go-jose.v2.html#name-JSONWebSignature">JSONWebSignature</a>, <a href="../../../../../../../builtin.html#name-error">error</a>)</label><span id='JWS-fold-method-SignContent-docs' class="fold-docs">
+<span class="md-text">				SignContent Signs a content with the JWS.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="JWS-fold-method-SignContentWithCertHash"><label for="JWS-fold-method-SignContentWithCertHash">(*JWS) <a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html#line-169">SignContentWithCertHash</a>(url <a href="../../../../../../../builtin.html#name-string">string</a>, content []<a href="../../../../../../../builtin.html#name-byte">byte</a>, hash <a href="../../../../../../../builtin.html#name-string">string</a>) (*<a href="../../../../../../../gopkg.in/square/go-jose.v2.html">jose</a>.<a href="../../../../../../../gopkg.in/square/go-jose.v2.html#name-JSONWebSignature">JSONWebSignature</a>, <a href="../../../../../../../builtin.html#name-error">error</a>)</label><span id='JWS-fold-method-SignContentWithCertHash-docs' class="fold-docs">
+<span class="md-text">				SignContent Signs a content with the JWS.</span>
+</span></span><span>
+			<input type='checkbox' class="fold" id="JWS-fold-method-SignEABContent"><label for="JWS-fold-method-SignEABContent">(*JWS) <a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html#line-111">SignEABContent</a>(url, kid <a href="../../../../../../../builtin.html#name-string">string</a>, hmac []<a href="../../../../../../../builtin.html#name-byte">byte</a>) (*<a href="../../../../../../../gopkg.in/square/go-jose.v2.html">jose</a>.<a href="../../../../../../../gopkg.in/square/go-jose.v2.html#name-JSONWebSignature">JSONWebSignature</a>, <a href="../../../../../../../builtin.html#name-error">error</a>)</label><span id='JWS-fold-method-SignEABContent-docs' class="fold-docs">
+<span class="md-text">				SignEABContent Signs an external account binding content with the JWS.</span>
+</span></span></span>
+		<input type='checkbox' class="fold" id="JWS-fold-results"><label for="JWS-fold-results">As Outputs Of (<i>at least one exported</i>)</label><span id='JWS-fold-results-items' class="fold-items"><span>
+			func <a href="#name-NewJWS">NewJWS</a>(privateKey <a href="../../../../../../../crypto.html">crypto</a>.<a href="../../../../../../../crypto.html#name-PrivateKey">PrivateKey</a>, kid <a href="../../../../../../../builtin.html#name-string">string</a>, nonceManager *<a href="nonces.html">nonces</a>.<a href="nonces.html#name-Manager">Manager</a>) *<b>JWS</b></span></span>
+
+</span></div></div>
+<div id="exported-functions"><span class="title">Package-Level Functions<span class="title-stat"><i> (only one, which is exported)</i></span></span>
+
+<div class="anchor value-res" id="name-NewJWS">	<input type='checkbox' class="fold" id="NewJWS-fold-content"><label for="NewJWS-fold-content"> <a href="../../../../../../../../use/github.com/go-acme/lego/v4/acme/api/internal/secure..NewJWS.html">func</a> <a href="../../../../../../../../src/github.com/go-acme/lego/v4/acme/api/internal/secure/jws.go.html#line-24">NewJWS</a>(privateKey <a href="../../../../../../../crypto.html">crypto</a>.<a href="../../../../../../../crypto.html#name-PrivateKey">PrivateKey</a>, kid <a href="../../../../../../../builtin.html#name-string">string</a>, nonceManager *<a href="nonces.html">nonces</a>.<a href="nonces.html#name-Manager">Manager</a>) *<a href="#name-JWS">JWS</a></label><span id='NewJWS-fold-content-docs' class="fold-docs">
+<span class="md-text">		NewJWS Create a new JWS.</span>
+
+</span></div></div></code></pre><pre id="footer">
+<table><tr><td><img src="../../../../../../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

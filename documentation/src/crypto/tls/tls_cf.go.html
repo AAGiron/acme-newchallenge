@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Source: tls_cf.go in package crypto/tls</title>
+<link href="../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="header"><code><span class="title">Source File</span>
+	tls_cf.go
+
+<span class="title">Belonging Package</span>
+	<a href="../../../pkg/crypto/tls.html">crypto/tls</a>
+</code></pre>
+<style>input[type=radio] {display: none;}
+input[id=r0]:checked ~pre label[for=r0],
+input[id=r1]:checked ~pre label[for=r1],
+input[id=r2]:checked ~pre label[for=r2],
+input[id=r3]:checked ~pre label[for=r3],
+input[id=r4]:checked ~pre label[for=r4],
+input[id=r5]:checked ~pre label[for=r5],
+input[id=r6]:checked ~pre label[for=r6],
+input[id=r7]:checked ~pre label[for=r7],
+input[id=r8]:checked ~pre label[for=r8],
+input[id=r9]:checked ~pre label[for=r9],
+input[id=r10]:checked ~pre label[for=r10],
+input[id=r11]:checked ~pre label[for=r11],
+input[id=r12]:checked ~pre label[for=r12],
+input[id=r13]:checked ~pre label[for=r13],
+input[id=r14]:checked ~pre label[for=r14],
+input[id=r15]:checked ~pre label[for=r15],
+input[id=r16]:checked ~pre label[for=r16],
+input[id=r17]:checked ~pre label[for=r17],
+input[id=r18]:checked ~pre label[for=r18],
+input[id=r19]:checked ~pre label[for=r19],
+input[id=r20]:checked ~pre label[for=r20],
+input[id=r21]:checked ~pre label[for=r21],
+input[id=r22]:checked ~pre label[for=r22],
+input[id=r23]:checked ~pre label[for=r23],
+input[id=r24]:checked ~pre label[for=r24],
+input[id=r25]:checked ~pre label[for=r25],
+input[id=r26]:checked ~pre label[for=r26],
+input[id=r27]:checked ~pre label[for=r27],
+input[id=r28]:checked ~pre label[for=r28],
+input[id=r29]:checked ~pre label[for=r29],
+input[id=r30]:checked ~pre label[for=r30],
+input[id=r31]:checked ~pre label[for=r31],
+input[id=r32]:checked ~pre label[for=r32],
+input[id=r33]:checked ~pre label[for=r33],
+input[id=r34]:checked ~pre label[for=r34],
+input[id=r35]:checked ~pre label[for=r35],
+input[id=r36]:checked ~pre label[for=r36],
+input[id=r37]:checked ~pre label[for=r37],
+input[id=r38]:checked ~pre label[for=r38],
+input[id=r39]:checked ~pre label[for=r39],
+input[id=r40]:checked ~pre label[for=r40],
+input[id=r41]:checked ~pre label[for=r41],
+input[id=r42]:checked ~pre label[for=r42],
+input[id=r43]:checked ~pre label[for=r43],
+input[id=r44]:checked ~pre label[for=r44],
+input[id=r45]:checked ~pre label[for=r45],
+input[id=r46]:checked ~pre label[for=r46],
+input[id=r47]:checked ~pre label[for=r47],
+input[id=r48]:checked ~pre label[for=r48],
+input[id=r49]:checked ~pre label[for=r49],
+input[id=r50]:checked ~pre label[for=r50],
+input[id=r51]:checked ~pre label[for=r51],
+input[id=r52]:checked ~pre label[for=r52],
+input[id=r53]:checked ~pre label[for=r53],
+input[id=r54]:checked ~pre label[for=r54],
+input[id=r55]:checked ~pre label[for=r55],
+input[id=r56]:checked ~pre label[for=r56]
+{background: #226; color: #ff8;}
+input[id=i0]:checked ~pre .i0,
+input[id=i1]:checked ~pre .i1,
+input[id=i2]:checked ~pre .i2,
+input[id=i3]:checked ~pre .i3,
+input[id=i4]:checked ~pre .i4,
+input[id=i5]:checked ~pre .i5
+{background: brown; color: #eed;}
+</style><input id="r0" type="radio" name="g"/>
+<input id="r1" type="radio" name="g"/>
+<input id="r2" type="radio" name="g"/>
+<input id="r3" type="radio" name="g"/>
+<input id="r4" type="radio" name="g"/>
+<input id="r5" type="radio" name="g"/>
+<input id="r6" type="radio" name="g"/>
+<input id="r7" type="radio" name="g"/>
+<input id="r8" type="radio" name="g"/>
+<input id="r9" type="radio" name="g"/>
+<input id="r10" type="radio" name="g"/>
+<input id="r11" type="radio" name="g"/>
+<input id="r12" type="radio" name="g"/>
+<input id="r13" type="radio" name="g"/>
+<input id="r14" type="radio" name="g"/>
+<input id="r15" type="radio" name="g"/>
+<input id="r16" type="radio" name="g"/>
+<input id="r17" type="radio" name="g"/>
+<input id="r18" type="radio" name="g"/>
+<input id="r19" type="radio" name="g"/>
+<input id="r20" type="radio" name="g"/>
+<input id="r21" type="radio" name="g"/>
+<input id="r22" type="radio" name="g"/>
+<input id="r23" type="radio" name="g"/>
+<input id="r24" type="radio" name="g"/>
+<input id="r25" type="radio" name="g"/>
+<input id="r26" type="radio" name="g"/>
+<input id="r27" type="radio" name="g"/>
+<input id="r28" type="radio" name="g"/>
+<input id="r29" type="radio" name="g"/>
+<input id="r30" type="radio" name="g"/>
+<input id="r31" type="radio" name="g"/>
+<input id="r32" type="radio" name="g"/>
+<input id="r33" type="radio" name="g"/>
+<input id="r34" type="radio" name="g"/>
+<input id="r35" type="radio" name="g"/>
+<input id="r36" type="radio" name="g"/>
+<input id="r37" type="radio" name="g"/>
+<input id="r38" type="radio" name="g"/>
+<input id="r39" type="radio" name="g"/>
+<input id="r40" type="radio" name="g"/>
+<input id="r41" type="radio" name="g"/>
+<input id="r42" type="radio" name="g"/>
+<input id="r43" type="radio" name="g"/>
+<input id="r44" type="radio" name="g"/>
+<input id="r45" type="radio" name="g"/>
+<input id="r46" type="radio" name="g"/>
+<input id="r47" type="radio" name="g"/>
+<input id="r48" type="radio" name="g"/>
+<input id="r49" type="radio" name="g"/>
+<input id="r50" type="radio" name="g"/>
+<input id="r51" type="radio" name="g"/>
+<input id="r52" type="radio" name="g"/>
+<input id="r53" type="radio" name="g"/>
+<input id="r54" type="radio" name="g"/>
+<input id="r55" type="radio" name="g"/>
+<input id="r56" type="radio" name="g"/>
+<input id="i0" type="radio" name="i"/>
+<input id="i1" type="radio" name="i"/>
+<input id="i2" type="radio" name="i"/>
+<input id="i3" type="radio" name="i"/>
+<input id="i4" type="radio" name="i"/>
+<input id="i5" type="radio" name="i"/>
+
+<pre class="line-numbers">
+<span class="codeline" id="line-1"><code><span class="comment">// Copyright 2021 Cloudflare, Inc. All rights reserved. Use of this source code</span></code></span>
+<span class="codeline" id="line-2"><code><span class="comment">// is governed by a BSD-style license that can be found in the LICENSE file.</span></code></span>
+<span class="codeline" id="line-3"><code></code></span>
+<span class="codeline" id="line-4"><code><span class="keyword">package</span> tls</code></span>
+<span class="codeline" id="line-5"><code></code></span>
+<span class="codeline" id="line-6"><code><span class="keyword">import</span> (</code></span>
+<span class="codeline" id="line-7"><code>	<a href="../../../pkg/circl/pki.html" class="ident i0">circlPki</a> <label for="i0"><span class="lit-string i0">"circl/pki"</span></label></code></span>
+<span class="codeline" id="line-8"><code>	<a href="../../../pkg/circl/sign.html" class="ident i1">circlSign</a> <label for="i1"><span class="lit-string i1">"circl/sign"</span></label></code></span>
+<span class="codeline" id="line-9"><code></code></span>
+<span class="codeline" id="line-10"><code>	<label for="i2"><span class="lit-string i2">"circl/sign/ed448"</span></label></code></span>
+<span class="codeline" id="line-11"><code>	<label for="i3"><span class="lit-string i3">"circl/sign/eddilithium3"</span></label></code></span>
+<span class="codeline" id="line-12"><code>	<label for="i4"><span class="lit-string i4">"circl/sign/eddilithium4"</span></label></code></span>
+<span class="codeline" id="line-13"><code>	<label for="i5"><span class="lit-string i5">"time"</span></label></code></span>
+<span class="codeline" id="line-14"><code>)</code></span>
+<span class="codeline" id="line-15"><code></code></span>
+<span class="codeline" id="line-16"><code><span class="keyword">const</span> (</code></span>
+<span class="codeline" id="line-17"><code>	<span class="comment">// Constants for ECH status events.</span></code></span>
+<span class="codeline" id="line-18"><code>	<a href="../../../pkg/crypto/tls.html#name-echStatusBypassed" class="ident">echStatusBypassed</a> = <span class="lit-number">1</span> + <a href="../../../pkg/builtin.html#name-iota" class="ident">iota</a></code></span>
+<span class="codeline" id="line-19"><code>	<a href="../../../pkg/crypto/tls.html#name-echStatusInner" class="ident">echStatusInner</a></code></span>
+<span class="codeline" id="line-20"><code>	<a href="../../../pkg/crypto/tls.html#name-echStatusOuter" class="ident">echStatusOuter</a></code></span>
+<span class="codeline" id="line-21"><code>)</code></span>
+<span class="codeline" id="line-22"><code></code></span>
+<span class="codeline" id="line-23"><code><span class="comment">// To add a signature scheme from Circl</span></code></span>
+<span class="codeline" id="line-24"><code><span class="comment">//</span></code></span>
+<span class="codeline" id="line-25"><code><span class="comment">//   1. make sure it implements TLSScheme and CertificateScheme,</span></code></span>
+<span class="codeline" id="line-26"><code><span class="comment">//   2. follow the instructions in crypto/x509/x509_cf.go</span></code></span>
+<span class="codeline" id="line-27"><code><span class="comment">//   3. add a signature&lt;NameOfAlg&gt; to the iota in common.go</span></code></span>
+<span class="codeline" id="line-28"><code><span class="comment">//   4. add row in the circlSchemes lists below</span></code></span>
+<span class="codeline" id="line-29"><code></code></span>
+<span class="codeline" id="line-30"><code><span class="keyword">var</span> <a href="../../../pkg/crypto/tls.html#name-circlSchemes" class="ident">circlSchemes</a> = [...]<span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-31"><code>	sigType <a href="../../../pkg/builtin.html#name-uint8" class="ident">uint8</a></code></span>
+<span class="codeline" id="line-32"><code>	scheme  <a href="../../../pkg/circl/sign.html" class="ident i1">circlSign</a>.<a href="../../circl/sign/sign.go.html#line-43" class="ident">Scheme</a></code></span>
+<span class="codeline" id="line-33"><code>}{</code></span>
+<span class="codeline" id="line-34"><code>	{<a href="common.go.html#line-254" class="ident">signatureEdDilithium3</a>, <a href="../../../pkg/circl/sign/eddilithium3.html" class="ident i3">eddilithium3</a>.<a href="../../circl/sign/eddilithium3/signapi.go.html#line-13" class="ident">Scheme</a>()},</code></span>
+<span class="codeline" id="line-35"><code>	{<a href="common.go.html#line-255" class="ident">signatureEdDilithium4</a>, <a href="../../../pkg/circl/sign/eddilithium4.html" class="ident i4">eddilithium4</a>.<a href="../../circl/sign/eddilithium4/signapi.go.html#line-13" class="ident">Scheme</a>()},</code></span>
+<span class="codeline" id="line-36"><code>	{<a href="common.go.html#line-253" class="ident">signatureEd448</a>, <a href="../../../pkg/circl/sign/ed448.html" class="ident i2">ed448</a>.<a href="../../circl/sign/ed448/signapi.go.html#line-13" class="ident">Scheme</a>()},</code></span>
+<span class="codeline" id="line-37"><code>}</code></span>
+<span class="codeline" id="line-38"><code></code></span>
+<span class="codeline" id="line-39"><code><span class="keyword">func</span> <label for="r0" class="ident"><a href="../../../pkg/crypto/tls.html#name-circlSchemeBySigType" class="ident">circlSchemeBySigType</a></label>(<label for="r1" class="ident">sigType</label> <a href="../../../pkg/builtin.html#name-uint8" class="ident">uint8</a>) <a href="../../../pkg/circl/sign.html" class="ident i1">circlSign</a>.<a href="../../circl/sign/sign.go.html#line-43" class="ident">Scheme</a> {</code></span>
+<span class="codeline" id="line-40"><code>	<span class="keyword">for</span> <label for="r2" class="ident">_</label>, <label for="r3" class="ident">cs</label> := <span class="keyword">range</span> <a href="#line-30" class="ident">circlSchemes</a> {</code></span>
+<span class="codeline" id="line-41"><code>		<span class="keyword">if</span> <label for="r3" class="ident">cs</label>.<a href="#line-31" class="ident">sigType</a> == <label for="r1" class="ident">sigType</label> {</code></span>
+<span class="codeline" id="line-42"><code>			<span class="keyword">return</span> <label for="r3" class="ident">cs</label>.<a href="#line-32" class="ident">scheme</a></code></span>
+<span class="codeline" id="line-43"><code>		}</code></span>
+<span class="codeline" id="line-44"><code>	}</code></span>
+<span class="codeline" id="line-45"><code>	<span class="keyword">return</span> <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-46"><code>}</code></span>
+<span class="codeline" id="line-47"><code></code></span>
+<span class="codeline" id="line-48"><code><span class="keyword">func</span> <label for="r4" class="ident"><a href="../../../pkg/crypto/tls.html#name-sigTypeByCirclScheme" class="ident">sigTypeByCirclScheme</a></label>(<label for="r5" class="ident">scheme</label> <a href="../../../pkg/circl/sign.html" class="ident i1">circlSign</a>.<a href="../../circl/sign/sign.go.html#line-43" class="ident">Scheme</a>) <a href="../../../pkg/builtin.html#name-uint8" class="ident">uint8</a> {</code></span>
+<span class="codeline" id="line-49"><code>	<span class="keyword">for</span> <label for="r6" class="ident">_</label>, <label for="r7" class="ident">cs</label> := <span class="keyword">range</span> <a href="#line-30" class="ident">circlSchemes</a> {</code></span>
+<span class="codeline" id="line-50"><code>		<span class="keyword">if</span> <label for="r7" class="ident">cs</label>.<a href="#line-32" class="ident">scheme</a> == <label for="r5" class="ident">scheme</label> {</code></span>
+<span class="codeline" id="line-51"><code>			<span class="keyword">return</span> <label for="r7" class="ident">cs</label>.<a href="#line-31" class="ident">sigType</a></code></span>
+<span class="codeline" id="line-52"><code>		}</code></span>
+<span class="codeline" id="line-53"><code>	}</code></span>
+<span class="codeline" id="line-54"><code>	<span class="keyword">return</span> <span class="lit-number">0</span></code></span>
+<span class="codeline" id="line-55"><code>}</code></span>
+<span class="codeline" id="line-56"><code></code></span>
+<span class="codeline" id="line-57"><code><span class="keyword">func</span> <label for="r8" class="ident"><a href="../../../pkg/crypto/tls.html#name-init" class="ident">init</a></label>() {</code></span>
+<span class="codeline" id="line-58"><code>	<span class="keyword">for</span> <label for="r9" class="ident">_</label>, <label for="r10" class="ident">cs</label> := <span class="keyword">range</span> <a href="#line-30" class="ident">circlSchemes</a> {</code></span>
+<span class="codeline" id="line-59"><code>		<a href="common.go.html#line-269" class="ident">supportedSignatureAlgorithms</a> = <a href="../../../pkg/builtin.html#name-append" class="ident">append</a>(<a href="common.go.html#line-269" class="ident">supportedSignatureAlgorithms</a>,</code></span>
+<span class="codeline" id="line-60"><code>			<a href="common.go.html#line-580" class="ident">SignatureScheme</a>(<label for="r10" class="ident">cs</label>.<a href="#line-32" class="ident">scheme</a>.(<a href="../../../pkg/circl/pki.html" class="ident i0">circlPki</a>.<a href="../../circl/pki/pki.go.html#line-49" class="ident">TLSScheme</a>).<a href="../../circl/pki/pki.go.html#line-50" class="ident">TLSIdentifier</a>()))</code></span>
+<span class="codeline" id="line-61"><code>	}</code></span>
+<span class="codeline" id="line-62"><code>}</code></span>
+<span class="codeline" id="line-63"><code></code></span>
+<span class="codeline" id="line-64"><code><span class="comment">// CFEvent is a value emitted at various points in the handshake that is</span></code></span>
+<span class="codeline" id="line-65"><code><span class="comment">// handled by the callback Config.CFEventHandler.</span></code></span>
+<span class="codeline" id="line-66"><code><span class="keyword">type</span> <a href="../../../pkg/crypto/tls.html#name-CFEvent" class="ident">CFEvent</a> <span class="keyword">interface</span> {</code></span>
+<span class="codeline" id="line-67"><code>	<a href="../../../imp/crypto/tls.CFEvent.html#name-Name" class="ident">Name</a>() <a href="../../../pkg/builtin.html#name-string" class="ident">string</a></code></span>
+<span class="codeline" id="line-68"><code>}</code></span>
+<span class="codeline" id="line-69"><code></code></span>
+<span class="codeline" id="line-70"><code><span class="keyword">func</span> <label for="r11" class="ident"><a href="../../../pkg/crypto/tls.html#name-experimentName" class="ident">experimentName</a></label>(<label for="r12" class="ident">c</label> *<a href="conn.go.html#line-27" class="ident">Conn</a>) <a href="../../../pkg/builtin.html#name-string" class="ident">string</a> {</code></span>
+<span class="codeline" id="line-71"><code>	<span class="comment">// Reports the experiment number</span></code></span>
+<span class="codeline" id="line-72"><code>	<label for="r13" class="ident">exp</label> := <span class="lit-string">"exp"</span></code></span>
+<span class="codeline" id="line-73"><code>	<label for="r14" class="ident">alg</label> := <span class="lit-string">""</span></code></span>
+<span class="codeline" id="line-74"><code>	<span class="keyword">switch</span> <a href="../../../pkg/builtin.html#name-true" class="ident">true</a> {</code></span>
+<span class="codeline" id="line-75"><code>	<span class="keyword">case</span> <label for="r12" class="ident">c</label>.<a href="conn.go.html#line-61" class="ident">didKEMTLS</a>:</code></span>
+<span class="codeline" id="line-76"><code>		<label for="r13" class="ident">exp</label> += <span class="lit-string">"3"</span></code></span>
+<span class="codeline" id="line-77"><code>		<label for="r14" class="ident">alg</label> += <label for="r12" class="ident">c</label>.<a href="conn.go.html#line-57" class="ident">verifiedDC</a>.<a href="delegated_credentials.go.html#line-115" class="ident">algorithm</a>.<a href="common_string.go.html#line-52" class="ident">String</a>()</code></span>
+<span class="codeline" id="line-78"><code>		<span class="keyword">break</span></code></span>
+<span class="codeline" id="line-79"><code>	<span class="keyword">case</span> <label for="r12" class="ident">c</label>.<a href="conn.go.html#line-59" class="ident">didPQTLS</a>:</code></span>
+<span class="codeline" id="line-80"><code>		<label for="r13" class="ident">exp</label> += <span class="lit-string">"2"</span></code></span>
+<span class="codeline" id="line-81"><code>		<label for="r14" class="ident">alg</label> += <label for="r12" class="ident">c</label>.<a href="conn.go.html#line-57" class="ident">verifiedDC</a>.<a href="delegated_credentials.go.html#line-115" class="ident">algorithm</a>.<a href="common_string.go.html#line-52" class="ident">String</a>()</code></span>
+<span class="codeline" id="line-82"><code>		<span class="keyword">break</span></code></span>
+<span class="codeline" id="line-83"><code>	<span class="keyword">case</span> <label for="r12" class="ident">c</label>.<a href="conn.go.html#line-57" class="ident">verifiedDC</a> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a>:</code></span>
+<span class="codeline" id="line-84"><code>		<label for="r13" class="ident">exp</label> += <span class="lit-string">"1"</span></code></span>
+<span class="codeline" id="line-85"><code>		<label for="r14" class="ident">alg</label> += <label for="r12" class="ident">c</label>.<a href="conn.go.html#line-57" class="ident">verifiedDC</a>.<a href="delegated_credentials.go.html#line-115" class="ident">algorithm</a>.<a href="common_string.go.html#line-52" class="ident">String</a>()</code></span>
+<span class="codeline" id="line-86"><code>		<span class="keyword">break</span></code></span>
+<span class="codeline" id="line-87"><code>	<span class="keyword">case</span> <label for="r12" class="ident">c</label>.<a href="conn.go.html#line-57" class="ident">verifiedDC</a> == <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a>:</code></span>
+<span class="codeline" id="line-88"><code>		<label for="r13" class="ident">exp</label> += <span class="lit-string">"0"</span></code></span>
+<span class="codeline" id="line-89"><code>		<label for="r14" class="ident">alg</label> = <a href="cipher_suites.go.html#line-97" class="ident">CipherSuiteName</a>(<label for="r12" class="ident">c</label>.<a href="conn.go.html#line-48" class="ident">cipherSuite</a>)</code></span>
+<span class="codeline" id="line-90"><code>		<span class="keyword">break</span></code></span>
+<span class="codeline" id="line-91"><code>	<span class="keyword">default</span>:</code></span>
+<span class="codeline" id="line-92"><code>		<span class="keyword">break</span></code></span>
+<span class="codeline" id="line-93"><code>	}</code></span>
+<span class="codeline" id="line-94"><code>	<span class="keyword">return</span> <label for="r13" class="ident">exp</label> + <span class="lit-string">"_"</span> + <label for="r14" class="ident">alg</label></code></span>
+<span class="codeline" id="line-95"><code>}</code></span>
+<span class="codeline" id="line-96"><code></code></span>
+<span class="codeline" id="line-97"><code><span class="comment">// CFEventTLS13ClientHandshakeTimingInfo carries intra-stack time durations for</span></code></span>
+<span class="codeline" id="line-98"><code><span class="comment">// TLS 1.3 client-state machine changes. It can be used for tracking metrics</span></code></span>
+<span class="codeline" id="line-99"><code><span class="comment">// during a connection. Some durations may be sensitive, such as the amount of</span></code></span>
+<span class="codeline" id="line-100"><code><span class="comment">// time to process a particular handshake message, so this event should only be</span></code></span>
+<span class="codeline" id="line-101"><code><span class="comment">// used for experimental purposes.</span></code></span>
+<span class="codeline" id="line-102"><code><span class="keyword">type</span> <a href="../../../pkg/crypto/tls.html#name-CFEventTLS13ClientHandshakeTimingInfo" class="ident">CFEventTLS13ClientHandshakeTimingInfo</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-103"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.timer^cd94e.html" class="ident">timer</a>                   <span class="keyword">func</span>() <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-127" class="ident">Time</a></code></span>
+<span class="codeline" id="line-104"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.start^cced2.html" class="ident">start</a>                   <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-127" class="ident">Time</a></code></span>
+<span class="codeline" id="line-105"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.total^11239.html" class="ident">total</a>                   <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-127" class="ident">Time</a></code></span>
+<span class="codeline" id="line-106"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.WriteClientHello.html" class="ident">WriteClientHello</a>        <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-107"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.ProcessServerHello.html" class="ident">ProcessServerHello</a>      <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-108"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.ReadEncryptedExtensions.html" class="ident">ReadEncryptedExtensions</a> <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-109"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.ReadCertificate.html" class="ident">ReadCertificate</a>         <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-110"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.ReadCertificateVerify.html" class="ident">ReadCertificateVerify</a>   <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-111"><code></code></span>
+<span class="codeline" id="line-112"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.ReadServerFinished.html" class="ident">ReadServerFinished</a>     <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-113"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.WriteCertificate.html" class="ident">WriteCertificate</a>       <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-114"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.WriteCertificateVerify.html" class="ident">WriteCertificateVerify</a> <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-115"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.WriteClientFinished.html" class="ident">WriteClientFinished</a>    <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-116"><code></code></span>
+<span class="codeline" id="line-117"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.WriteKEMCiphertext.html" class="ident">WriteKEMCiphertext</a> <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-118"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.ReadKEMCiphertext.html" class="ident">ReadKEMCiphertext</a>  <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-119"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.FullProtocol.html" class="ident">FullProtocol</a>       <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-120"><code></code></span>
+<span class="codeline" id="line-121"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.SendAppData.html" class="ident">SendAppData</a>        <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-122"><code></code></span>
+<span class="codeline" id="line-123"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.ExperimentName.html" class="ident">ExperimentName</a> <a href="../../../pkg/builtin.html#name-string" class="ident">string</a></code></span>
+<span class="codeline" id="line-124"><code>}</code></span>
+<span class="codeline" id="line-125"><code></code></span>
+<span class="codeline" id="line-126"><code><span class="keyword">type</span> <a href="../../../pkg/crypto/tls.html#name-TLS13ClientHandshakeSizes" class="ident">TLS13ClientHandshakeSizes</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-127"><code>	<span class="comment">// KEMTLS/PQTLS Mutual</span></code></span>
+<span class="codeline" id="line-128"><code>	<a href="../../../use/crypto/tls..TLS13ClientHandshakeSizes.ClientHello.html" class="ident">ClientHello</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a>	</code></span>
+<span class="codeline" id="line-129"><code>	<a href="../../../use/crypto/tls..TLS13ClientHandshakeSizes.Certificate.html" class="ident">Certificate</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-130"><code>	<a href="../../../use/crypto/tls..TLS13ClientHandshakeSizes.Finished.html" class="ident">Finished</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-131"><code>	</code></span>
+<span class="codeline" id="line-132"><code>	<span class="comment">// PQTLS exclusive</span></code></span>
+<span class="codeline" id="line-133"><code>	<a href="../../../use/crypto/tls..TLS13ClientHandshakeSizes.CertificateVerify.html" class="ident">CertificateVerify</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-134"><code></code></span>
+<span class="codeline" id="line-135"><code>	<span class="comment">// KEMTLS exclusive</span></code></span>
+<span class="codeline" id="line-136"><code>	<a href="../../../use/crypto/tls..TLS13ClientHandshakeSizes.ClientKEMCiphertext.html" class="ident">ClientKEMCiphertext</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-137"><code>}</code></span>
+<span class="codeline" id="line-138"><code></code></span>
+<span class="codeline" id="line-139"><code><span class="comment">// Name is required by the CFEvent interface.</span></code></span>
+<span class="codeline" id="line-140"><code><span class="keyword">func</span> (<label for="r15" class="ident">e</label> <a href="#line-102" class="ident">CFEventTLS13ClientHandshakeTimingInfo</a>) <label for="r16" class="ident"><a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.Name.html" class="ident">Name</a></label>() <a href="../../../pkg/builtin.html#name-string" class="ident">string</a> {</code></span>
+<span class="codeline" id="line-141"><code>	<span class="keyword">return</span> <span class="lit-string">"TLS13ClientHandshakeTimingInfo"</span></code></span>
+<span class="codeline" id="line-142"><code>}</code></span>
+<span class="codeline" id="line-143"><code></code></span>
+<span class="codeline" id="line-144"><code><span class="keyword">func</span> (<label for="r17" class="ident">e</label> <a href="#line-102" class="ident">CFEventTLS13ClientHandshakeTimingInfo</a>) <label for="r18" class="ident"><a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.elapsedTime^97ae0.html" class="ident">elapsedTime</a></label>() <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a> {</code></span>
+<span class="codeline" id="line-145"><code>	<span class="keyword">if</span> <label for="r17" class="ident">e</label>.<a href="#line-103" class="ident">timer</a> == <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-146"><code>		<span class="keyword">return</span> <span class="lit-number">0</span></code></span>
+<span class="codeline" id="line-147"><code>	}</code></span>
+<span class="codeline" id="line-148"><code>	<span class="keyword">return</span> <label for="r17" class="ident">e</label>.<a href="#line-103" class="ident">timer</a>().<a href="../../time/time.go.html#line-841" class="ident">Sub</a>(<label for="r17" class="ident">e</label>.<a href="#line-104" class="ident">start</a>)</code></span>
+<span class="codeline" id="line-149"><code>}</code></span>
+<span class="codeline" id="line-150"><code></code></span>
+<span class="codeline" id="line-151"><code><span class="keyword">func</span> (<label for="r19" class="ident">e</label> *<a href="#line-102" class="ident">CFEventTLS13ClientHandshakeTimingInfo</a>) <label for="r20" class="ident"><a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.reset^01be3.html" class="ident">reset</a></label>() {</code></span>
+<span class="codeline" id="line-152"><code>	<label for="r19" class="ident">e</label>.<a href="#line-104" class="ident">start</a> = <label for="r19" class="ident">e</label>.<a href="#line-103" class="ident">timer</a>()</code></span>
+<span class="codeline" id="line-153"><code>}</code></span>
+<span class="codeline" id="line-154"><code></code></span>
+<span class="codeline" id="line-155"><code><span class="keyword">func</span> (<label for="r21" class="ident">e</label> *<a href="#line-102" class="ident">CFEventTLS13ClientHandshakeTimingInfo</a>) <label for="r22" class="ident"><a href="../../../use/crypto/tls..CFEventTLS13ClientHandshakeTimingInfo.finish^42af4.html" class="ident">finish</a></label>() {</code></span>
+<span class="codeline" id="line-156"><code>	<label for="r21" class="ident">e</label>.<a href="#line-119" class="ident">FullProtocol</a> = <label for="r21" class="ident">e</label>.<a href="#line-103" class="ident">timer</a>().<a href="../../time/time.go.html#line-841" class="ident">Sub</a>(<label for="r21" class="ident">e</label>.<a href="#line-105" class="ident">total</a>)</code></span>
+<span class="codeline" id="line-157"><code>}</code></span>
+<span class="codeline" id="line-158"><code></code></span>
+<span class="codeline" id="line-159"><code><span class="keyword">func</span> <label for="r23" class="ident"><a href="../../../pkg/crypto/tls.html#name-createTLS13ClientHandshakeTimingInfo" class="ident">createTLS13ClientHandshakeTimingInfo</a></label>(<label for="r24" class="ident">timerFunc</label> <span class="keyword">func</span>() <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-127" class="ident">Time</a>) <a href="#line-102" class="ident">CFEventTLS13ClientHandshakeTimingInfo</a> {</code></span>
+<span class="codeline" id="line-160"><code>	<label for="r25" class="ident">timer</label> := <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-1066" class="ident">Now</a></code></span>
+<span class="codeline" id="line-161"><code>	<span class="keyword">if</span> <label for="r24" class="ident">timerFunc</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-162"><code>		<label for="r25" class="ident">timer</label> = <label for="r24" class="ident">timerFunc</label></code></span>
+<span class="codeline" id="line-163"><code>	}</code></span>
+<span class="codeline" id="line-164"><code>	<label for="r26" class="ident">now</label> := <label for="r25" class="ident">timer</label>()</code></span>
+<span class="codeline" id="line-165"><code>	<span class="keyword">return</span> <a href="#line-102" class="ident">CFEventTLS13ClientHandshakeTimingInfo</a>{</code></span>
+<span class="codeline" id="line-166"><code>		<a href="#line-103" class="ident">timer</a>: <label for="r25" class="ident">timer</label>,</code></span>
+<span class="codeline" id="line-167"><code>		<a href="#line-104" class="ident">start</a>: <label for="r26" class="ident">now</label>,</code></span>
+<span class="codeline" id="line-168"><code>		<a href="#line-105" class="ident">total</a>: <label for="r26" class="ident">now</label>,</code></span>
+<span class="codeline" id="line-169"><code>	}</code></span>
+<span class="codeline" id="line-170"><code>}</code></span>
+<span class="codeline" id="line-171"><code></code></span>
+<span class="codeline" id="line-172"><code><span class="comment">// CFEventTLS13ServerHandshakeTimingInfo carries intra-stack time durations</span></code></span>
+<span class="codeline" id="line-173"><code><span class="comment">// for TLS 1.3 state machine changes. It can be used for tracking metrics during a</span></code></span>
+<span class="codeline" id="line-174"><code><span class="comment">// connection. Some durations may be sensitive, such as the amount of time to</span></code></span>
+<span class="codeline" id="line-175"><code><span class="comment">// process a particular handshake message, so this event should only be used</span></code></span>
+<span class="codeline" id="line-176"><code><span class="comment">// for experimental purposes.</span></code></span>
+<span class="codeline" id="line-177"><code><span class="keyword">type</span> <a href="../../../pkg/crypto/tls.html#name-CFEventTLS13ServerHandshakeTimingInfo" class="ident">CFEventTLS13ServerHandshakeTimingInfo</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-178"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.timer^cd94e.html" class="ident">timer</a>                    <span class="keyword">func</span>() <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-127" class="ident">Time</a></code></span>
+<span class="codeline" id="line-179"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.start^cced2.html" class="ident">start</a>                    <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-127" class="ident">Time</a></code></span>
+<span class="codeline" id="line-180"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.total^11239.html" class="ident">total</a>                    <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-127" class="ident">Time</a></code></span>
+<span class="codeline" id="line-181"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.ProcessClientHello.html" class="ident">ProcessClientHello</a>       <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-182"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.WriteServerHello.html" class="ident">WriteServerHello</a>         <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-183"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.WriteEncryptedExtensions.html" class="ident">WriteEncryptedExtensions</a> <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-184"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.WriteCertificate.html" class="ident">WriteCertificate</a>         <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-185"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.WriteCertificateVerify.html" class="ident">WriteCertificateVerify</a>   <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-186"><code></code></span>
+<span class="codeline" id="line-187"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.WriteServerFinished.html" class="ident">WriteServerFinished</a>   <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-188"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.ReadCertificate.html" class="ident">ReadCertificate</a>       <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-189"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.ReadCertificateVerify.html" class="ident">ReadCertificateVerify</a> <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-190"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.ReadClientFinished.html" class="ident">ReadClientFinished</a>    <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-191"><code></code></span>
+<span class="codeline" id="line-192"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.ReadKEMCiphertext.html" class="ident">ReadKEMCiphertext</a>  <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-193"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.WriteKEMCiphertext.html" class="ident">WriteKEMCiphertext</a> <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-194"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.FullProtocol.html" class="ident">FullProtocol</a>       <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a></code></span>
+<span class="codeline" id="line-195"><code></code></span>
+<span class="codeline" id="line-196"><code>	<a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.ExperimentName.html" class="ident">ExperimentName</a> <a href="../../../pkg/builtin.html#name-string" class="ident">string</a></code></span>
+<span class="codeline" id="line-197"><code>}</code></span>
+<span class="codeline" id="line-198"><code></code></span>
+<span class="codeline" id="line-199"><code><span class="keyword">type</span> <a href="../../../pkg/crypto/tls.html#name-TLS13ServerHandshakeSizes" class="ident">TLS13ServerHandshakeSizes</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-200"><code>	<span class="comment">// KEMTLS/PQTLS Mutual</span></code></span>
+<span class="codeline" id="line-201"><code>	<a href="../../../use/crypto/tls..TLS13ServerHandshakeSizes.ServerHello.html" class="ident">ServerHello</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-202"><code>	<a href="../../../use/crypto/tls..TLS13ServerHandshakeSizes.EncryptedExtensions.html" class="ident">EncryptedExtensions</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-203"><code>	<a href="../../../use/crypto/tls..TLS13ServerHandshakeSizes.Certificate.html" class="ident">Certificate</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-204"><code>	<a href="../../../use/crypto/tls..TLS13ServerHandshakeSizes.CertificateRequest.html" class="ident">CertificateRequest</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-205"><code>	<a href="../../../use/crypto/tls..TLS13ServerHandshakeSizes.Finished.html" class="ident">Finished</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-206"><code>	</code></span>
+<span class="codeline" id="line-207"><code>	<span class="comment">// KEMTLS exclusive</span></code></span>
+<span class="codeline" id="line-208"><code>	<a href="../../../use/crypto/tls..TLS13ServerHandshakeSizes.ServerKEMCiphertext.html" class="ident">ServerKEMCiphertext</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-209"><code></code></span>
+<span class="codeline" id="line-210"><code>	<span class="comment">// PQTLS exclusive</span></code></span>
+<span class="codeline" id="line-211"><code>	<a href="../../../use/crypto/tls..TLS13ServerHandshakeSizes.CertificateVerify.html" class="ident">CertificateVerify</a> <a href="../../../pkg/builtin.html#name-uint32" class="ident">uint32</a></code></span>
+<span class="codeline" id="line-212"><code>}</code></span>
+<span class="codeline" id="line-213"><code></code></span>
+<span class="codeline" id="line-214"><code><span class="comment">// Name is required by the CFEvent interface.</span></code></span>
+<span class="codeline" id="line-215"><code><span class="keyword">func</span> (<label for="r27" class="ident">e</label> <a href="#line-177" class="ident">CFEventTLS13ServerHandshakeTimingInfo</a>) <label for="r28" class="ident"><a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.Name.html" class="ident">Name</a></label>() <a href="../../../pkg/builtin.html#name-string" class="ident">string</a> {</code></span>
+<span class="codeline" id="line-216"><code>	<span class="keyword">return</span> <span class="lit-string">"TLS13ServerHandshakeTimingInfo"</span></code></span>
+<span class="codeline" id="line-217"><code>}</code></span>
+<span class="codeline" id="line-218"><code></code></span>
+<span class="codeline" id="line-219"><code><span class="keyword">func</span> (<label for="r29" class="ident">e</label> <a href="#line-177" class="ident">CFEventTLS13ServerHandshakeTimingInfo</a>) <label for="r30" class="ident"><a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.elapsedTime^97ae0.html" class="ident">elapsedTime</a></label>() <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-583" class="ident">Duration</a> {</code></span>
+<span class="codeline" id="line-220"><code>	<span class="keyword">if</span> <label for="r29" class="ident">e</label>.<a href="#line-178" class="ident">timer</a> == <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-221"><code>		<span class="keyword">return</span> <span class="lit-number">0</span></code></span>
+<span class="codeline" id="line-222"><code>	}</code></span>
+<span class="codeline" id="line-223"><code>	<span class="keyword">return</span> <label for="r29" class="ident">e</label>.<a href="#line-178" class="ident">timer</a>().<a href="../../time/time.go.html#line-841" class="ident">Sub</a>(<label for="r29" class="ident">e</label>.<a href="#line-179" class="ident">start</a>)</code></span>
+<span class="codeline" id="line-224"><code>}</code></span>
+<span class="codeline" id="line-225"><code></code></span>
+<span class="codeline" id="line-226"><code><span class="keyword">func</span> (<label for="r31" class="ident">e</label> *<a href="#line-177" class="ident">CFEventTLS13ServerHandshakeTimingInfo</a>) <label for="r32" class="ident"><a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.reset^01be3.html" class="ident">reset</a></label>() {</code></span>
+<span class="codeline" id="line-227"><code>	<label for="r31" class="ident">e</label>.<a href="#line-179" class="ident">start</a> = <label for="r31" class="ident">e</label>.<a href="#line-178" class="ident">timer</a>()</code></span>
+<span class="codeline" id="line-228"><code>}</code></span>
+<span class="codeline" id="line-229"><code></code></span>
+<span class="codeline" id="line-230"><code><span class="keyword">func</span> (<label for="r33" class="ident">e</label> *<a href="#line-177" class="ident">CFEventTLS13ServerHandshakeTimingInfo</a>) <label for="r34" class="ident"><a href="../../../use/crypto/tls..CFEventTLS13ServerHandshakeTimingInfo.finish^42af4.html" class="ident">finish</a></label>() {</code></span>
+<span class="codeline" id="line-231"><code>	<label for="r33" class="ident">e</label>.<a href="#line-194" class="ident">FullProtocol</a> = <label for="r33" class="ident">e</label>.<a href="#line-178" class="ident">timer</a>().<a href="../../time/time.go.html#line-841" class="ident">Sub</a>(<label for="r33" class="ident">e</label>.<a href="#line-180" class="ident">total</a>)</code></span>
+<span class="codeline" id="line-232"><code>}</code></span>
+<span class="codeline" id="line-233"><code></code></span>
+<span class="codeline" id="line-234"><code><span class="keyword">func</span> <label for="r35" class="ident"><a href="../../../pkg/crypto/tls.html#name-createTLS13ServerHandshakeTimingInfo" class="ident">createTLS13ServerHandshakeTimingInfo</a></label>(<label for="r36" class="ident">timerFunc</label> <span class="keyword">func</span>() <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-127" class="ident">Time</a>) <a href="#line-177" class="ident">CFEventTLS13ServerHandshakeTimingInfo</a> {</code></span>
+<span class="codeline" id="line-235"><code>	<label for="r37" class="ident">timer</label> := <a href="../../../pkg/time.html" class="ident i5">time</a>.<a href="../../time/time.go.html#line-1066" class="ident">Now</a></code></span>
+<span class="codeline" id="line-236"><code>	<span class="keyword">if</span> <label for="r36" class="ident">timerFunc</label> != <a href="../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-237"><code>		<label for="r37" class="ident">timer</label> = <label for="r36" class="ident">timerFunc</label></code></span>
+<span class="codeline" id="line-238"><code>	}</code></span>
+<span class="codeline" id="line-239"><code>	<label for="r38" class="ident">now</label> := <label for="r37" class="ident">timer</label>()</code></span>
+<span class="codeline" id="line-240"><code>	<span class="keyword">return</span> <a href="#line-177" class="ident">CFEventTLS13ServerHandshakeTimingInfo</a>{</code></span>
+<span class="codeline" id="line-241"><code>		<a href="#line-178" class="ident">timer</a>: <label for="r37" class="ident">timer</label>,</code></span>
+<span class="codeline" id="line-242"><code>		<a href="#line-179" class="ident">start</a>: <label for="r38" class="ident">now</label>,</code></span>
+<span class="codeline" id="line-243"><code>		<a href="#line-180" class="ident">total</a>: <label for="r38" class="ident">now</label>,</code></span>
+<span class="codeline" id="line-244"><code>	}</code></span>
+<span class="codeline" id="line-245"><code>}</code></span>
+<span class="codeline" id="line-246"><code></code></span>
+<span class="codeline" id="line-247"><code><span class="comment">// CFEventECHClientStatus is emitted once it is known whether the client</span></code></span>
+<span class="codeline" id="line-248"><code><span class="comment">// bypassed, offered, or greased ECH.</span></code></span>
+<span class="codeline" id="line-249"><code><span class="keyword">type</span> <a href="../../../pkg/crypto/tls.html#name-CFEventECHClientStatus" class="ident">CFEventECHClientStatus</a> <a href="../../../pkg/builtin.html#name-int" class="ident">int</a></code></span>
+<span class="codeline" id="line-250"><code></code></span>
+<span class="codeline" id="line-251"><code><span class="comment">// Bypassed returns true if the client bypassed ECH.</span></code></span>
+<span class="codeline" id="line-252"><code><span class="keyword">func</span> (<label for="r39" class="ident">e</label> <a href="#line-249" class="ident">CFEventECHClientStatus</a>) <label for="r40" class="ident"><a href="../../../use/crypto/tls..CFEventECHClientStatus.Bypassed.html" class="ident">Bypassed</a></label>() <a href="../../../pkg/builtin.html#name-bool" class="ident">bool</a> {</code></span>
+<span class="codeline" id="line-253"><code>	<span class="keyword">return</span> <label for="r39" class="ident">e</label> == <a href="#line-18" class="ident">echStatusBypassed</a></code></span>
+<span class="codeline" id="line-254"><code>}</code></span>
+<span class="codeline" id="line-255"><code></code></span>
+<span class="codeline" id="line-256"><code><span class="comment">// Offered returns true if the client offered ECH.</span></code></span>
+<span class="codeline" id="line-257"><code><span class="keyword">func</span> (<label for="r41" class="ident">e</label> <a href="#line-249" class="ident">CFEventECHClientStatus</a>) <label for="r42" class="ident"><a href="../../../use/crypto/tls..CFEventECHClientStatus.Offered.html" class="ident">Offered</a></label>() <a href="../../../pkg/builtin.html#name-bool" class="ident">bool</a> {</code></span>
+<span class="codeline" id="line-258"><code>	<span class="keyword">return</span> <label for="r41" class="ident">e</label> == <a href="#line-19" class="ident">echStatusInner</a></code></span>
+<span class="codeline" id="line-259"><code>}</code></span>
+<span class="codeline" id="line-260"><code></code></span>
+<span class="codeline" id="line-261"><code><span class="comment">// Greased returns true if the client greased ECH.</span></code></span>
+<span class="codeline" id="line-262"><code><span class="keyword">func</span> (<label for="r43" class="ident">e</label> <a href="#line-249" class="ident">CFEventECHClientStatus</a>) <label for="r44" class="ident"><a href="../../../use/crypto/tls..CFEventECHClientStatus.Greased.html" class="ident">Greased</a></label>() <a href="../../../pkg/builtin.html#name-bool" class="ident">bool</a> {</code></span>
+<span class="codeline" id="line-263"><code>	<span class="keyword">return</span> <label for="r43" class="ident">e</label> == <a href="#line-20" class="ident">echStatusOuter</a></code></span>
+<span class="codeline" id="line-264"><code>}</code></span>
+<span class="codeline" id="line-265"><code></code></span>
+<span class="codeline" id="line-266"><code><span class="comment">// Name is required by the CFEvent interface.</span></code></span>
+<span class="codeline" id="line-267"><code><span class="keyword">func</span> (<label for="r45" class="ident">e</label> <a href="#line-249" class="ident">CFEventECHClientStatus</a>) <label for="r46" class="ident"><a href="../../../use/crypto/tls..CFEventECHClientStatus.Name.html" class="ident">Name</a></label>() <a href="../../../pkg/builtin.html#name-string" class="ident">string</a> {</code></span>
+<span class="codeline" id="line-268"><code>	<span class="keyword">return</span> <span class="lit-string">"ech client status"</span></code></span>
+<span class="codeline" id="line-269"><code>}</code></span>
+<span class="codeline" id="line-270"><code></code></span>
+<span class="codeline" id="line-271"><code><span class="comment">// CFEventECHServerStatus is emitted once it is known whether the client</span></code></span>
+<span class="codeline" id="line-272"><code><span class="comment">// bypassed, offered, or greased ECH.</span></code></span>
+<span class="codeline" id="line-273"><code><span class="keyword">type</span> <a href="../../../pkg/crypto/tls.html#name-CFEventECHServerStatus" class="ident">CFEventECHServerStatus</a> <a href="../../../pkg/builtin.html#name-int" class="ident">int</a></code></span>
+<span class="codeline" id="line-274"><code></code></span>
+<span class="codeline" id="line-275"><code><span class="comment">// Bypassed returns true if the client bypassed ECH.</span></code></span>
+<span class="codeline" id="line-276"><code><span class="keyword">func</span> (<label for="r47" class="ident">e</label> <a href="#line-273" class="ident">CFEventECHServerStatus</a>) <label for="r48" class="ident"><a href="../../../use/crypto/tls..CFEventECHServerStatus.Bypassed.html" class="ident">Bypassed</a></label>() <a href="../../../pkg/builtin.html#name-bool" class="ident">bool</a> {</code></span>
+<span class="codeline" id="line-277"><code>	<span class="keyword">return</span> <label for="r47" class="ident">e</label> == <a href="#line-18" class="ident">echStatusBypassed</a></code></span>
+<span class="codeline" id="line-278"><code>}</code></span>
+<span class="codeline" id="line-279"><code></code></span>
+<span class="codeline" id="line-280"><code><span class="comment">// Accepted returns true if the client offered ECH.</span></code></span>
+<span class="codeline" id="line-281"><code><span class="keyword">func</span> (<label for="r49" class="ident">e</label> <a href="#line-273" class="ident">CFEventECHServerStatus</a>) <label for="r50" class="ident"><a href="../../../use/crypto/tls..CFEventECHServerStatus.Accepted.html" class="ident">Accepted</a></label>() <a href="../../../pkg/builtin.html#name-bool" class="ident">bool</a> {</code></span>
+<span class="codeline" id="line-282"><code>	<span class="keyword">return</span> <label for="r49" class="ident">e</label> == <a href="#line-19" class="ident">echStatusInner</a></code></span>
+<span class="codeline" id="line-283"><code>}</code></span>
+<span class="codeline" id="line-284"><code></code></span>
+<span class="codeline" id="line-285"><code><span class="comment">// Rejected returns true if the client greased ECH.</span></code></span>
+<span class="codeline" id="line-286"><code><span class="keyword">func</span> (<label for="r51" class="ident">e</label> <a href="#line-273" class="ident">CFEventECHServerStatus</a>) <label for="r52" class="ident"><a href="../../../use/crypto/tls..CFEventECHServerStatus.Rejected.html" class="ident">Rejected</a></label>() <a href="../../../pkg/builtin.html#name-bool" class="ident">bool</a> {</code></span>
+<span class="codeline" id="line-287"><code>	<span class="keyword">return</span> <label for="r51" class="ident">e</label> == <a href="#line-20" class="ident">echStatusOuter</a></code></span>
+<span class="codeline" id="line-288"><code>}</code></span>
+<span class="codeline" id="line-289"><code></code></span>
+<span class="codeline" id="line-290"><code><span class="comment">// Name is required by the CFEvent interface.</span></code></span>
+<span class="codeline" id="line-291"><code><span class="keyword">func</span> (<label for="r53" class="ident">e</label> <a href="#line-273" class="ident">CFEventECHServerStatus</a>) <label for="r54" class="ident"><a href="../../../use/crypto/tls..CFEventECHServerStatus.Name.html" class="ident">Name</a></label>() <a href="../../../pkg/builtin.html#name-string" class="ident">string</a> {</code></span>
+<span class="codeline" id="line-292"><code>	<span class="keyword">return</span> <span class="lit-string">"ech server status"</span></code></span>
+<span class="codeline" id="line-293"><code>}</code></span>
+<span class="codeline" id="line-294"><code></code></span>
+<span class="codeline" id="line-295"><code><span class="comment">// CFEventECHPublicNameMismatch is emitted if the outer SNI does not match</span></code></span>
+<span class="codeline" id="line-296"><code><span class="comment">// match the public name of the ECH configuration. Note that we do not record</span></code></span>
+<span class="codeline" id="line-297"><code><span class="comment">// the outer SNI in order to avoid collecting this potentially sensitive data.</span></code></span>
+<span class="codeline" id="line-298"><code><span class="keyword">type</span> <a href="../../../pkg/crypto/tls.html#name-CFEventECHPublicNameMismatch" class="ident">CFEventECHPublicNameMismatch</a> <span class="keyword">struct</span>{}</code></span>
+<span class="codeline" id="line-299"><code></code></span>
+<span class="codeline" id="line-300"><code><span class="comment">// Name is required by the CFEvent interface.</span></code></span>
+<span class="codeline" id="line-301"><code><span class="keyword">func</span> (<label for="r55" class="ident">e</label> <a href="#line-298" class="ident">CFEventECHPublicNameMismatch</a>) <label for="r56" class="ident"><a href="../../../use/crypto/tls..CFEventECHPublicNameMismatch.Name.html" class="ident">Name</a></label>() <a href="../../../pkg/builtin.html#name-string" class="ident">string</a> {</code></span>
+<span class="codeline" id="line-302"><code>	<span class="keyword">return</span> <span class="lit-string">"ech public name does not match outer sni"</span></code></span>
+<span class="codeline" id="line-303"><code>}</code></span>
+</pre><pre id="footer">
+<table><tr><td><img src="../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

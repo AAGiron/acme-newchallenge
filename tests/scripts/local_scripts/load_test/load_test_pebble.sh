@@ -17,4 +17,5 @@ go run cmd/pebble/main.go \
 -issuerSig ECDSA-P256 \
 --pqorderroot Dilithium2 \
 --pqorderissuer Dilithium2 \
+--pqorderport 10004 \
 -loadtestfinalize

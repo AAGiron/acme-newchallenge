@@ -1,6 +1,5 @@
 #!/bin/bash
 
-read -p "What will be the TLS client's IP? (e.g., 127.0.0.1) " CLIENT_IP
 read -p "What will be the TLS server's NAME (e.g., teste) (It cannot be the IP address)? " SERVER_NAME
 read -p "What will be the ACME server's IP? (e.g., 127.0.0.1) " PEBBLE_IP
 
@@ -77,7 +76,7 @@ echo -e "Adding Pebble root CA's certificates to the system trusted CAs list\n"
 
 cd ${PQCACME_TESTS_DIR}/root_ca/
 sudo cp * /usr/local/share/ca-certificates
-sudo cp ../../../../go-pebble/test/certs/pebble.minica.pem /etc/ssl/certs/pebble.minica.crt
+sudo cp ${PEBBLE_DIR}/test/certs/pebble.minica.pem /etc/ssl/certs/pebble.minica.crt
 sudo update-ca-certificates
 
 echo -e "Appending '127.0.0.1 ${SERVER_NAME} (for local tests only)' to /etc/hosts\n"

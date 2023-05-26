@@ -8,7 +8,7 @@ import (
 )
 
 
-func main() {
+func main_client() {
 	flag.Parse()
 
 	port := 4433

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Source: ocsp_response.go in package github.com/letsencrypt/pebble/v2/ocsp</title>
+<link href="../../../../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="header"><code><span class="title">Source File</span>
+	ocsp_response.go
+
+<span class="title">Belonging Package</span>
+	<a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html">github.com/letsencrypt/pebble/v2/ocsp</a>
+</code></pre>
+<style>input[type=radio] {display: none;}
+input[id=r0]:checked ~pre label[for=r0],
+input[id=r1]:checked ~pre label[for=r1],
+input[id=r2]:checked ~pre label[for=r2],
+input[id=r3]:checked ~pre label[for=r3],
+input[id=r4]:checked ~pre label[for=r4],
+input[id=r5]:checked ~pre label[for=r5],
+input[id=r6]:checked ~pre label[for=r6],
+input[id=r7]:checked ~pre label[for=r7],
+input[id=r8]:checked ~pre label[for=r8],
+input[id=r9]:checked ~pre label[for=r9],
+input[id=r10]:checked ~pre label[for=r10],
+input[id=r11]:checked ~pre label[for=r11],
+input[id=r12]:checked ~pre label[for=r12],
+input[id=r13]:checked ~pre label[for=r13],
+input[id=r14]:checked ~pre label[for=r14],
+input[id=r15]:checked ~pre label[for=r15],
+input[id=r16]:checked ~pre label[for=r16],
+input[id=r17]:checked ~pre label[for=r17]
+{background: #226; color: #ff8;}
+input[id=i0]:checked ~pre .i0,
+input[id=i1]:checked ~pre .i1,
+input[id=i2]:checked ~pre .i2,
+input[id=i3]:checked ~pre .i3,
+input[id=i4]:checked ~pre .i4
+{background: brown; color: #eed;}
+</style><input id="r0" type="radio" name="g"/>
+<input id="r1" type="radio" name="g"/>
+<input id="r2" type="radio" name="g"/>
+<input id="r3" type="radio" name="g"/>
+<input id="r4" type="radio" name="g"/>
+<input id="r5" type="radio" name="g"/>
+<input id="r6" type="radio" name="g"/>
+<input id="r7" type="radio" name="g"/>
+<input id="r8" type="radio" name="g"/>
+<input id="r9" type="radio" name="g"/>
+<input id="r10" type="radio" name="g"/>
+<input id="r11" type="radio" name="g"/>
+<input id="r12" type="radio" name="g"/>
+<input id="r13" type="radio" name="g"/>
+<input id="r14" type="radio" name="g"/>
+<input id="r15" type="radio" name="g"/>
+<input id="r16" type="radio" name="g"/>
+<input id="r17" type="radio" name="g"/>
+<input id="i0" type="radio" name="i"/>
+<input id="i1" type="radio" name="i"/>
+<input id="i2" type="radio" name="i"/>
+<input id="i3" type="radio" name="i"/>
+<input id="i4" type="radio" name="i"/>
+
+<pre class="line-numbers">
+<span class="codeline" id="line-1"><code><span class="keyword">package</span> ocsp</code></span>
+<span class="codeline" id="line-2"><code></code></span>
+<span class="codeline" id="line-3"><code><span class="keyword">import</span> (</code></span>
+<span class="codeline" id="line-4"><code>	<label for="i0"><span class="lit-string i0">"time"</span></label></code></span>
+<span class="codeline" id="line-5"><code>	<label for="i1"><span class="lit-string i1">"encoding/asn1"</span></label></code></span>
+<span class="codeline" id="line-6"><code>	<label for="i2"><span class="lit-string i2">"crypto/x509"</span></label></code></span>
+<span class="codeline" id="line-7"><code>	<label for="i3"><span class="lit-string i3">"crypto/x509/pkix"</span></label>		</code></span>
+<span class="codeline" id="line-8"><code>	<label for="i4"><span class="lit-string i4">"io"</span></label></code></span>
+<span class="codeline" id="line-9"><code>)</code></span>
+<span class="codeline" id="line-10"><code></code></span>
+<span class="codeline" id="line-11"><code><span class="keyword">const</span> (</code></span>
+<span class="codeline" id="line-12"><code>	<a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-responseStatus" class="ident">responseStatus</a>  <a href="../../../../../../pkg/builtin.html#name-int" class="ident">int</a>    = <span class="lit-number">0</span> <span class="comment">// Good</span></code></span>
+<span class="codeline" id="line-13"><code>	<a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-version_default" class="ident">version_default</a> <a href="../../../../../../pkg/builtin.html#name-int" class="ident">int</a>    = <span class="lit-number">1</span></code></span>
+<span class="codeline" id="line-14"><code>	<a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-name" class="ident">name</a>            <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a> = <span class="lit-string">"ResponderID"</span></code></span>
+<span class="codeline" id="line-15"><code>	<a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-certStatus" class="ident">certStatus</a>      <a href="../../../../../../pkg/builtin.html#name-int" class="ident">int</a>    = <span class="lit-number">0</span> <span class="comment">// Good</span></code></span>
+<span class="codeline" id="line-16"><code>	<a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-byName" class="ident">byName</a>          <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a> = <span class="lit-string">"OCSP Responder"</span></code></span>
+<span class="codeline" id="line-17"><code>)</code></span>
+<span class="codeline" id="line-18"><code></code></span>
+<span class="codeline" id="line-19"><code><span class="comment">// ocspResponse represents an OCSP response as defined in RFC6960 4.2.1</span></code></span>
+<span class="codeline" id="line-20"><code><span class="keyword">type</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-ocspResponse" class="ident">ocspResponse</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-21"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..ocspResponse^210a9.ResponseStatus.html" class="ident">ResponseStatus</a> <a href="../../../../../../pkg/builtin.html#name-int" class="ident">int</a></code></span>
+<span class="codeline" id="line-22"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..ocspResponse^210a9.ResponseBytes.html" class="ident">ResponseBytes</a>  <a href="#line-25" class="ident">responseBytes</a></code></span>
+<span class="codeline" id="line-23"><code>}</code></span>
+<span class="codeline" id="line-24"><code><span class="comment">// responseBytes represents a ResponseBytes as defined in RFC6960 4.2.1</span></code></span>
+<span class="codeline" id="line-25"><code><span class="keyword">type</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-responseBytes" class="ident">responseBytes</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-26"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responseBytes^2d46d.ResponseType.html" class="ident">ResponseType</a> <a href="../../../../../../pkg/encoding/asn1.html" class="ident i1">asn1</a>.<a href="../../../../../encoding/asn1/asn1.go.html#line-222" class="ident">ObjectIdentifier</a></code></span>
+<span class="codeline" id="line-27"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responseBytes^2d46d.Response.html" class="ident">Response</a>     []<a href="../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a></code></span>
+<span class="codeline" id="line-28"><code>}</code></span>
+<span class="codeline" id="line-29"><code></code></span>
+<span class="codeline" id="line-30"><code><span class="comment">//basicOCSPResponse represents a BasicOCSPResponse as defined in RFC6960 4.2.1.</span></code></span>
+<span class="codeline" id="line-31"><code><span class="keyword">type</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-basicOCSPResponse" class="ident">basicOCSPResponse</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-32"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..basicOCSPResponse^46204.ResponseData.html" class="ident">ResponseData</a>  <a href="#line-43" class="ident">responseData</a></code></span>
+<span class="codeline" id="line-33"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..basicOCSPResponse^46204.SignatureAlgo.html" class="ident">SignatureAlgo</a> <a href="../../../../../../pkg/crypto/x509/pkix.html" class="ident i3">pkix</a>.<a href="../../../../../crypto/x509/pkix/pkix.go.html#line-19" class="ident">AlgorithmIdentifier</a></code></span>
+<span class="codeline" id="line-34"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..basicOCSPResponse^46204.Signature.html" class="ident">Signature</a>     <a href="../../../../../../pkg/encoding/asn1.html" class="ident i1">asn1</a>.<a href="../../../../../encoding/asn1/asn1.go.html#line-159" class="ident">BitString</a> 				<span class="comment">// Be computed on the hash of the DER encoding of ResponseData</span></code></span>
+<span class="codeline" id="line-35"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..basicOCSPResponse^46204.Certs.html" class="ident">Certs</a>         []<a href="../../../../../../pkg/crypto/x509.html" class="ident i2">x509</a>.<a href="../../../../../crypto/x509/x509.go.html#line-749" class="ident">Certificate</a>  				<span class="comment">// Optional</span></code></span>
+<span class="codeline" id="line-36"><code>}</code></span>
+<span class="codeline" id="line-37"><code></code></span>
+<span class="codeline" id="line-38"><code><span class="keyword">type</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-extension" class="ident">extension</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-39"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..extension^26f1d.ExtensionType.html" class="ident">ExtensionType</a> <a href="../../../../../../pkg/builtin.html#name-int" class="ident">int</a></code></span>
+<span class="codeline" id="line-40"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..extension^26f1d.ExtensionData.html" class="ident">ExtensionData</a> []<a href="../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a></code></span>
+<span class="codeline" id="line-41"><code>}</code></span>
+<span class="codeline" id="line-42"><code><span class="comment">// responseData represents a ResponseData as defined in RFC6960 4.2.1.</span></code></span>
+<span class="codeline" id="line-43"><code><span class="keyword">type</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-responseData" class="ident">responseData</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-44"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responseData^dcb83.Version.html" class="ident">Version</a>            <a href="../../../../../../pkg/builtin.html#name-int" class="ident">int</a></code></span>
+<span class="codeline" id="line-45"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responseData^dcb83.ResponderID.html" class="ident">ResponderID</a>        <a href="#line-52" class="ident">responderID</a></code></span>
+<span class="codeline" id="line-46"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responseData^dcb83.ProducedAt.html" class="ident">ProducedAt</a>         <a href="../../../../../../pkg/time.html" class="ident i0">time</a>.<a href="../../../../../time/time.go.html#line-127" class="ident">Time</a></code></span>
+<span class="codeline" id="line-47"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responseData^dcb83.Responses.html" class="ident">Responses</a>          []<a href="#line-56" class="ident">singleResponse</a></code></span>
+<span class="codeline" id="line-48"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responseData^dcb83.ResponseExtensions.html" class="ident">ResponseExtensions</a> []<a href="#line-38" class="ident">extension</a></code></span>
+<span class="codeline" id="line-49"><code>}</code></span>
+<span class="codeline" id="line-50"><code></code></span>
+<span class="codeline" id="line-51"><code><span class="comment">// responderID represents a ResponderID as defined in RFC6960 4.2.1.</span></code></span>
+<span class="codeline" id="line-52"><code><span class="keyword">type</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-responderID" class="ident">responderID</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-53"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..responderID^41dc1.ByName.html" class="ident">ByName</a> <a href="../../../../../../pkg/crypto/x509/pkix.html" class="ident i3">pkix</a>.<a href="../../../../../crypto/x509/pkix/pkix.go.html#line-123" class="ident">Name</a></code></span>
+<span class="codeline" id="line-54"><code>}</code></span>
+<span class="codeline" id="line-55"><code></code></span>
+<span class="codeline" id="line-56"><code><span class="keyword">type</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-singleResponse" class="ident">singleResponse</a> <span class="keyword">struct</span> {</code></span>
+<span class="codeline" id="line-57"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..singleResponse^e9c1e.CertID.html" class="ident">CertID</a>     <a href="../../../../../../pkg/encoding/asn1.html" class="ident i1">asn1</a>.<a href="../../../../../encoding/asn1/asn1.go.html#line-222" class="ident">ObjectIdentifier</a></code></span>
+<span class="codeline" id="line-58"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..singleResponse^e9c1e.CertStatus.html" class="ident">CertStatus</a> <a href="../../../../../../pkg/builtin.html#name-int" class="ident">int</a></code></span>
+<span class="codeline" id="line-59"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..singleResponse^e9c1e.ThisUpdate.html" class="ident">ThisUpdate</a> <a href="../../../../../../pkg/time.html" class="ident i0">time</a>.<a href="../../../../../time/time.go.html#line-127" class="ident">Time</a></code></span>
+<span class="codeline" id="line-60"><code>	<a href="../../../../../../use/github.com/letsencrypt/pebble/v2/ocsp..singleResponse^e9c1e.NextUpdate.html" class="ident">NextUpdate</a> <a href="../../../../../../pkg/time.html" class="ident i0">time</a>.<a href="../../../../../time/time.go.html#line-127" class="ident">Time</a></code></span>
+<span class="codeline" id="line-61"><code>}</code></span>
+<span class="codeline" id="line-62"><code></code></span>
+<span class="codeline" id="line-63"><code><span class="comment">// CreateOCSPResponse creates a new OCSP response as it is defined in RFC 6960.</span></code></span>
+<span class="codeline" id="line-64"><code></code></span>
+<span class="codeline" id="line-65"><code><span class="comment">// The OCSP response is signed by priv which should be the private key from server responder. In </span></code></span>
+<span class="codeline" id="line-66"><code><span class="comment">// this case, the server responder will be the intermediate CA.</span></code></span>
+<span class="codeline" id="line-67"><code></code></span>
+<span class="codeline" id="line-68"><code><span class="comment">// The hash and signature algorithm are the same from Certificate</span></code></span>
+<span class="codeline" id="line-69"><code><span class="keyword">func</span> <label for="r0" class="ident"><a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/ocsp.html#name-CreateOCSPResponse" class="ident">CreateOCSPResponse</a></label>(<label for="r1" class="ident">rand</label> <a href="../../../../../../pkg/io.html" class="ident i4">io</a>.<a href="../../../../../io/io.go.html#line-83" class="ident">Reader</a>, <label for="r2" class="ident">template</label> *<a href="../../../../../../pkg/crypto/x509.html" class="ident i2">x509</a>.<a href="../../../../../crypto/x509/x509.go.html#line-749" class="ident">Certificate</a>, <label for="r3" class="ident">priv</label> <span class="keyword">interface</span>{}) ([]<a href="../../../../../../pkg/builtin.html#name-byte" class="ident">byte</a>, <a href="../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-70"><code></code></span>
+<span class="codeline" id="line-71"><code>	<label for="r4" class="ident">s</label> := <a href="#line-56" class="ident">singleResponse</a>{</code></span>
+<span class="codeline" id="line-72"><code>		<a href="#line-57" class="ident">CertID</a>:     <a href="../../../../../../pkg/encoding/asn1.html" class="ident i1">asn1</a>.<a href="../../../../../encoding/asn1/asn1.go.html#line-222" class="ident">ObjectIdentifier</a>{<span class="lit-number">1</span>, <span class="lit-number">1</span>, <span class="lit-number">1</span>, <span class="lit-number">1</span>, <span class="lit-number">1</span>, <span class="lit-number">1</span>, <span class="lit-number">1</span>, <span class="lit-number">1</span>},</code></span>
+<span class="codeline" id="line-73"><code>		<a href="#line-58" class="ident">CertStatus</a>: <span class="lit-number">0</span>,</code></span>
+<span class="codeline" id="line-74"><code>		<a href="#line-59" class="ident">ThisUpdate</a>: <a href="../../../../../../pkg/time.html" class="ident i0">time</a>.<a href="../../../../../time/time.go.html#line-1066" class="ident">Now</a>().<a href="../../../../../time/time.go.html#line-900" class="ident">AddDate</a>(<span class="lit-number">2022</span>, <span class="lit-number">05</span>, <span class="lit-number">16</span>),</code></span>
+<span class="codeline" id="line-75"><code>		<a href="#line-60" class="ident">NextUpdate</a>: <a href="../../../../../../pkg/time.html" class="ident i0">time</a>.<a href="../../../../../time/time.go.html#line-1066" class="ident">Now</a>().<a href="../../../../../time/time.go.html#line-900" class="ident">AddDate</a>(<span class="lit-number">2023</span>, <span class="lit-number">05</span>, <span class="lit-number">16</span>),</code></span>
+<span class="codeline" id="line-76"><code>	}</code></span>
+<span class="codeline" id="line-77"><code></code></span>
+<span class="codeline" id="line-78"><code>	<label for="r5" class="ident">name</label> := <a href="../../../../../../pkg/crypto/x509/pkix.html" class="ident i3">pkix</a>.<a href="../../../../../crypto/x509/pkix/pkix.go.html#line-123" class="ident">Name</a>{</code></span>
+<span class="codeline" id="line-79"><code>		<a href="../../../../../crypto/x509/pkix/pkix.go.html#line-124" class="ident">Country</a>:       []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"Br"</span>},</code></span>
+<span class="codeline" id="line-80"><code>		<a href="../../../../../crypto/x509/pkix/pkix.go.html#line-124" class="ident">Organization</a>:  []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"Labsec Responder"</span>},</code></span>
+<span class="codeline" id="line-81"><code>		<a href="../../../../../crypto/x509/pkix/pkix.go.html#line-125" class="ident">Locality</a>:      []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"Santa Catarina"</span>},</code></span>
+<span class="codeline" id="line-82"><code>		<a href="../../../../../crypto/x509/pkix/pkix.go.html#line-126" class="ident">StreetAddress</a>: []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"Delfino Conti - Trindade"</span>},</code></span>
+<span class="codeline" id="line-83"><code>		<a href="../../../../../crypto/x509/pkix/pkix.go.html#line-126" class="ident">PostalCode</a>:    []<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>{<span class="lit-string">"88040370"</span>},</code></span>
+<span class="codeline" id="line-84"><code>	}</code></span>
+<span class="codeline" id="line-85"><code></code></span>
+<span class="codeline" id="line-86"><code>	<label for="r6" class="ident">id</label> := <a href="#line-52" class="ident">responderID</a>{<a href="#line-53" class="ident">ByName</a>: <label for="r5" class="ident">name</label>}</code></span>
+<span class="codeline" id="line-87"><code></code></span>
+<span class="codeline" id="line-88"><code>	<span class="comment">// message wich will be signed</span></code></span>
+<span class="codeline" id="line-89"><code>	<label for="r7" class="ident">r</label> := <a href="#line-43" class="ident">responseData</a>{</code></span>
+<span class="codeline" id="line-90"><code>		<a href="#line-44" class="ident">Version</a>:     <a href="#line-13" class="ident">version_default</a>,</code></span>
+<span class="codeline" id="line-91"><code>		<a href="#line-45" class="ident">ResponderID</a>: <label for="r6" class="ident">id</label>,</code></span>
+<span class="codeline" id="line-92"><code>		<a href="#line-46" class="ident">ProducedAt</a>:  <a href="../../../../../../pkg/time.html" class="ident i0">time</a>.<a href="../../../../../time/time.go.html#line-1066" class="ident">Now</a>().<a href="../../../../../time/time.go.html#line-900" class="ident">AddDate</a>(<span class="lit-number">2022</span>, <span class="lit-number">05</span>, <span class="lit-number">16</span>),</code></span>
+<span class="codeline" id="line-93"><code>		<a href="#line-47" class="ident">Responses</a>:   []<a href="#line-56" class="ident">singleResponse</a>{<label for="r4" class="ident">s</label>},</code></span>
+<span class="codeline" id="line-94"><code>	}</code></span>
+<span class="codeline" id="line-95"><code></code></span>
+<span class="codeline" id="line-96"><code>	<label for="r8" class="ident">responseDataContents</label>, <label for="r9" class="ident">err</label> := <a href="../../../../../../pkg/encoding/asn1.html" class="ident i1">asn1</a>.<a href="../../../../../encoding/asn1/marshal.go.html#line-733" class="ident">Marshal</a>(<label for="r7" class="ident">r</label>)</code></span>
+<span class="codeline" id="line-97"><code>	<span class="keyword">if</span> <label for="r9" class="ident">err</label> != <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-98"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a>, <label for="r9" class="ident">err</label></code></span>
+<span class="codeline" id="line-99"><code>	}</code></span>
+<span class="codeline" id="line-100"><code></code></span>
+<span class="codeline" id="line-101"><code>	<label for="r10" class="ident">signature</label>, <label for="r11" class="ident">signatureAlgorithm</label>, <label for="r9" class="ident">err</label> := <a href="../../../../../../pkg/crypto/x509.html" class="ident i2">x509</a>.<a href="../../../../../crypto/x509/x509.go.html#line-3274" class="ident">SignFromParams</a>(<label for="r1" class="ident">rand</label>, <label for="r2" class="ident">template</label>.<a href="../../../../../crypto/x509/x509.go.html#line-757" class="ident">SignatureAlgorithm</a>, <label for="r8" class="ident">responseDataContents</label>, <label for="r3" class="ident">priv</label>)</code></span>
+<span class="codeline" id="line-102"><code>	<span class="keyword">if</span> <label for="r9" class="ident">err</label> != <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-103"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a>, <label for="r9" class="ident">err</label></code></span>
+<span class="codeline" id="line-104"><code>	}</code></span>
+<span class="codeline" id="line-105"><code></code></span>
+<span class="codeline" id="line-106"><code>	<label for="r12" class="ident">encodedSignature</label> := <a href="../../../../../../pkg/encoding/asn1.html" class="ident i1">asn1</a>.<a href="../../../../../encoding/asn1/asn1.go.html#line-159" class="ident">BitString</a>{<a href="../../../../../encoding/asn1/asn1.go.html#line-161" class="ident">BitLength</a>: <a href="../../../../../../pkg/builtin.html#name-len" class="ident">len</a>(<label for="r10" class="ident">signature</label>) * <span class="lit-number">8</span>, <a href="../../../../../encoding/asn1/asn1.go.html#line-160" class="ident">Bytes</a>: <label for="r10" class="ident">signature</label>}</code></span>
+<span class="codeline" id="line-107"><code></code></span>
+<span class="codeline" id="line-108"><code>	<label for="r13" class="ident">basic</label> := <a href="#line-31" class="ident">basicOCSPResponse</a>{</code></span>
+<span class="codeline" id="line-109"><code>		<a href="#line-32" class="ident">ResponseData</a>:  <label for="r7" class="ident">r</label>,</code></span>
+<span class="codeline" id="line-110"><code>		<a href="#line-33" class="ident">SignatureAlgo</a>: <label for="r11" class="ident">signatureAlgorithm</label>,</code></span>
+<span class="codeline" id="line-111"><code>		<a href="#line-34" class="ident">Signature</a>:     <label for="r12" class="ident">encodedSignature</label>,</code></span>
+<span class="codeline" id="line-112"><code>		<a href="#line-35" class="ident">Certs</a>:         []<a href="../../../../../../pkg/crypto/x509.html" class="ident i2">x509</a>.<a href="../../../../../crypto/x509/x509.go.html#line-749" class="ident">Certificate</a>{},</code></span>
+<span class="codeline" id="line-113"><code>	}</code></span>
+<span class="codeline" id="line-114"><code></code></span>
+<span class="codeline" id="line-115"><code>	</code></span>
+<span class="codeline" id="line-116"><code>	<label for="r14" class="ident">basicContents</label>, <label for="r9" class="ident">err</label> := <a href="../../../../../../pkg/encoding/asn1.html" class="ident i1">asn1</a>.<a href="../../../../../encoding/asn1/marshal.go.html#line-733" class="ident">Marshal</a>(<label for="r13" class="ident">basic</label>)</code></span>
+<span class="codeline" id="line-117"><code>	<span class="keyword">if</span> <label for="r9" class="ident">err</label> != <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-118"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a>, <label for="r9" class="ident">err</label></code></span>
+<span class="codeline" id="line-119"><code>	}</code></span>
+<span class="codeline" id="line-120"><code></code></span>
+<span class="codeline" id="line-121"><code>	<label for="r15" class="ident">respBytes</label> := <a href="#line-25" class="ident">responseBytes</a>{</code></span>
+<span class="codeline" id="line-122"><code>		<a href="#line-26" class="ident">ResponseType</a>: <a href="../../../../../../pkg/encoding/asn1.html" class="ident i1">asn1</a>.<a href="../../../../../encoding/asn1/asn1.go.html#line-222" class="ident">ObjectIdentifier</a>{<span class="lit-number">1</span>, <span class="lit-number">3</span>, <span class="lit-number">6</span>, <span class="lit-number">1</span>, <span class="lit-number">5</span>, <span class="lit-number">5</span>, <span class="lit-number">7</span>, <span class="lit-number">48</span>, <span class="lit-number">1</span>, <span class="lit-number">1</span>},</code></span>
+<span class="codeline" id="line-123"><code>		<a href="#line-27" class="ident">Response</a>:     <label for="r14" class="ident">basicContents</label>,</code></span>
+<span class="codeline" id="line-124"><code>	}</code></span>
+<span class="codeline" id="line-125"><code></code></span>
+<span class="codeline" id="line-126"><code>	</code></span>
+<span class="codeline" id="line-127"><code>	<label for="r16" class="ident">ocspResp</label> := <a href="#line-20" class="ident">ocspResponse</a>{</code></span>
+<span class="codeline" id="line-128"><code>		<a href="#line-21" class="ident">ResponseStatus</a>: <a href="#line-12" class="ident">responseStatus</a>,</code></span>
+<span class="codeline" id="line-129"><code>		<a href="#line-22" class="ident">ResponseBytes</a>:  <label for="r15" class="ident">respBytes</label>,</code></span>
+<span class="codeline" id="line-130"><code>	}</code></span>
+<span class="codeline" id="line-131"><code></code></span>
+<span class="codeline" id="line-132"><code>	<label for="r17" class="ident">ocspRespContents</label>, <label for="r9" class="ident">err</label> := <a href="../../../../../../pkg/encoding/asn1.html" class="ident i1">asn1</a>.<a href="../../../../../encoding/asn1/marshal.go.html#line-733" class="ident">Marshal</a>(<label for="r16" class="ident">ocspResp</label>)</code></span>
+<span class="codeline" id="line-133"><code>	<span class="keyword">if</span> <label for="r9" class="ident">err</label> != <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-134"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a>, <label for="r9" class="ident">err</label></code></span>
+<span class="codeline" id="line-135"><code>	}</code></span>
+<span class="codeline" id="line-136"><code></code></span>
+<span class="codeline" id="line-137"><code>	<span class="keyword">return</span> <label for="r17" class="ident">ocspRespContents</label>, <label for="r9" class="ident">err</label></code></span>
+<span class="codeline" id="line-138"><code>}</code></span>
+</pre><pre id="footer">
+<table><tr><td><img src="../../../../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

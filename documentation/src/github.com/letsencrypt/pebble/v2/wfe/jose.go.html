@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Source: jose.go in package github.com/letsencrypt/pebble/v2/wfe</title>
+<link href="../../../../../../css/auto-v0.6.5.css" rel="stylesheet">
+<script src="../../../../../../jvs/golds-v0.6.5.js"></script>
+<body onload="onPageLoad()"><div>
+
+<pre id="header"><code><span class="title">Source File</span>
+	jose.go
+
+<span class="title">Belonging Package</span>
+	<a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/wfe.html">github.com/letsencrypt/pebble/v2/wfe</a>
+</code></pre>
+<style>input[type=radio] {display: none;}
+input[id=r0]:checked ~pre label[for=r0],
+input[id=r1]:checked ~pre label[for=r1],
+input[id=r2]:checked ~pre label[for=r2],
+input[id=r3]:checked ~pre label[for=r3],
+input[id=r4]:checked ~pre label[for=r4],
+input[id=r5]:checked ~pre label[for=r5],
+input[id=r6]:checked ~pre label[for=r6],
+input[id=r7]:checked ~pre label[for=r7],
+input[id=r8]:checked ~pre label[for=r8],
+input[id=r9]:checked ~pre label[for=r9],
+input[id=r10]:checked ~pre label[for=r10],
+input[id=r11]:checked ~pre label[for=r11],
+input[id=r12]:checked ~pre label[for=r12],
+input[id=r13]:checked ~pre label[for=r13],
+input[id=r14]:checked ~pre label[for=r14],
+input[id=r15]:checked ~pre label[for=r15],
+input[id=r16]:checked ~pre label[for=r16],
+input[id=r17]:checked ~pre label[for=r17],
+input[id=r18]:checked ~pre label[for=r18],
+input[id=r19]:checked ~pre label[for=r19],
+input[id=r20]:checked ~pre label[for=r20],
+input[id=r21]:checked ~pre label[for=r21],
+input[id=r22]:checked ~pre label[for=r22],
+input[id=r23]:checked ~pre label[for=r23]
+{background: #226; color: #ff8;}
+input[id=i0]:checked ~pre .i0,
+input[id=i1]:checked ~pre .i1,
+input[id=i2]:checked ~pre .i2,
+input[id=i3]:checked ~pre .i3,
+input[id=i4]:checked ~pre .i4,
+input[id=i5]:checked ~pre .i5,
+input[id=i6]:checked ~pre .i6,
+input[id=i7]:checked ~pre .i7,
+input[id=i8]:checked ~pre .i8,
+input[id=i9]:checked ~pre .i9
+{background: brown; color: #eed;}
+</style><input id="r0" type="radio" name="g"/>
+<input id="r1" type="radio" name="g"/>
+<input id="r2" type="radio" name="g"/>
+<input id="r3" type="radio" name="g"/>
+<input id="r4" type="radio" name="g"/>
+<input id="r5" type="radio" name="g"/>
+<input id="r6" type="radio" name="g"/>
+<input id="r7" type="radio" name="g"/>
+<input id="r8" type="radio" name="g"/>
+<input id="r9" type="radio" name="g"/>
+<input id="r10" type="radio" name="g"/>
+<input id="r11" type="radio" name="g"/>
+<input id="r12" type="radio" name="g"/>
+<input id="r13" type="radio" name="g"/>
+<input id="r14" type="radio" name="g"/>
+<input id="r15" type="radio" name="g"/>
+<input id="r16" type="radio" name="g"/>
+<input id="r17" type="radio" name="g"/>
+<input id="r18" type="radio" name="g"/>
+<input id="r19" type="radio" name="g"/>
+<input id="r20" type="radio" name="g"/>
+<input id="r21" type="radio" name="g"/>
+<input id="r22" type="radio" name="g"/>
+<input id="r23" type="radio" name="g"/>
+<input id="i0" type="radio" name="i"/>
+<input id="i1" type="radio" name="i"/>
+<input id="i2" type="radio" name="i"/>
+<input id="i3" type="radio" name="i"/>
+<input id="i4" type="radio" name="i"/>
+<input id="i5" type="radio" name="i"/>
+<input id="i6" type="radio" name="i"/>
+<input id="i7" type="radio" name="i"/>
+<input id="i8" type="radio" name="i"/>
+<input id="i9" type="radio" name="i"/>
+
+<pre class="line-numbers">
+<span class="codeline" id="line-1"><code><span class="keyword">package</span> wfe</code></span>
+<span class="codeline" id="line-2"><code></code></span>
+<span class="codeline" id="line-3"><code><span class="keyword">import</span> (</code></span>
+<span class="codeline" id="line-4"><code>	<label for="i0"><span class="lit-string i0">"crypto"</span></label></code></span>
+<span class="codeline" id="line-5"><code>	<label for="i1"><span class="lit-string i1">"crypto/ecdsa"</span></label></code></span>
+<span class="codeline" id="line-6"><code>	<label for="i2"><span class="lit-string i2">"crypto/liboqs_sig"</span></label></code></span>
+<span class="codeline" id="line-7"><code>	<label for="i3"><span class="lit-string i3">"crypto/rsa"</span></label></code></span>
+<span class="codeline" id="line-8"><code>	<label for="i4"><span class="lit-string i4">"crypto/sha256"</span></label></code></span>
+<span class="codeline" id="line-9"><code>	<label for="i5"><span class="lit-string i5">"crypto/x509"</span></label></code></span>
+<span class="codeline" id="line-10"><code>	<label for="i6"><span class="lit-string i6">"encoding/base64"</span></label></code></span>
+<span class="codeline" id="line-11"><code>	<label for="i7"><span class="lit-string i7">"fmt"</span></label></code></span>
+<span class="codeline" id="line-12"><code></code></span>
+<span class="codeline" id="line-13"><code>	<label for="i8"><span class="lit-string i8">"github.com/letsencrypt/pebble/v2/acme"</span></label></code></span>
+<span class="codeline" id="line-14"><code></code></span>
+<span class="codeline" id="line-15"><code>	<label for="i9"><span class="lit-string i9">"gopkg.in/square/go-jose.v2"</span></label></code></span>
+<span class="codeline" id="line-16"><code>)</code></span>
+<span class="codeline" id="line-17"><code></code></span>
+<span class="codeline" id="line-18"><code><span class="keyword">func</span> <label for="r0" class="ident"><a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/wfe.html#name-algorithmForKey" class="ident">algorithmForKey</a></label>(<label for="r1" class="ident">key</label> *<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-80" class="ident">JSONWebKey</a>) (<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>, <a href="../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-19"><code>	<span class="keyword">switch</span> k := <label for="r1" class="ident">key</label>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-82" class="ident">Key</a>.(<span class="keyword">type</span>) {</code></span>
+<span class="codeline" id="line-20"><code>	<span class="keyword">case</span> *<a href="../../../../../../pkg/crypto/rsa.html" class="ident i3">rsa</a>.<a href="../../../../../crypto/rsa/rsa.go.html#line-42" class="ident">PublicKey</a>:</code></span>
+<span class="codeline" id="line-21"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-104" class="ident">RS256</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-22"><code>	<span class="keyword">case</span> *<a href="../../../../../../pkg/crypto/ecdsa.html" class="ident i1">ecdsa</a>.<a href="../../../../../crypto/ecdsa/ecdsa.go.html#line-60" class="ident">PublicKey</a>:</code></span>
+<span class="codeline" id="line-23"><code>		<span class="keyword">switch</span> <label for="r2" class="ident">k</label>.<a href="../../../../../crypto/elliptic/elliptic.go.html#line-29" class="ident">Params</a>().<a href="../../../../../crypto/elliptic/elliptic.go.html#line-51" class="ident">Name</a> {</code></span>
+<span class="codeline" id="line-24"><code>		<span class="keyword">case</span> <span class="lit-string">"P-256"</span>:</code></span>
+<span class="codeline" id="line-25"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-107" class="ident">ES256</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-26"><code>		<span class="keyword">case</span> <span class="lit-string">"P-384"</span>:</code></span>
+<span class="codeline" id="line-27"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-108" class="ident">ES384</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-28"><code>		<span class="keyword">case</span> <span class="lit-string">"P-521"</span>:</code></span>
+<span class="codeline" id="line-29"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-109" class="ident">ES512</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-30"><code>		}</code></span>
+<span class="codeline" id="line-31"><code>	<span class="keyword">case</span> *<a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-50" class="ident">PublicKey</a>:</code></span>
+<span class="codeline" id="line-32"><code>		<span class="keyword">switch</span> <label for="r3" class="ident">k</label>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-51" class="ident">SigId</a> {</code></span>
+<span class="codeline" id="line-33"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-31" class="ident">Dilithium2</a>:</code></span>
+<span class="codeline" id="line-34"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-113" class="ident">Dilithium2</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-35"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-34" class="ident">Dilithium3</a>:</code></span>
+<span class="codeline" id="line-36"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-114" class="ident">Dilithium3</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-37"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-36" class="ident">Dilithium5</a>:</code></span>
+<span class="codeline" id="line-38"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-115" class="ident">Dilithium5</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-39"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-32" class="ident">Falcon512</a>:</code></span>
+<span class="codeline" id="line-40"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-116" class="ident">Falcon512</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-41"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-37" class="ident">Falcon1024</a>:</code></span>
+<span class="codeline" id="line-42"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-117" class="ident">Falcon1024</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-43"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-39" class="ident">SphincsShake128sSimple</a>:</code></span>
+<span class="codeline" id="line-44"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-118" class="ident">SphincsShake128sSimple</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-45"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-40" class="ident">SphincsShake256sSimple</a>:</code></span>
+<span class="codeline" id="line-46"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-119" class="ident">SphincsShake256sSimple</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-47"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-20" class="ident">P256_Dilithium2</a>:</code></span>
+<span class="codeline" id="line-48"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-120" class="ident">P256_Dilithium2</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-49"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-21" class="ident">P256_Falcon512</a>:</code></span>
+<span class="codeline" id="line-50"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-121" class="ident">P256_Falcon512</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-51"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-22" class="ident">P256_SphincsShake128sSimple</a>:</code></span>
+<span class="codeline" id="line-52"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-122" class="ident">P256_SphincsShake128sSimple</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-53"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-24" class="ident">P384_Dilithium3</a>:</code></span>
+<span class="codeline" id="line-54"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-123" class="ident">P384_Dilithium3</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-55"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-27" class="ident">P521_Dilithium5</a>:</code></span>
+<span class="codeline" id="line-56"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-124" class="ident">P521_Dilithium5</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-57"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-28" class="ident">P521_Falcon1024</a>:</code></span>
+<span class="codeline" id="line-58"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-125" class="ident">P521_Falcon1024</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-59"><code>		<span class="keyword">case</span> <a href="../../../../../../pkg/crypto/liboqs_sig.html" class="ident i2">liboqs_sig</a>.<a href="../../../../../crypto/liboqs_sig/liboqs_sig.go.html#line-29" class="ident">P521_SphincsShake256sSimple</a>:</code></span>
+<span class="codeline" id="line-60"><code>			<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>(<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-126" class="ident">P521_SphincsShake256sSimple</a>), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> </code></span>
+<span class="codeline" id="line-61"><code></code></span>
+<span class="codeline" id="line-62"><code>		}</code></span>
+<span class="codeline" id="line-63"><code>	}</code></span>
+<span class="codeline" id="line-64"><code>	<span class="keyword">return</span> <span class="lit-string">""</span>, <a href="../../../../../../pkg/fmt.html" class="ident i7">fmt</a>.<a href="../../../../../fmt/errors.go.html#line-17" class="ident">Errorf</a>(<span class="lit-string">"no signature algorithms suitable for given key type: %T"</span>, <label for="r1" class="ident">key</label>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-82" class="ident">Key</a>)</code></span>
+<span class="codeline" id="line-65"><code>}</code></span>
+<span class="codeline" id="line-66"><code></code></span>
+<span class="codeline" id="line-67"><code><span class="comment">// Check that (1) there is a suitable algorithm for the provided key based on its</span></code></span>
+<span class="codeline" id="line-68"><code><span class="comment">// Golang type, (2) the Algorithm field on the JWK is either absent, or matches</span></code></span>
+<span class="codeline" id="line-69"><code><span class="comment">// that algorithm, and (3) the Algorithm field on the JWK is present and matches</span></code></span>
+<span class="codeline" id="line-70"><code><span class="comment">// that algorithm. Precondition: parsedJws must have exactly one signature on</span></code></span>
+<span class="codeline" id="line-71"><code><span class="comment">// it.</span></code></span>
+<span class="codeline" id="line-72"><code><span class="keyword">func</span> <label for="r4" class="ident"><a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/wfe.html#name-checkAlgorithm" class="ident">checkAlgorithm</a></label>(<label for="r5" class="ident">key</label> *<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-80" class="ident">JSONWebKey</a>, <label for="r6" class="ident">parsedJws</label> *<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/jws.go.html#line-46" class="ident">JSONWebSignature</a>) *<a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/acme.html" class="ident i8">acme</a>.<a href="../acme/problems.go.html#line-28" class="ident">ProblemDetails</a> {</code></span>
+<span class="codeline" id="line-73"><code>	<label for="r7" class="ident">algorithm</label>, <label for="r8" class="ident">err</label> := <a href="#line-18" class="ident">algorithmForKey</a>(<label for="r5" class="ident">key</label>)</code></span>
+<span class="codeline" id="line-74"><code>	<span class="keyword">if</span> <label for="r8" class="ident">err</label> != <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-75"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/acme.html" class="ident i8">acme</a>.<a href="../acme/problems.go.html#line-182" class="ident">BadPublicKeyProblem</a>(<label for="r8" class="ident">err</label>.Error())</code></span>
+<span class="codeline" id="line-76"><code>	}</code></span>
+<span class="codeline" id="line-77"><code>	<label for="r9" class="ident">jwsAlgorithm</label> := <label for="r6" class="ident">parsedJws</label>.<a href="../../../../../gopkg.in/square/go-jose.v2/jws.go.html#line-51" class="ident">Signatures</a>[<span class="lit-number">0</span>].<a href="../../../../../gopkg.in/square/go-jose.v2/jws.go.html#line-60" class="ident">Header</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/shared.go.html#line-194" class="ident">Algorithm</a></code></span>
+<span class="codeline" id="line-78"><code>	<span class="keyword">if</span> <label for="r9" class="ident">jwsAlgorithm</label> != <label for="r7" class="ident">algorithm</label> {</code></span>
+<span class="codeline" id="line-79"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/acme.html" class="ident i8">acme</a>.<a href="../acme/problems.go.html#line-46" class="ident">MalformedProblem</a>(<a href="../../../../../../pkg/fmt.html" class="ident i7">fmt</a>.<a href="../../../../../fmt/print.go.html#line-217" class="ident">Sprintf</a>(</code></span>
+<span class="codeline" id="line-80"><code>			<span class="lit-string">"signature type '%s' in JWS header is not supported, expected one of RS256, ES256, ES384 or ES512"</span>,</code></span>
+<span class="codeline" id="line-81"><code>			<label for="r9" class="ident">jwsAlgorithm</label>))</code></span>
+<span class="codeline" id="line-82"><code>	}</code></span>
+<span class="codeline" id="line-83"><code>	<span class="keyword">if</span> <label for="r5" class="ident">key</label>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-86" class="ident">Algorithm</a> != <span class="lit-string">""</span> &amp;&amp; <label for="r5" class="ident">key</label>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-86" class="ident">Algorithm</a> != <label for="r7" class="ident">algorithm</label> {</code></span>
+<span class="codeline" id="line-84"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/acme.html" class="ident i8">acme</a>.<a href="../acme/problems.go.html#line-182" class="ident">BadPublicKeyProblem</a>(<a href="../../../../../../pkg/fmt.html" class="ident i7">fmt</a>.<a href="../../../../../fmt/print.go.html#line-217" class="ident">Sprintf</a>(</code></span>
+<span class="codeline" id="line-85"><code>			<span class="lit-string">"algorithm '%s' on JWK is unacceptable"</span>, <label for="r5" class="ident">key</label>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-86" class="ident">Algorithm</a>))</code></span>
+<span class="codeline" id="line-86"><code>	}</code></span>
+<span class="codeline" id="line-87"><code>	<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-88"><code>}</code></span>
+<span class="codeline" id="line-89"><code></code></span>
+<span class="codeline" id="line-90"><code><span class="comment">// keyDigest produces a padded, standard Base64-encoded SHA256 digest of a</span></code></span>
+<span class="codeline" id="line-91"><code><span class="comment">// provided public key. See the original Boulder implementation for more details:</span></code></span>
+<span class="codeline" id="line-92"><code><span class="comment">// https://github.com/letsencrypt/boulder/blob/9c2859c87b70059a2082fc1f28e3f8a033c66d43/core/util.go#L92</span></code></span>
+<span class="codeline" id="line-93"><code><span class="keyword">func</span> <label for="r10" class="ident"><a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/wfe.html#name-keyDigest" class="ident">keyDigest</a></label>(<label for="r11" class="ident">key</label> <a href="../../../../../../pkg/crypto.html" class="ident i0">crypto</a>.<a href="../../../../../crypto/crypto.go.html#line-153" class="ident">PublicKey</a>) (<a href="../../../../../../pkg/builtin.html#name-string" class="ident">string</a>, <a href="../../../../../../pkg/builtin.html#name-error" class="ident">error</a>) {</code></span>
+<span class="codeline" id="line-94"><code>	<span class="keyword">switch</span> t := <label for="r11" class="ident">key</label>.(<span class="keyword">type</span>) {</code></span>
+<span class="codeline" id="line-95"><code>	<span class="keyword">case</span> *<a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-80" class="ident">JSONWebKey</a>:</code></span>
+<span class="codeline" id="line-96"><code>		<span class="keyword">if</span> <label for="r12" class="ident">t</label> == <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-97"><code>			<span class="keyword">return</span> <span class="lit-string">""</span>, <a href="../../../../../../pkg/fmt.html" class="ident i7">fmt</a>.<a href="../../../../../fmt/errors.go.html#line-17" class="ident">Errorf</a>(<span class="lit-string">"Cannot compute digest of nil key"</span>)</code></span>
+<span class="codeline" id="line-98"><code>		}</code></span>
+<span class="codeline" id="line-99"><code>		<span class="keyword">return</span> <label for="r10" class="ident">keyDigest</label>(<label for="r12" class="ident">t</label>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-82" class="ident">Key</a>)</code></span>
+<span class="codeline" id="line-100"><code>	<span class="keyword">case</span> <a href="../../../../../../pkg/gopkg.in/square/go-jose.v2.html" class="ident i9">jose</a>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-80" class="ident">JSONWebKey</a>:</code></span>
+<span class="codeline" id="line-101"><code>		<span class="keyword">return</span> <label for="r10" class="ident">keyDigest</label>(<label for="r13" class="ident">t</label>.<a href="../../../../../gopkg.in/square/go-jose.v2/jwk.go.html#line-82" class="ident">Key</a>)</code></span>
+<span class="codeline" id="line-102"><code>	<span class="keyword">default</span>:</code></span>
+<span class="codeline" id="line-103"><code>		<label for="r14" class="ident">keyDER</label>, <label for="r15" class="ident">err</label> := <a href="../../../../../../pkg/crypto/x509.html" class="ident i5">x509</a>.<a href="../../../../../crypto/x509/x509.go.html#line-145" class="ident">MarshalPKIXPublicKey</a>(<label for="r11" class="ident">key</label>)</code></span>
+<span class="codeline" id="line-104"><code>		<span class="keyword">if</span> <label for="r15" class="ident">err</label> != <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-105"><code>			<span class="keyword">return</span> <span class="lit-string">""</span>, <label for="r15" class="ident">err</label></code></span>
+<span class="codeline" id="line-106"><code>		}</code></span>
+<span class="codeline" id="line-107"><code>		<label for="r16" class="ident">spkiDigest</label> := <a href="../../../../../../pkg/crypto/sha256.html" class="ident i4">sha256</a>.<a href="../../../../../crypto/sha256/sha256.go.html#line-254" class="ident">Sum256</a>(<label for="r14" class="ident">keyDER</label>)</code></span>
+<span class="codeline" id="line-108"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/encoding/base64.html" class="ident i6">base64</a>.<a href="../../../../../encoding/base64/base64.go.html#line-99" class="ident">StdEncoding</a>.<a href="../../../../../encoding/base64/base64.go.html#line-177" class="ident">EncodeToString</a>(<label for="r16" class="ident">spkiDigest</label>[<span class="lit-number">0</span>:<span class="lit-number">32</span>]), <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a></code></span>
+<span class="codeline" id="line-109"><code>	}</code></span>
+<span class="codeline" id="line-110"><code>}</code></span>
+<span class="codeline" id="line-111"><code></code></span>
+<span class="codeline" id="line-112"><code><span class="comment">// keyDigestEquals determines whether two public keys have the same digest.</span></code></span>
+<span class="codeline" id="line-113"><code><span class="keyword">func</span> <label for="r17" class="ident"><a href="../../../../../../pkg/github.com/letsencrypt/pebble/v2/wfe.html#name-keyDigestEquals" class="ident">keyDigestEquals</a></label>(<label for="r18" class="ident">j</label>, <label for="r19" class="ident">k</label> <a href="../../../../../../pkg/crypto.html" class="ident i0">crypto</a>.<a href="../../../../../crypto/crypto.go.html#line-153" class="ident">PublicKey</a>) <a href="../../../../../../pkg/builtin.html#name-bool" class="ident">bool</a> {</code></span>
+<span class="codeline" id="line-114"><code>	<label for="r20" class="ident">digestJ</label>, <label for="r21" class="ident">errJ</label> := <a href="#line-93" class="ident">keyDigest</a>(<label for="r18" class="ident">j</label>)</code></span>
+<span class="codeline" id="line-115"><code>	<label for="r22" class="ident">digestK</label>, <label for="r23" class="ident">errK</label> := <a href="#line-93" class="ident">keyDigest</a>(<label for="r19" class="ident">k</label>)</code></span>
+<span class="codeline" id="line-116"><code>	<span class="comment">// Keys that don't have a valid digest (due to marshaling problems)</span></code></span>
+<span class="codeline" id="line-117"><code><span class="comment">	// are never equal. So, e.g. nil keys are not equal.</span></code></span>
+<span class="codeline" id="line-118"><code>	<span class="keyword">if</span> <label for="r21" class="ident">errJ</label> != <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> || <label for="r23" class="ident">errK</label> != <a href="../../../../../../pkg/builtin.html#name-nil" class="ident">nil</a> {</code></span>
+<span class="codeline" id="line-119"><code>		<span class="keyword">return</span> <a href="../../../../../../pkg/builtin.html#name-false" class="ident">false</a></code></span>
+<span class="codeline" id="line-120"><code>	}</code></span>
+<span class="codeline" id="line-121"><code>	<span class="keyword">return</span> <label for="r20" class="ident">digestJ</label> == <label for="r22" class="ident">digestK</label></code></span>
+<span class="codeline" id="line-122"><code>}</code></span>
+</pre><pre id="footer">
+<table><tr><td><img src="../../../../../../png/go101-twitter.png"></td>
+<td>The pages are generated with <a href="https://go101.org/apps-and-libs/golds.html"><b>Golds</b></a> <i>v0.6.5</i>. (GOOS=linux GOARCH=amd64)
+<b>Golds</b> is a <a href="https://go101.org">Go 101</a> project developed by <a href="https://tapirgames.com">Tapir Liu</a>.
+PR and bug reports are welcome and can be submitted to <a href="https://github.com/go101/golds">the issue list</a>.
+Please follow <a href="https://twitter.com/go100and1">@Go100and1</a> (reachable from the left QR code) to get the latest news of <b>Golds</b>.</td></tr></table></pre>

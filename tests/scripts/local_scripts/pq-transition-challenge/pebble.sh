@@ -13,5 +13,7 @@ go run cmd/pebble/main.go \
 -rootSig ECDSA-P256 \
 -interSig ECDSA-P256 \
 -issuerSig ECDSA-P256 \
+--pqorderport 10004 \
 --pqorderroot Dilithium2 \
---pqorderissuer Dilithium2 
+--pqorderissuer Dilithium2 \ 
+

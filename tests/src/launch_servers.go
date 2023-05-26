@@ -44,6 +44,6 @@ func launchServer() {
 	wg.Wait() //endless but required
 }
 
-func main() {
+func main_server() {
 	launchServer()
 }
