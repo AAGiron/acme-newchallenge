@@ -1,12 +1,9 @@
 [submodule "go-std"]
 	path = go-std
 	url = https://github.com/AAGiron/go-std
-	branch = clean-code
 [submodule "go-pebble"]
 	path = go-pebble
 	url = https://github.com/AAGiron/go-pebble
-	branch = clean-code
 [submodule "go-lego"]
 	path = go-lego
 	url = https://github.com/AAGiron/go-lego
-	branch = clean-code
