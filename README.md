@@ -1,6 +1,6 @@
 # ACME-newchallenge
 
-Repository for the implemenation of the ACME protocol with Post-Quantum Cryptography (PQC), including the "PQ-Transition Challenge" proposal. The source code is based on Go-LEGO, Go-Pebble, Go-JOSE, and Go standard library (i.e., the submodules).
+Repository for the implemenation of the ACME protocol with Post-Quantum Cryptography (PQC), including the simplified ACME Challenge proposal. The source code is based on Go-LEGO, Go-Pebble, Go-JOSE, and Go standard library (i.e., the submodules).
 
 # Requirements and Installation
 
@@ -19,7 +19,7 @@ The certificates are normally stored in `go-lego/.lego/certificates/` (check LEG
 
 # Documentation
 
-A documentation in `docs/` provides details on the PQ-Transition Challenge implementation. For additional information, overview, design and results please refer to the paper (to appear).
+A documentation in `docs/` provides details on the proposed implementation. For additional information, overview, design and results please refer to the paper (to appear).
 
 Tested on a (fresh) Ubuntu 22.10 LTS [multipass](https://multipass.run/) [modified](https://multipass.run/docs/modify-an-instance) instance, with 2GB memory and 20 GB disk. 
 
@@ -34,6 +34,10 @@ This is a prototype implementation for benchmarking, demonstration and experimen
 Suggestions and contributions are welcome!
 
 # Known issues
+
+Anonymous github does not allow downloading big repositories (nor submodules) so if you want to 
+- Read documentation: A look in the `docs/` might give directions.
+- Download the source: use a different link ([Sourcev1.0.zip](https://mega.nz/file/30tg2TSB#mREZB-1GTH2_y86BPFAOlrIZllilVIpm9ipxxOBoyIE), unzip it, then refer to `tests/scripts/` for installation and execution scripts. The zip file includes everything but the main requirement (a Go installation) still apply.
 
 If an error like `Temporary naming resolution failure` appears when testing a certificate issuance, please check if your `/etc/hosts` contains the line `${IP_SERVER}   ${SERVER_NAME}`. The installation script adds it but some VM instances can flush out such a configuration.  
 
