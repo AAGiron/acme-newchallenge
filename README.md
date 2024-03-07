@@ -19,7 +19,7 @@ The certificates are normally stored in `go-lego/.lego/certificates/` (check LEG
 
 # Documentation
 
-A documentation in `docs/` provides details on the proposed implementation. For additional information, overview, design and results please refer to the paper (to appear).
+A documentation in `docs/` provides details on the proposed implementation. For additional information, overview, design and results please refer to the [paper](https://link.springer.com/chapter/10.1007/978-3-031-54773-7_1).
 
 Tested on a (fresh) Ubuntu 22.10 LTS [multipass](https://multipass.run/) [modified](https://multipass.run/docs/modify-an-instance) instance, with 2GB memory and 20 GB disk. 
 
